@@ -14,6 +14,11 @@
 		7F615AB51A5B138400AE281A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB41A5B138400AE281A /* Images.xcassets */; };
 		7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB61A5B138400AE281A /* LaunchScreen.xib */; };
 		7F615AC41A5B138400AE281A /* ProjectMapDSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */; };
+		7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB081A5BC49300C2EC3D /* Info-icon.png */; };
+		7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB091A5BC49300C2EC3D /* Logo.png */; };
+		7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */; };
+		7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */; };
+		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,14 @@
 		7F615ABD1A5B138400AE281A /* ProjectMapDSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectMapDSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F615AC21A5B138400AE281A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMapDSTests.m; sourceTree = "<group>"; };
+		7F9FEB081A5BC49300C2EC3D /* Info-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-icon.png"; sourceTree = "<group>"; };
+		7F9FEB091A5BC49300C2EC3D /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		7F9FEB101A5BC95900C2EC3D /* OfflinePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflinePageTableViewController.h; sourceTree = "<group>"; };
+		7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflinePageTableViewController.m; sourceTree = "<group>"; };
+		7F9FEB141A5BCBB300C2EC3D /* OnlinePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlinePageTableViewController.h; sourceTree = "<group>"; };
+		7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlinePageTableViewController.m; sourceTree = "<group>"; };
+		7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritePageTableViewController.h; sourceTree = "<group>"; };
+		7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritePageTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +94,8 @@
 		7F615AA61A5B138400AE281A /* ProjectMapDS */ = {
 			isa = PBXGroup;
 			children = (
+				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
+				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
@@ -88,6 +103,9 @@
 				7F615AB11A5B138400AE281A /* Main.storyboard */,
 				7F615AB41A5B138400AE281A /* Images.xcassets */,
 				7F615AB61A5B138400AE281A /* LaunchScreen.xib */,
+				7F9FEB131A5BCB9900C2EC3D /* Online */,
+				7F9FEB0F1A5BC91800C2EC3D /* Offline */,
+				7F9FEB171A5BCCD000C2EC3D /* Favorite */,
 				7F615AA71A5B138400AE281A /* Supporting Files */,
 			);
 			path = ProjectMapDS;
@@ -117,6 +135,33 @@
 				7F615AC21A5B138400AE281A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F9FEB0F1A5BC91800C2EC3D /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				7F9FEB101A5BC95900C2EC3D /* OfflinePageTableViewController.h */,
+				7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */,
+			);
+			name = Offline;
+			sourceTree = "<group>";
+		};
+		7F9FEB131A5BCB9900C2EC3D /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				7F9FEB141A5BCBB300C2EC3D /* OnlinePageTableViewController.h */,
+				7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */,
+			);
+			name = Online;
+			sourceTree = "<group>";
+		};
+		7F9FEB171A5BCCD000C2EC3D /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */,
+				7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */,
+			);
+			name = Favorite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +246,8 @@
 			files = (
 				7F615AB31A5B138400AE281A /* Main.storyboard in Resources */,
 				7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */,
+				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
+				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +266,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
+				7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */,
 				7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */,
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
+				7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +462,7 @@
 				7F615AC91A5B138400AE281A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F615ACA1A5B138400AE281A /* Build configuration list for PBXNativeTarget "ProjectMapDSTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +471,7 @@
 				7F615ACC1A5B138400AE281A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

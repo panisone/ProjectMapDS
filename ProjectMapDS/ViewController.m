@@ -14,6 +14,13 @@
 
 @implementation ViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.navigationItem.title = @"Home";
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -24,4 +31,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)InfoView:(id)sender
+{
+    UIAlertView *alv = [[UIAlertView alloc]
+                        initWithTitle:@"INFO View"
+                        message:@"dev. by Panisara Intoe"
+                        delegate:self
+                        cancelButtonTitle:@"Done"
+                        otherButtonTitles: nil];
+    [alv show];
+}
+
+- (IBAction)OnlinePage:(id)sender
+{
+    OnlinePageTableViewController *next = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlinePageTableViewController"];
+    [self.navigationController pushViewController:next animated:YES];
+}
+
+- (IBAction)OfflinePage:(id)sender
+{
+    OfflinePageTableViewController *next = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflinePageTableViewController"];
+    [self.navigationController pushViewController:next animated:YES];
+}
+
+- (IBAction)FavoritePage:(id)sender
+{
+    FavoritePageTableViewController *next = [self.storyboard instantiateViewControllerWithIdentifier:@"FavoritePageTableViewController"];
+    [self.navigationController pushViewController:next animated:YES];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            break;
+            
+        default:
+            break;
+    }
+}
 @end
