@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+//assign "class" for SQLite
+@class OfflinePageTableViewController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    OfflinePageTableViewController *offlinePageTableViewController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

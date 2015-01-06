@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
 @interface OfflinePageTableViewController : UITableViewController
+{
+    sqlite3 *database;
+}
+
+-(void)initDatabase;
+-(void)getDepartmentStore;
 
 @end

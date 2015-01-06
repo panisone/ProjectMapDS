@@ -19,6 +19,9 @@
 		7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */; };
 		7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */; };
 		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
+		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
+		7F9FEB1E1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB1D1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite */; };
+		7F9FEB201A5BDB5500C2EC3D /* TestApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlinePageTableViewController.m; sourceTree = "<group>"; };
 		7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritePageTableViewController.h; sourceTree = "<group>"; };
 		7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritePageTableViewController.m; sourceTree = "<group>"; };
+		7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7F9FEB1D1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MapDepartmentStore.sqlite; sourceTree = "<group>"; };
+		7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestApp.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,7 @@
 		7F615A9B1A5B138400AE281A = {
 			isa = PBXGroup;
 			children = (
+				7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */,
 				7F615AA61A5B138400AE281A /* ProjectMapDS */,
 				7F615AC01A5B138400AE281A /* ProjectMapDSTests */,
 				7F615AA51A5B138400AE281A /* Products */,
@@ -94,6 +102,8 @@
 		7F615AA61A5B138400AE281A /* ProjectMapDS */ = {
 			isa = PBXGroup;
 			children = (
+				7F9FEB1D1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite */,
+				7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */,
 				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
 				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
@@ -246,6 +256,8 @@
 			files = (
 				7F615AB31A5B138400AE281A /* Main.storyboard in Resources */,
 				7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */,
+				7F9FEB201A5BDB5500C2EC3D /* TestApp.sqlite in Resources */,
+				7F9FEB1E1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite in Resources */,
 				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
 				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
