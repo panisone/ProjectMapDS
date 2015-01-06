@@ -14,8 +14,6 @@
 		7F615AB51A5B138400AE281A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB41A5B138400AE281A /* Images.xcassets */; };
 		7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB61A5B138400AE281A /* LaunchScreen.xib */; };
 		7F615AC41A5B138400AE281A /* ProjectMapDSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */; };
-		7F9FEB061A5BB89400C2EC3D /* Info-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB041A5BB89400C2EC3D /* Info-icon.png */; };
-		7F9FEB071A5BB89400C2EC3D /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB051A5BB89400C2EC3D /* Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +40,6 @@
 		7F615ABD1A5B138400AE281A /* ProjectMapDSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectMapDSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F615AC21A5B138400AE281A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMapDSTests.m; sourceTree = "<group>"; };
-		7F9FEB041A5BB89400C2EC3D /* Info-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-icon.png"; sourceTree = "<group>"; };
-		7F9FEB051A5BB89400C2EC3D /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +81,6 @@
 		7F615AA61A5B138400AE281A /* ProjectMapDS */ = {
 			isa = PBXGroup;
 			children = (
-				7F9FEB041A5BB89400C2EC3D /* Info-icon.png */,
-				7F9FEB051A5BB89400C2EC3D /* Logo.png */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
@@ -207,8 +201,6 @@
 			files = (
 				7F615AB31A5B138400AE281A /* Main.storyboard in Resources */,
 				7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */,
-				7F9FEB071A5BB89400C2EC3D /* Logo.png in Resources */,
-				7F9FEB061A5BB89400C2EC3D /* Info-icon.png in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,7 +412,6 @@
 				7F615AC91A5B138400AE281A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		7F615ACA1A5B138400AE281A /* Build configuration list for PBXNativeTarget "ProjectMapDSTests" */ = {
 			isa = XCConfigurationList;
@@ -429,7 +420,6 @@
 				7F615ACC1A5B138400AE281A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

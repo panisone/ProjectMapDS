@@ -10,10 +10,6 @@
 
 @interface ViewController : UIViewController
 
-//- (IBAction)nextOnlinePage:(id)sender;
-//- (IBAction)nextOfflinePage:(id)sender;
-//- (IBAction)nextFavoritePage:(id)sender;
-- (IBAction)infoView:(id)sender;
 
 @end
 
