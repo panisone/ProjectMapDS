@@ -10,10 +10,12 @@
 
 //assign "class" for SQLite
 @class OfflinePageTableViewController;
+@class OfflineDetailDSViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     OfflinePageTableViewController *offlinePageTableViewController;
+    OfflineDetailDSViewController *offlineDetailDSViewController;
 }
 
 @property (strong, nonatomic) UIWindow *window;

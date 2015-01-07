@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OnlinePageTableViewController.h"
-#import "OfflinePageTableViewController.h"
-#import "FavoritePageTableViewController.h"
+#import "OnlinePageTableViewController.h"   //next to Online Page
+#import "OfflinePageTableViewController.h"  //next to Offline Page
+#import "FavoritePageTableViewController.h" //next to Favorite Page
 
 @interface ViewController : UIViewController
 

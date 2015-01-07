@@ -14,6 +14,11 @@
 		7F615AB51A5B138400AE281A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB41A5B138400AE281A /* Images.xcassets */; };
 		7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB61A5B138400AE281A /* LaunchScreen.xib */; };
 		7F615AC41A5B138400AE281A /* ProjectMapDSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */; };
+		7F7435BF1A5D1F2500640C93 /* OfflineDetailDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */; };
+		7F7435C21A5D229400640C93 /* OfflineTabBarDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7435C11A5D229400640C93 /* OfflineTabBarDSViewController.m */; };
+		7F7435C61A5D3FA300640C93 /* Detail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7435C51A5D3FA300640C93 /* Detail-icon.png */; };
+		7F7435CC1A5D41CA00640C93 /* FloorPlan-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7435CB1A5D41CA00640C93 /* FloorPlan-icon.png */; };
+		7F7435D21A5D42F100640C93 /* ShopCategory-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7435D11A5D42F100640C93 /* ShopCategory-icon.png */; };
 		7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB081A5BC49300C2EC3D /* Info-icon.png */; };
 		7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB091A5BC49300C2EC3D /* Logo.png */; };
 		7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */; };
@@ -48,6 +53,13 @@
 		7F615ABD1A5B138400AE281A /* ProjectMapDSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectMapDSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F615AC21A5B138400AE281A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMapDSTests.m; sourceTree = "<group>"; };
+		7F7435BD1A5D1F2500640C93 /* OfflineDetailDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDetailDSViewController.h; sourceTree = "<group>"; };
+		7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineDetailDSViewController.m; sourceTree = "<group>"; };
+		7F7435C01A5D229400640C93 /* OfflineTabBarDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineTabBarDSViewController.h; sourceTree = "<group>"; };
+		7F7435C11A5D229400640C93 /* OfflineTabBarDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineTabBarDSViewController.m; sourceTree = "<group>"; };
+		7F7435C51A5D3FA300640C93 /* Detail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Detail-icon.png"; sourceTree = "<group>"; };
+		7F7435CB1A5D41CA00640C93 /* FloorPlan-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FloorPlan-icon.png"; sourceTree = "<group>"; };
+		7F7435D11A5D42F100640C93 /* ShopCategory-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShopCategory-icon.png"; sourceTree = "<group>"; };
 		7F9FEB081A5BC49300C2EC3D /* Info-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-icon.png"; sourceTree = "<group>"; };
 		7F9FEB091A5BC49300C2EC3D /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		7F9FEB101A5BC95900C2EC3D /* OfflinePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflinePageTableViewController.h; sourceTree = "<group>"; };
@@ -106,6 +118,9 @@
 				7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */,
 				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
 				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
+				7F7435C51A5D3FA300640C93 /* Detail-icon.png */,
+				7F7435CB1A5D41CA00640C93 /* FloorPlan-icon.png */,
+				7F7435D11A5D42F100640C93 /* ShopCategory-icon.png */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
@@ -152,6 +167,10 @@
 			children = (
 				7F9FEB101A5BC95900C2EC3D /* OfflinePageTableViewController.h */,
 				7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */,
+				7F7435C01A5D229400640C93 /* OfflineTabBarDSViewController.h */,
+				7F7435C11A5D229400640C93 /* OfflineTabBarDSViewController.m */,
+				7F7435BD1A5D1F2500640C93 /* OfflineDetailDSViewController.h */,
+				7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */,
 			);
 			name = Offline;
 			sourceTree = "<group>";
@@ -257,9 +276,12 @@
 				7F615AB31A5B138400AE281A /* Main.storyboard in Resources */,
 				7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */,
 				7F9FEB201A5BDB5500C2EC3D /* TestApp.sqlite in Resources */,
+				7F7435C61A5D3FA300640C93 /* Detail-icon.png in Resources */,
+				7F7435D21A5D42F100640C93 /* ShopCategory-icon.png in Resources */,
 				7F9FEB1E1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite in Resources */,
 				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
 				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
+				7F7435CC1A5D41CA00640C93 /* FloorPlan-icon.png in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +306,8 @@
 				7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */,
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
 				7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */,
+				7F7435BF1A5D1F2500640C93 /* OfflineDetailDSViewController.m in Sources */,
+				7F7435C21A5D229400640C93 /* OfflineTabBarDSViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

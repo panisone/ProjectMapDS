@@ -119,9 +119,16 @@
 }
 */
 
-/*
-#pragma mark - Navigation
+//#pragma mark - Navigation
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OfflineTabBarDSViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarDSViewController"];
+    dataID = [listOfidDS objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:destView animated:YES];
+}
+
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -185,10 +192,10 @@
                 }
                 
                 UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
-                NSData *logo = UIImagePNGRepresentation(imageLogo);
+                //NSData *logo = UIImagePNGRepresentation(imageLogo);
                 if ((char*)sqlite3_column_text(searchStament, 3) != NULL)
                 {
-                    logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 3) length:sqlite3_column_bytes(searchStament, 3)];
+                    NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 3) length:sqlite3_column_bytes(searchStament, 3)];
                     if ([logo length] != 0)
                     {
                         imageLogo = [UIImage imageWithData:logo];
@@ -212,7 +219,6 @@
             }
         }
         sqlite3_finalize(searchStament);
-
     }
 }
 

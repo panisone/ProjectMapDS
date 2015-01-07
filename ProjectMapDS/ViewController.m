@@ -18,7 +18,7 @@
 {
     [super viewWillAppear:YES];
     self.navigationItem.title = @"Home";
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidLoad {
