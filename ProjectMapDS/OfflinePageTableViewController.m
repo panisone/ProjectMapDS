@@ -220,6 +220,7 @@
         }
         sqlite3_finalize(searchStament);
     }
+    sqlite3_close(database);
 }
 
 @end

@@ -26,12 +26,13 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail DS";
-    //self.navigationController.navigationBar.hidden = NO;
+    //self.navigationController.navigationBar.topItem.title = @"back";
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //call methode for Database
+    //call method for Database
     [self initDatabase];
     [self getDetailDS];
     //set text to Show

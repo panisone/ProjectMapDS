@@ -14,6 +14,8 @@
 		7F615AB51A5B138400AE281A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB41A5B138400AE281A /* Images.xcassets */; };
 		7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F615AB61A5B138400AE281A /* LaunchScreen.xib */; };
 		7F615AC41A5B138400AE281A /* ProjectMapDSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */; };
+		7F62AFA01A5E83D80032F1FD /* OfflineCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F62AF9F1A5E83D80032F1FD /* OfflineCategoryViewController.m */; };
+		7F62AFA51A5F092D0032F1FD /* MapDepartmentStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F62AFA41A5F092D0032F1FD /* MapDepartmentStore.sqlite */; };
 		7F7435BF1A5D1F2500640C93 /* OfflineDetailDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */; };
 		7F7435C21A5D229400640C93 /* OfflineTabBarDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7435C11A5D229400640C93 /* OfflineTabBarDSViewController.m */; };
 		7F7435C61A5D3FA300640C93 /* Detail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7435C51A5D3FA300640C93 /* Detail-icon.png */; };
@@ -25,7 +27,6 @@
 		7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */; };
 		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
 		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
-		7F9FEB1E1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB1D1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite */; };
 		7F9FEB201A5BDB5500C2EC3D /* TestApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,9 @@
 		7F615ABD1A5B138400AE281A /* ProjectMapDSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectMapDSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F615AC21A5B138400AE281A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F615AC31A5B138400AE281A /* ProjectMapDSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMapDSTests.m; sourceTree = "<group>"; };
+		7F62AF9E1A5E83D80032F1FD /* OfflineCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineCategoryViewController.h; sourceTree = "<group>"; };
+		7F62AF9F1A5E83D80032F1FD /* OfflineCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineCategoryViewController.m; sourceTree = "<group>"; };
+		7F62AFA41A5F092D0032F1FD /* MapDepartmentStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MapDepartmentStore.sqlite; sourceTree = "<group>"; };
 		7F7435BD1A5D1F2500640C93 /* OfflineDetailDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDetailDSViewController.h; sourceTree = "<group>"; };
 		7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineDetailDSViewController.m; sourceTree = "<group>"; };
 		7F7435C01A5D229400640C93 /* OfflineTabBarDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineTabBarDSViewController.h; sourceTree = "<group>"; };
@@ -69,7 +73,6 @@
 		7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritePageTableViewController.h; sourceTree = "<group>"; };
 		7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritePageTableViewController.m; sourceTree = "<group>"; };
 		7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		7F9FEB1D1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MapDepartmentStore.sqlite; sourceTree = "<group>"; };
 		7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestApp.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +117,7 @@
 		7F615AA61A5B138400AE281A /* ProjectMapDS */ = {
 			isa = PBXGroup;
 			children = (
-				7F9FEB1D1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite */,
+				7F62AFA41A5F092D0032F1FD /* MapDepartmentStore.sqlite */,
 				7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */,
 				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
 				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
@@ -171,6 +174,8 @@
 				7F7435C11A5D229400640C93 /* OfflineTabBarDSViewController.m */,
 				7F7435BD1A5D1F2500640C93 /* OfflineDetailDSViewController.h */,
 				7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */,
+				7F62AF9E1A5E83D80032F1FD /* OfflineCategoryViewController.h */,
+				7F62AF9F1A5E83D80032F1FD /* OfflineCategoryViewController.m */,
 			);
 			name = Offline;
 			sourceTree = "<group>";
@@ -278,8 +283,8 @@
 				7F9FEB201A5BDB5500C2EC3D /* TestApp.sqlite in Resources */,
 				7F7435C61A5D3FA300640C93 /* Detail-icon.png in Resources */,
 				7F7435D21A5D42F100640C93 /* ShopCategory-icon.png in Resources */,
-				7F9FEB1E1A5BD10C00C2EC3D /* MapDepartmentStore.sqlite in Resources */,
 				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
+				7F62AFA51A5F092D0032F1FD /* MapDepartmentStore.sqlite in Resources */,
 				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
 				7F7435CC1A5D41CA00640C93 /* FloorPlan-icon.png in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
@@ -302,6 +307,7 @@
 			files = (
 				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
+				7F62AFA01A5E83D80032F1FD /* OfflineCategoryViewController.m in Sources */,
 				7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */,
 				7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */,
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,

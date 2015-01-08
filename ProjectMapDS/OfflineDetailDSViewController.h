@@ -13,6 +13,7 @@
 {
     sqlite3 *database;
 }
+
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *branchLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *logoImage;
