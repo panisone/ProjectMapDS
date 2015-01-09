@@ -12,6 +12,7 @@
 @class OfflinePageTableViewController;
 @class OfflineTabBarDSViewController;
 @class OfflineDetailDSViewController;
+@class OfflineFloorPlanViewController;
 @class OfflineCategoryViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -19,6 +20,7 @@
     OfflinePageTableViewController *offlinePageTableViewController;
     OfflineTabBarDSViewController *offlineTabBarDSViewController;
     OfflineDetailDSViewController *offlineDetailDSViewController;
+    OfflineFloorPlanViewController *offlineFloorPlanViewController;
     OfflineCategoryViewController *offlineCategoryViewController;
 }
 

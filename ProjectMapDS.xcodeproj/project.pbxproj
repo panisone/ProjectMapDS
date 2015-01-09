@@ -28,6 +28,7 @@
 		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
 		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
 		7F9FEB201A5BDB5500C2EC3D /* TestApp.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */; };
+		7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritePageTableViewController.m; sourceTree = "<group>"; };
 		7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		7F9FEB1F1A5BDB5500C2EC3D /* TestApp.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestApp.sqlite; sourceTree = "<group>"; };
+		7FC4F9C21A5FE7BC002422BC /* OfflineFloorPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineFloorPlanViewController.h; sourceTree = "<group>"; };
+		7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineFloorPlanViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 				7F7435C11A5D229400640C93 /* OfflineTabBarDSViewController.m */,
 				7F7435BD1A5D1F2500640C93 /* OfflineDetailDSViewController.h */,
 				7F7435BE1A5D1F2500640C93 /* OfflineDetailDSViewController.m */,
+				7FC4F9C21A5FE7BC002422BC /* OfflineFloorPlanViewController.h */,
+				7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */,
 				7F62AF9E1A5E83D80032F1FD /* OfflineCategoryViewController.h */,
 				7F62AF9F1A5E83D80032F1FD /* OfflineCategoryViewController.m */,
 			);
@@ -307,6 +312,7 @@
 			files = (
 				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
+				7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */,
 				7F62AFA01A5E83D80032F1FD /* OfflineCategoryViewController.m in Sources */,
 				7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */,
 				7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */,

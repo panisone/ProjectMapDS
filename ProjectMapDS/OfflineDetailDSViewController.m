@@ -163,7 +163,7 @@
         }
         sqlite3_finalize(searchStament);
     }
-    //sqlite3_close(database);
+    sqlite3_close(database);
 }
 
 -(void)getFloorDS
