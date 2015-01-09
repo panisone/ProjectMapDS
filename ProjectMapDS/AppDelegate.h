@@ -10,12 +10,14 @@
 
 //assign "class" for SQLite
 @class OfflinePageTableViewController;
+@class OfflineTabBarDSViewController;
 @class OfflineDetailDSViewController;
 @class OfflineCategoryViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     OfflinePageTableViewController *offlinePageTableViewController;
+    OfflineTabBarDSViewController *offlineTabBarDSViewController;
     OfflineDetailDSViewController *offlineDetailDSViewController;
     OfflineCategoryViewController *offlineCategoryViewController;
 }

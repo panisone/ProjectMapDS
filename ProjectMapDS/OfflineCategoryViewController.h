@@ -15,7 +15,8 @@
 }
 
 -(void)initDatabase;
--(void)getCategory;
--(void)getShopCategory;
+-(void)getCategory:(NSString *) floor;
+-(void)getShopCategory:(NSString *) floor;
+-(NSString *)getStringFloor:(NSString *) shop;
 
 @end

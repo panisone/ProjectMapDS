@@ -18,6 +18,7 @@
     NSString *name;
     NSString *branch;
     NSString *detail;
+    NSString *floor;
     UIImage *image;
 }
 @synthesize nameLabel,branchLabel,logoImage,detailTextView;
@@ -35,8 +36,12 @@
     //call method for Database
     [self initDatabase];
     [self getDetailDS];
+    [self getFloorDS];
     //set text to Show
     nameLabel.text = name;
+    branchLabel.text = [@"สาขา " stringByAppendingString:branch];
+    logoImage.image = image;
+    detailTextView.text = [detail stringByAppendingString:floor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,18 +107,16 @@
                         branch = @"-";
                     }
                 }
-                branchLabel.text = [@"สาขา " stringByAppendingString:branch];
                 
-                UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+                image = [UIImage imageNamed:@"Info-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 7) != NULL)
                 {
                     NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 7) length:sqlite3_column_bytes(searchStament, 7)];
                     if ([logo length] != 0)
                     {
-                        imageLogo = [UIImage imageWithData:logo];
+                        image = [UIImage imageWithData:logo];
                     }
                 }
-                logoImage.image = imageLogo;
                 
                 detail = @"";
                 NSString *address = @"-";
@@ -155,13 +158,38 @@
                 }
                 detail = [detail stringByAppendingString:@"\n\n"];
                 
-                detailTextView.text = detail;
                 //NSLog(@"detail: %@",detail);
             }
         }
         sqlite3_finalize(searchStament);
     }
-    sqlite3_close(database);
+    //sqlite3_close(database);
 }
 
+-(void)getFloorDS
+{
+    floor = @"";
+    
+    for (NSString *nameFloor in dataFloor)
+    {
+        if ([floor isEqual:@""])
+        {
+            floor = [floor stringByAppendingString:nameFloor];
+        }
+        else
+        {
+            floor = [floor stringByAppendingString:@", "];
+            floor = [floor stringByAppendingString:nameFloor];
+        }
+    }
+    
+    if ([floor isEqual:@""])
+    {
+        floor = [@"Floor: \n" stringByAppendingString:@"-"];
+    }
+    else
+    {
+        floor = [@"Floor: \n" stringByAppendingString:floor];
+    }
+}
 @end

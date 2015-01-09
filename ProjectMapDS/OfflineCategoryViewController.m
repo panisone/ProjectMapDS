@@ -18,10 +18,7 @@
     NSMutableArray *category;
     NSDictionary *shopCategory;
     NSDictionary *idShopCategory;
-    //NSMutableArray *listOfidStore;
-    //NSMutableArray *listOfnameStore;
-    //NSMutableArray *listOffloorStore;
-    //NSMutableArray *listOflogoStore;
+    NSDictionary *floorShopCategory;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -32,20 +29,13 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     //call method for Database
     [self initDatabase];
-    [self getCategory];
-    [self getShopCategory];
-    /*
-    for (NSString *key in category) {
-        NSLog(@"%@",key);
-        for (NSString *shop in [shopCategory objectForKey:key]) {
-            NSLog(@"-%@",shop);
-        }
-    }
-    */
+    [self getCategory:@""];
+    [self getShopCategory:@""]; //parameter: dataFloor[2]
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,12 +82,15 @@
     }
     
     NSString *sectionTitle = [category objectAtIndex:indexPath.section];
-    NSArray *sectionShops = [shopCategory objectForKey:sectionTitle];
-    NSString *store = [sectionShops objectAtIndex:indexPath.row];
+    NSArray *sectionStores = [shopCategory objectForKey:sectionTitle];
+    NSString *store = [sectionStores objectAtIndex:indexPath.row];
     cell.textLabel.text = store;
-    NSArray *sectionIDShops = [idShopCategory objectForKey:sectionTitle];
-    NSString *idStore = [sectionIDShops objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = idStore;
+    //NSArray *sectionIDShops = [idShopCategory objectForKey:sectionTitle];
+    //NSString *idStore = [sectionIDShops objectAtIndex:indexPath.row];
+    //cell.detailTextLabel.text = idStore;
+    NSArray *sectionFloorShops = [floorShopCategory objectForKey:sectionTitle];
+    NSString *floorStore = [sectionFloorShops objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = floorStore;
     
     return cell;
 }
@@ -126,7 +119,7 @@
     
 }
 
--(void)getCategory //get array of Category Section Title
+-(void)getCategory:(NSString *) floor //get array of Category Section Title
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -134,7 +127,13 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = [[NSString stringWithFormat:@"SELECT Store.category FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and DepartmentStore.idDS=%@ GROUP BY Store.category ORDER BY Store.category ASC",dataID] cStringUsingEncoding:NSUTF8StringEncoding];
+        NSString *sqlFloor = @"";
+        if (![floor  isEqual: @""])
+        {
+            sqlFloor = [NSString stringWithFormat:@"and Floor.floor='%@'",floor];
+        }
+        
+        const char *sql = [[NSString stringWithFormat:@"SELECT Store.category FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and DepartmentStore.idDS=%@ %@ GROUP BY Store.category ORDER BY Store.category ASC",dataID,sqlFloor] cStringUsingEncoding:NSUTF8StringEncoding];
         
         sqlite3_stmt *searchStament;
         
@@ -153,7 +152,7 @@
     //sqlite3_close(database);
 }
 
--(void)getShopCategory //get data Store
+-(void)getShopCategory:(NSString *) floor //get data Store
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -161,12 +160,19 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
+        NSString *sqlFloor = @"";
+        if (![floor  isEqual: @""])
+        {
+            sqlFloor = [NSString stringWithFormat:@"and Floor.floor='%@'",floor];
+        }
+        
         shopCategory = [[NSMutableDictionary alloc] init];
         idShopCategory = [[NSMutableDictionary alloc] init];
+        floorShopCategory = [[NSMutableDictionary alloc] init];
         
         for (NSString *keyCategory in category)
         {
-            const char *sql = [[NSString stringWithFormat:@"SELECT Store.idStore,Store.nameStore FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and DepartmentStore.idDS=%@ and Store.category='%@' GROUP BY Store.nameStore ORDER BY Store.nameStore ASC",dataID,keyCategory] cStringUsingEncoding:NSUTF8StringEncoding];
+            const char *sql = [[NSString stringWithFormat:@"SELECT Store.idStore,Store.nameStore FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and DepartmentStore.idDS=%@ and Store.category='%@' %@ GROUP BY Store.nameStore ORDER BY Store.nameStore ASC",dataID,keyCategory,sqlFloor] cStringUsingEncoding:NSUTF8StringEncoding];
             
             sqlite3_stmt *searchStament;
             
@@ -174,6 +180,7 @@
             {
                 NSMutableArray *arrName = [[NSMutableArray alloc] init];
                 NSMutableArray *arrID = [[NSMutableArray alloc] init];
+                NSMutableArray *arrFloor = [[NSMutableArray alloc] init];
                 
                 while (sqlite3_step(searchStament) == SQLITE_ROW)
                 {
@@ -181,17 +188,68 @@
                     
                     NSString *nameStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
                     
+                    NSString *floorStore = @"";
+                    if ([sqlFloor isEqual:@""])
+                    {
+                        floorStore = [self getStringFloor:idStore];
+                    }
+                    else
+                    {
+                        floorStore = floor;
+                    }
+                    
                     [arrID addObject:idStore];
                     [arrName addObject:nameStore];
+                    [arrFloor addObject:floorStore];
                 }
                 //add Key:category and Value:shop in Dict.
                 [shopCategory setValue:arrName forKey:keyCategory];
                 [idShopCategory setValue:arrID forKey:keyCategory];
+                [floorShopCategory setValue:arrFloor forKey:keyCategory];
             }
             sqlite3_finalize(searchStament);
         }
     }
     sqlite3_close(database);
+}
+
+-(NSString *)getStringFloor:(NSString *) shop
+{
+    sqlite3 *db;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    NSString *strFloor = @"";
+    
+    if (sqlite3_open([path UTF8String], &db) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"SELECT Floor.floor FROM Floor,LinkFloorStore WHERE Floor.idFloor=LinkFloorStore.idFloor and Floor.idDS=%@ and LinkFloorStore.idStore='%@' ORDER BY Floor.idFloor ASC",dataID,shop] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(db, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            while (sqlite3_step(searchStament) == SQLITE_ROW)
+            {
+                NSString *nameFloor = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                
+                if ([strFloor isEqual:@""])
+                {
+                    strFloor = [strFloor stringByAppendingString:nameFloor];
+                }
+                else
+                {
+                    strFloor = [strFloor stringByAppendingString:@", "];
+                    strFloor = [strFloor stringByAppendingString:nameFloor];
+                }
+            }
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(db);
+    
+    return strFloor;
 }
 
 @end

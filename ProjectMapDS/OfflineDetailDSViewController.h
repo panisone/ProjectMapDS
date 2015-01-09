@@ -21,5 +21,6 @@
 
 -(void)initDatabase;
 -(void)getDetailDS;
+-(void)getFloorDS;
 
 @end
