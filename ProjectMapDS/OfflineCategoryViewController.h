@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
+#import "OfflineTabBarStoreViewController.h"    //next to Offline TabBar Store Page
 
 @interface OfflineCategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {

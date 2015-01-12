@@ -1,35 +1,25 @@
 //
-//  OfflineTabBarDSViewController.m
+//  OfflineDetailStoreViewController.m
 //  ProjectMapDS
 //
-//  Created by Panisara Intoe on 1/7/2558 BE.
+//  Created by Panisara Intoe on 1/12/2558 BE.
 //  Copyright (c) 2558 Panisara Intoe. All rights reserved.
 //
 
-#import "OfflineTabBarDSViewController.h"
+#import "OfflineDetailStoreViewController.h"
+#import "OfflineTabBarStoreViewController.h"    //use Global variable: storeID
 
-NSString *dataID;           //Global variable
-NSMutableArray *dataFloor;  //Global variable
-
-@interface OfflineTabBarDSViewController ()
+@interface OfflineDetailStoreViewController ()
 
 @end
 
-@implementation OfflineTabBarDSViewController
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    //self.navigationItem.title = dataID;
-    self.navigationController.navigationBar.topItem.title = @"back";
-    self.navigationController.navigationBar.hidden = NO;
-}
+@implementation OfflineDetailStoreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //call method for Database
     [self initDatabase];
-    [self getFloorDS];
+    [self getDetailStore];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +60,7 @@ NSMutableArray *dataFloor;  //Global variable
     
 }
 
--(void)getFloorDS
+-(void)getDetailStore
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -78,19 +68,15 @@ NSMutableArray *dataFloor;  //Global variable
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = [[NSString stringWithFormat:@"SELECT idFloor,floor FROM Floor WHERE Floor.idDS=%@ ORDER BY idFloor ASC",dataID] cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *sql = [[NSString stringWithFormat:@"SELECT * FROM Store WHERE idStore=%@",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
         
         sqlite3_stmt *searchStament;
         
         if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
         {
-            dataFloor = [[NSMutableArray alloc] init];
-            
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
-                NSString *nameFloor = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
                 
-                [dataFloor addObject:nameFloor];
             }
         }
         sqlite3_finalize(searchStament);

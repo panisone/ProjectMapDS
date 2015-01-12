@@ -7,7 +7,7 @@
 //
 
 #import "OfflineFloorPlanViewController.h"
-#import "OfflineTabBarDSViewController.h"   //use Global variable: dataID
+#import "OfflineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
 
 @interface OfflineFloorPlanViewController ()
 

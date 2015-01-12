@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 #import "OfflineTabBarDSViewController.h"   //next to Offline TabBar DS Page
-#import "OfflineDetailDSViewController.h"   //next to Offline Detail DS Page
 
 @interface OfflinePageTableViewController : UITableViewController
 {

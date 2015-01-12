@@ -7,7 +7,7 @@
 //
 
 #import "OfflineCategoryViewController.h"
-#import "OfflineTabBarDSViewController.h"   //use Global variable: dataID
+#import "OfflineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
 
 @interface OfflineCategoryViewController ()
 
@@ -93,6 +93,17 @@
     cell.detailTextLabel.text = floorStore;
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *sectionTitle = [category objectAtIndex:indexPath.section];
+    NSArray *sectionIDStores = [idShopCategory objectForKey:sectionTitle];
+    NSString *store = [sectionIDStores objectAtIndex:indexPath.row];
+    
+    OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
+    storeID = store;
+    [self.navigationController pushViewController:destView animated:YES];
 }
 
 //method

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
-extern NSString *dataID;    //Global variable
-extern NSMutableArray *dataFloor;
+extern NSString *dataID;            //Global variable
+extern NSMutableArray *dataFloor;   //Global variable
 
 @interface OfflineTabBarDSViewController : UITabBarController
 {
