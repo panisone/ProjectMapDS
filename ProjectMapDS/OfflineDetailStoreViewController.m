@@ -14,12 +14,25 @@
 @end
 
 @implementation OfflineDetailStoreViewController
+{
+    NSString *name;
+    NSString *branch;
+    NSString *detail;
+    //NSString *floor;
+    UIImage *image;
+}
+@synthesize nameLabel,branchLabel,logoImage,detailTextView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //call method for Database
     [self initDatabase];
     [self getDetailStore];
+    //set text to Show
+    nameLabel.text = name;
+    branchLabel.text = [@"สาขา " stringByAppendingString:branch];
+    logoImage.image = image;
+    detailTextView.text = detail;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,12 +89,174 @@
         {
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
+                name = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
                 
+                branch = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 2) != NULL) {
+                    branch = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 2)];
+                    if ([branch  isEqual: @""]) {
+                        branch = @"-";
+                    }
+                }
+                
+                image = [UIImage imageNamed:@"Info-icon.png"];
+                if ((char*)sqlite3_column_text(searchStament, 12) != NULL)
+                {
+                    NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 12) length:sqlite3_column_bytes(searchStament, 12)];
+                    if ([logo length] != 0)
+                    {
+                        image = [UIImage imageWithData:logo];
+                    }
+                }
+                
+                detail = @"";
+                NSString *category = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 4) != NULL) {
+                    category = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 4)];
+                    if ([category  isEqual: @""]) {
+                        category = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"ประเภทของร้าน: \n"];
+                detail = [detail stringByAppendingString:category];
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                detail = [detail stringByAppendingString:@"ตำแหน่งที่ตั้งร้าน: \n"];
+                detail = [detail stringByAppendingString:[self getStringAddressNumber]];
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                NSString *openTime = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 5) != NULL) {
+                    openTime = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 5)];
+                    if ([openTime  isEqual: @""]) {
+                        openTime = @"-";
+                    }
+                }
+                NSString *closeTime = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 6) != NULL) {
+                    closeTime = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 6)];
+                    if ([closeTime  isEqual: @""]) {
+                        closeTime = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"เวลาบริการ: \n"];
+                if ([openTime  isEqual:@"-"] || [closeTime isEqual:@"-"])
+                {
+                    detail = [detail stringByAppendingString:@"-"];
+                }
+                else
+                {
+                    openTime = [openTime stringByAppendingString:@" - "];
+                    openTime = [openTime stringByAppendingString:closeTime];
+                    detail = [detail stringByAppendingString:openTime];
+                }
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                NSString *tel = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 7) != NULL) {
+                    tel = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 7)];
+                    if ([tel  isEqual: @""]) {
+                        tel = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"Tel: \n"];
+                detail = [detail stringByAppendingString:tel];
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                NSString *fax = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 8) != NULL) {
+                    fax = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 8)];
+                    if ([fax  isEqual: @""]) {
+                        fax = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"Fax: \n"];
+                detail = [detail stringByAppendingString:fax];
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                NSString *email = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 9) != NULL) {
+                    email = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 9)];
+                    if ([email  isEqual: @""]) {
+                        email = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"E-Mail: \n"];
+                detail = [detail stringByAppendingString:email];
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                NSString *web = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 10) != NULL) {
+                    web = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 10)];
+                    if ([web  isEqual: @""]) {
+                        web = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"E-Mail: \n"];
+                detail = [detail stringByAppendingString:web];
+                detail = [detail stringByAppendingString:@"\n\n"];
+                
+                NSString *detailStore = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 11) != NULL) {
+                    detailStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 11)];
+                    if ([detailStore  isEqual: @""]) {
+                        detailStore = @"-";
+                    }
+                }
+                detail = [detail stringByAppendingString:@"รายละเอียดร้าน: \n"];
+                detail = [detail stringByAppendingString:detailStore];
+                //detail = [detail stringByAppendingString:@"\n\n"];
             }
         }
         sqlite3_finalize(searchStament);
     }
     sqlite3_close(database);
+}
+
+-(NSString *)getStringAddressNumber
+{
+    sqlite3 *db;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    NSString *strFloor = @"";
+    
+    if (sqlite3_open([path UTF8String], &db) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"SELECT Floor.floor,LinkFloorStore.addressNumber FROM Floor,LinkFloorStore WHERE Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=%@",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(db, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            while (sqlite3_step(searchStament) == SQLITE_ROW)
+            {
+                NSString *nameFloor = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                
+                NSString *addNumber = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
+                
+                nameFloor = [@"ชั้น " stringByAppendingString:nameFloor];
+                addNumber = [@"\tห้อง " stringByAppendingString:addNumber];
+                
+                if ([strFloor isEqual:@""])
+                {
+                    strFloor = [strFloor stringByAppendingString:nameFloor];
+                    strFloor = [strFloor stringByAppendingString:addNumber];
+                }
+                else
+                {
+                    strFloor = [strFloor stringByAppendingString:@"\n"];
+                    strFloor = [strFloor stringByAppendingString:nameFloor];
+                    strFloor = [strFloor stringByAppendingString:addNumber];
+                }
+            }
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(db);
+    
+    return strFloor;
 }
 
 @end

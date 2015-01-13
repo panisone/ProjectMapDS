@@ -25,10 +25,6 @@
     [self initDatabase];
     [self getImageDS];
     
-    if ([listOfimageDS count] == 0) {
-        [listOfimageDS addObject:[UIImage imageNamed:@"Info-icon.png"]];
-    }
-    
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflinePageDSViewController"];
     self.pageViewController.dataSource = self;
@@ -170,6 +166,10 @@
                 }
                 
                 [listOfimageDS addObject:image];
+            }
+            
+            if ([listOfimageDS count] == 0) {
+                [listOfimageDS addObject:[UIImage imageNamed:@"Info-icon.png"]];
             }
         }
         sqlite3_finalize(searchStament);

@@ -13,10 +13,13 @@
 @end
 
 @implementation OfflineContentStoreViewController
+@synthesize imageView;
+@synthesize imageStore;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.imageView.image = imageStore;
 }
 
 - (void)didReceiveMemoryWarning {

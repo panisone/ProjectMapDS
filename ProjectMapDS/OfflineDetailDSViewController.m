@@ -144,7 +144,6 @@
                         closeTime = @"-";
                     }
                 }
-                
                 detail = [detail stringByAppendingString:@"เวลาทำการ: \n"];
                 if ([openTime  isEqual:@"-"] || [closeTime isEqual:@"-"])
                 {

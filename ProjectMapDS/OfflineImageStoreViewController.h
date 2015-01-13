@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
+#import "OfflineContentStoreViewController.h"
 
-@interface OfflineImageStoreViewController : UIViewController
+@interface OfflineImageStoreViewController : UIViewController <UIPageViewControllerDataSource>
+{
+    sqlite3 *database;
+}
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+
+-(void)initDatabase;
+-(void)getImageStore;
 
 @end

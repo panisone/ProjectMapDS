@@ -21,6 +21,6 @@
 
 -(void)initDatabase;
 -(void)getDetailStore;
-//-(NSString *)getStringFloor;
+-(NSString *)getStringAddressNumber;
 
 @end

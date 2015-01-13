@@ -432,7 +432,7 @@
         <!--Page View Controller-->
         <scene sceneID="DGk-L4-2jV">
             <objects>
-                <pageViewController storyboardIdentifier="OfflinePageStoreViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="6HN-wJ-RLk" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="OfflinePageStoreViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6HN-wJ-RLk" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imc-qa-Lpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,6 +466,9 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="5Dw-8h-2Bi" id="T8j-Qq-yv9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOZ-sw-FcE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

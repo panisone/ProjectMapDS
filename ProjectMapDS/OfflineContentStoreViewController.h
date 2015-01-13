@@ -10,4 +10,9 @@
 
 @interface OfflineContentStoreViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (nonatomic, retain) UIImage *imageStore;
+@property NSUInteger pageIndex;
+
 @end
