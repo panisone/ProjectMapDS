@@ -18,16 +18,33 @@
     NSString *name;
     NSString *branch;
     NSString *detail;
-    //NSString *floor;
     UIImage *image;
+    
+    NSString *favorite;
 }
 @synthesize nameLabel,branchLabel,logoImage,detailTextView;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    //self.navigationItem.title = @"Detail Store";
+    //self.navigationController.navigationBar.topItem.title = @"back";
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+                                    initWithImage:[UIImage imageNamed:favorite]
+                                    style:UIBarButtonItemStyleDone
+                                    target:self action:@selector(rightFuntion)];
+    //rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
+    rightButton.tintColor = [UIColor brownColor];
+    self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //call method for Database
     [self initDatabase];
     [self getDetailStore];
+    [self getFavorite];
     //set text to Show
     nameLabel.text = name;
     branchLabel.text = [@"สาขา " stringByAppendingString:branch];
@@ -213,6 +230,91 @@
     sqlite3_close(database);
 }
 
+-(void)getFavorite
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    favorite = @"AddStar-icon.png";
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"SELECT * FROM Favorite WHERE idStore=%@",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            while (sqlite3_step(searchStament) == SQLITE_ROW)
+            {
+                NSString *idStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                
+                if (idStore != nil) {
+                    favorite = @"RemoveStar-icon.png";
+                    //NSLog(@"store FAVORITE");
+                }
+            }
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+
+-(void)addFavorite
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"INSERT INTO Favorite VALUES ('%@',CURRENT_DATE)",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                favorite = @"RemoveStar-icon.png";
+                [self.parentViewController.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:favorite]];
+                //NSLog(@"insert success");
+            }/*
+            else
+                NSLog(@"insert NOT success");*/
+        }
+        
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+
+-(void)removeFavorite
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM Favorite WHERE idStore=%@",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                favorite = @"AddStar-icon.png";
+                [self.parentViewController.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:favorite]];
+                //NSLog(@"remove success");
+            }
+        }
+        
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+
 -(NSString *)getStringAddressNumber
 {
     sqlite3 *db;
@@ -233,11 +335,15 @@
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
                 NSString *nameFloor = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
-                
-                NSString *addNumber = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
-                
                 nameFloor = [@"ชั้น " stringByAppendingString:nameFloor];
-                addNumber = [@"\tห้อง " stringByAppendingString:addNumber];
+                
+                NSString *addNumber = @"";
+                if ((char*)sqlite3_column_text(searchStament, 1) != NULL) {
+                    addNumber = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
+                    if (![addNumber  isEqual: @""]) {
+                        addNumber = [@"\tห้อง " stringByAppendingString:addNumber];
+                    }
+                }
                 
                 if ([strFloor isEqual:@""])
                 {
@@ -257,6 +363,33 @@
     sqlite3_close(db);
     
     return strFloor;
+}
+
+//method for Right Button
+-(void)rightFuntion
+{
+    UIActionSheet *func = [[UIActionSheet alloc]
+                           initWithTitle:@"Make Favorite?"
+                           delegate:self
+                           cancelButtonTitle:@"Cancel"
+                           destructiveButtonTitle:@"Yes"
+                           otherButtonTitles:nil];
+    [func showInView:self.view];
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        if ([favorite isEqual:@"AddStar-icon.png"])
+        {
+            [self addFavorite];
+        }
+        else if ([favorite isEqual:@"RemoveStar-icon.png"])
+        {
+            [self removeFavorite];
+        }
+    }
 }
 
 @end

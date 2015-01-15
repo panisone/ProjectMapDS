@@ -92,6 +92,10 @@ NSMutableArray *dataFloor;  //Global variable
                 
                 [dataFloor addObject:nameFloor];
             }
+            //test case: no data
+            if ([dataFloor count] == 0) {
+                [dataFloor addObject:@"%"];
+            }
         }
         sqlite3_finalize(searchStament);
     }

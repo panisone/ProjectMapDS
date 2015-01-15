@@ -10,10 +10,12 @@
 #import <sqlite3.h>
 #import "OfflineTabBarStoreViewController.h"    //next to Offline TabBar Store Page
 
-@interface OfflineCategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface OfflineCategoryViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
     sqlite3 *database;
 }
+
+@property (strong, nonatomic) IBOutlet UITableView *offlineCategoryTable;
 
 -(void)initDatabase;
 -(void)getCategory:(NSString *) floor;

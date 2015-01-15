@@ -21,6 +21,7 @@ NSString *storeID;            //Global variable
     [super viewWillAppear:YES];
     //self.navigationItem.title = storeID;
     self.navigationController.navigationBar.topItem.title = @"back";
+    self.navigationController.navigationItem.rightBarButtonItem = nil;
     self.navigationController.navigationBar.hidden = NO;
 }
 

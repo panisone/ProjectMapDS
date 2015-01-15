@@ -75,9 +75,8 @@
     cell.textLabel.text = [listOfnameDS objectAtIndex:indexPath.row];
     
     // Cell Detail text = "branchDS"
-    NSString *detailText = @"สาขา ";
     NSString *callDetail = [listOfbranchDS objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [detailText stringByAppendingString:callDetail];
+    cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:callDetail];
     
     // Cell Image = "logoDS"
     cell.imageView.image = [listOflogoDS objectAtIndex:indexPath.row];
@@ -168,6 +167,7 @@
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
         const char *sql = "SELECT idDS,nameDS,branchDS,logoDS FROM DepartmentStore";
+        
         sqlite3_stmt *searchStament;
         
         if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
-@interface OfflineDetailStoreViewController : UIViewController
+@interface OfflineDetailStoreViewController : UIViewController <UIActionSheetDelegate>
 {
     sqlite3 *database;
 }
@@ -21,6 +21,10 @@
 
 -(void)initDatabase;
 -(void)getDetailStore;
+-(void)getFavorite;
+-(void)addFavorite;
+-(void)removeFavorite;
+
 -(NSString *)getStringAddressNumber;
 
 @end

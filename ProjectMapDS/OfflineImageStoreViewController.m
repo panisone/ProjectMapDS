@@ -18,6 +18,15 @@
     NSMutableArray *listOfimageStore;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    //self.navigationItem.title = @"Image Store";
+    //self.navigationController.navigationBar.topItem.title = @"back";
+    self.parentViewController.navigationItem.rightBarButtonItem = nil;
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

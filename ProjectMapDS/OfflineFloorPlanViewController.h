@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
+#import "OfflineTabBarStoreViewController.h"    //next to Offline TabBar Store Page
 
-@interface OfflineFloorPlanViewController : UIViewController
+@interface OfflineFloorPlanViewController : UIViewController <UIActionSheetDelegate>
 {
     sqlite3 *database;
 }

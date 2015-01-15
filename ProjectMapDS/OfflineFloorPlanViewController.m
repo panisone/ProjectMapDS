@@ -7,7 +7,7 @@
 //
 
 #import "OfflineFloorPlanViewController.h"
-#import "OfflineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
+#import "OfflineTabBarDSViewController.h"       //use Global variable: dataID, dataFloor
 
 @interface OfflineFloorPlanViewController ()
 
@@ -15,7 +15,7 @@
 
 @implementation OfflineFloorPlanViewController
 {
-    //NSString *namefloor;
+    NSString *titleRightButton;
     UIImage *image;
 }
 @synthesize floorImage;
@@ -25,6 +25,12 @@
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Map DS";
     //self.navigationController.navigationBar.topItem.title = @"back";
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:titleRightButton
+                                    style:UIBarButtonItemStyleDone
+                                    target:self action:@selector(rightFuntion)];
+    self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
+    //[self.parentViewController.navigationItem setRightBarButtonItem:rightButton animated:YES];
     self.navigationController.navigationBar.hidden = NO;
 }
 
@@ -32,17 +38,9 @@
     [super viewDidLoad];
     //call method for Database
     [self initDatabase];
-    if ([dataFloor count]==0)
-    {
-        [self getFloorPlan:@""];
-    }
-    else
-    {
-        //init Offline-FloorPlan-ViewController
-        [self getFloorPlan:dataFloor[0]];
-    }
-    //set image to Show
-    floorImage.image = image;
+    [self showFloorPlan:dataFloor[0]];
+    //set title Right Button
+    titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,7 +89,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = [[NSString stringWithFormat:@"SELECT mapFloor FROM Floor WHERE idDS=%@ and floor='%@'",dataID,floor] cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *sql = [[NSString stringWithFormat:@"SELECT mapFloor FROM Floor WHERE idDS=%@ and floor LIKE '%@'",dataID,floor] cStringUsingEncoding:NSUTF8StringEncoding];
         
         sqlite3_stmt *searchStament;
         
@@ -114,6 +112,157 @@
         sqlite3_finalize(searchStament);
     }
     sqlite3_close(database);
+}
+
+//method for Right Button
+-(void)rightFuntion
+{
+    UIActionSheet *func = [[UIActionSheet alloc]
+                           initWithTitle:nil
+                           delegate:self
+                           cancelButtonTitle:nil
+                           destructiveButtonTitle:nil
+                           otherButtonTitles:nil];
+    for (NSString *title in dataFloor) {
+        [func addButtonWithTitle:title];
+    }
+    func.cancelButtonIndex = [func addButtonWithTitle:@"Cancel"];
+    [func showInView:self.view];
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != [dataFloor count])
+    {
+        //change title of Right Button
+        titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[buttonIndex]];
+        [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
+        
+        //remove Button of page before
+        for (UIView *subview in [self.view subviews])
+        {
+            if (subview.tag == 1) {
+                [subview removeFromSuperview];
+            }
+        }
+        
+        //change image
+        [self getFloorPlan:dataFloor[buttonIndex]];
+        floorImage.image = image;
+        [self createButton:dataFloor[buttonIndex]];
+        
+        //call method create Button connect to Store
+        //-----
+    }
+}
+
+//call mathod for SHOW FloorPlan
+-(void)showFloorPlan:(NSString *) floor
+{
+    //call method for Database
+    [self getFloorPlan:floor];
+    //set image to Show
+    floorImage.image = image;
+    //create Button on FloorPlan
+    [self createButton:floor];
+}
+
+//create SUBVIEW for SHOW
+-(void)createButton:(NSString *) floor
+{
+    sqlite3 *db;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &db) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"SELECT Store.idStore,Store.logoStore,LinkFloorStore.pointX,LinkFloorStore.pointY,LinkFloorStore.width,LinkFloorStore.height FROM Floor,LinkFloorStore,Store WHERE Floor.idDS=%@ and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and Floor.floor LIKE '%@'",dataID,floor] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(db, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 49 - 64)];
+            //newView.backgroundColor = [UIColor redColor];
+            newView.tag = 1;
+            
+            while (sqlite3_step(searchStament) == SQLITE_ROW)
+            {
+                NSString *idStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                
+                UIImage *imageButton = [UIImage imageNamed:@"Logo.png"];
+                if ((char*)sqlite3_column_text(searchStament, 1) != NULL)
+                {
+                    NSData *dataImage = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 1) length:sqlite3_column_bytes(searchStament, 1)];
+                    
+                    if ([dataImage length] != 0)
+                    {
+                        imageButton = [UIImage imageWithData:dataImage];
+                    }
+                }
+                
+                NSString *pointX = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 2) != NULL) {
+                    pointX = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 2)];
+                    if ([pointX isEqual: @""]) {
+                        pointX = @"-";
+                    }
+                }
+                NSString *pointY = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 3) != NULL) {
+                    pointY = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 3)];
+                    if ([pointY isEqual: @""]) {
+                        pointY = @"-";
+                    }
+                }
+                
+                NSString *width = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 4) != NULL) {
+                    width = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 4)];
+                    if ([width isEqual: @""]) {
+                        width = @"-";
+                    }
+                }
+                NSString *height = @"-";
+                if ((char*)sqlite3_column_text(searchStament, 5) != NULL) {
+                    height = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 5)];
+                    if ([height isEqual: @""]) {
+                        height = @"-";
+                    }
+                }
+                
+                if (![pointX isEqual:@"-"] && ![pointX isEqual:@"-"]) {
+                    CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
+                    //[height intValue]*imageButton.size.width/imageButton.size.height
+                    UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
+                    
+                    //set TAG is storeID
+                    button.tag = [idStore intValue];
+                    
+                    //test
+                    [button setTitle:idStore forState:UIControlStateNormal];
+                    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                    
+                    [button setBackgroundImage:imageButton forState:UIControlStateNormal];
+                    [button addTarget:self action:@selector(storeView:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    [newView addSubview:button];
+                }
+            }
+            [self.view addSubview:newView];
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(db);
+}
+
+-(void)storeView:(UIButton *) sender
+{
+    //NSLog(@"id: %ld",(long)sender.tag);
+    OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
+    storeID = [NSString stringWithFormat:@"%ld",(long)sender.tag];
+    [self.navigationController pushViewController:destView animated:YES];
 }
 
 @end

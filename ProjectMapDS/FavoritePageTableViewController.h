@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
 @interface FavoritePageTableViewController : UITableViewController
+{
+    sqlite3 *database;
+}
+
+-(void)initDatabase;
+-(void)getFavorite;
 
 @end

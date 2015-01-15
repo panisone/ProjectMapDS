@@ -15,6 +15,8 @@
 @class OfflineFloorPlanViewController;
 @class OfflineCategoryViewController;
 
+@class FavoritePageTableViewController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     OfflinePageTableViewController *offlinePageTableViewController;
@@ -22,6 +24,8 @@
     OfflineDetailDSViewController *offlineDetailDSViewController;
     OfflineFloorPlanViewController *offlineFloorPlanViewController;
     OfflineCategoryViewController *offlineCategoryViewController;
+    
+    FavoritePageTableViewController *favoritePageTableViewController;
 }
 
 @property (strong, nonatomic) UIWindow *window;
