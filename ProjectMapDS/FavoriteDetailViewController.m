@@ -33,8 +33,13 @@
                                     initWithImage:[UIImage imageNamed:favorite]
                                     style:UIBarButtonItemStyleDone
                                     target:self action:@selector(rightFuntion)];
-    //rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
-    rightButton.tintColor = [UIColor brownColor];
+    //set Color of Right Button
+    if ([favorite isEqual:@"RemoveStar-icon.png"]) {
+        rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
+    }
+    else if ([favorite isEqual:@"AddStar-icon.png"]) {
+        rightButton.tintColor = [UIColor colorWithRed:(48/255.0) green:(131/255.0) blue:(251/255.0) alpha:1.0]; //#3083FB
+    }
     self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
     self.navigationController.navigationBar.hidden = NO;
 }
@@ -278,6 +283,7 @@
             if (sqlite3_step(searchStament) == SQLITE_DONE) {
                 favorite = @"RemoveStar-icon.png";
                 [self.parentViewController.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:favorite]];
+                self.parentViewController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
                 //NSLog(@"insert success");
             }/*
               else
@@ -306,6 +312,7 @@
             if (sqlite3_step(searchStament) == SQLITE_DONE) {
                 favorite = @"AddStar-icon.png";
                 [self.parentViewController.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:favorite]];
+                self.parentViewController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:(48/255.0) green:(131/255.0) blue:(251/255.0) alpha:1.0]; //#3083FB
                 //NSLog(@"remove success");
             }
         }
@@ -384,10 +391,12 @@
         if ([favorite isEqual:@"AddStar-icon.png"])
         {
             [self addFavorite];
+            [self getFavorite];
         }
         else if ([favorite isEqual:@"RemoveStar-icon.png"])
         {
             [self removeFavorite];
+            [self getFavorite];
         }
     }
 }

@@ -149,10 +149,9 @@
         //change image
         [self getFloorPlan:dataFloor[buttonIndex]];
         floorImage.image = image;
-        [self createButton:dataFloor[buttonIndex]];
         
         //call method create Button connect to Store
-        //-----
+        [self createButton:dataFloor[buttonIndex]];
     }
 }
 
@@ -232,7 +231,7 @@
                     }
                 }
                 
-                if (![pointX isEqual:@"-"] && ![pointX isEqual:@"-"]) {
+                if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
                     CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
                     //[height intValue]*imageButton.size.width/imageButton.size.height
                     UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];

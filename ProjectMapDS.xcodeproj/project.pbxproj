@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F4249D21A6829B80008724D /* Position-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D11A6829B80008724D /* Position-icon.png */; };
+		7F4249D81A68314A0008724D /* Point1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D71A68314A0008724D /* Point1-icon.png */; };
+		7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D91A6831A00008724D /* Point2-icon.png */; };
+		7F4249E01A6834FC0008724D /* Point-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249DF1A6834FC0008724D /* Point-icon.png */; };
 		7F615AAA1A5B138400AE281A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AA91A5B138400AE281A /* main.m */; };
 		7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AAC1A5B138400AE281A /* AppDelegate.m */; };
 		7F615AB01A5B138400AE281A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AAF1A5B138400AE281A /* ViewController.m */; };
@@ -55,6 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F4249D11A6829B80008724D /* Position-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Position-icon.png"; sourceTree = "<group>"; };
+		7F4249D71A68314A0008724D /* Point1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point1-icon.png"; sourceTree = "<group>"; };
+		7F4249D91A6831A00008724D /* Point2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point2-icon.png"; sourceTree = "<group>"; };
+		7F4249DF1A6834FC0008724D /* Point-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point-icon.png"; sourceTree = "<group>"; };
 		7F615AA41A5B138400AE281A /* ProjectMapDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectMapDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F615AA81A5B138400AE281A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F615AA91A5B138400AE281A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -166,6 +174,10 @@
 				7F88F3D71A62A2F3002E5A49 /* ShopCategory-icon.png */,
 				7F756E8A1A66751E0011D040 /* AddStar-icon.png */,
 				7F756E891A66751E0011D040 /* RemoveStar-icon.png */,
+				7F4249D11A6829B80008724D /* Position-icon.png */,
+				7F4249DF1A6834FC0008724D /* Point-icon.png */,
+				7F4249D71A68314A0008724D /* Point1-icon.png */,
+				7F4249D91A6831A00008724D /* Point2-icon.png */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
@@ -345,6 +357,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F756E8B1A66751E0011D040 /* RemoveStar-icon.png in Resources */,
+				7F4249E01A6834FC0008724D /* Point-icon.png in Resources */,
+				7F4249D21A6829B80008724D /* Position-icon.png in Resources */,
 				7F756E8C1A66751E0011D040 /* AddStar-icon.png in Resources */,
 				7F88F3BC1A629B79002E5A49 /* Image-icon.png in Resources */,
 				7F88F3D81A62A2F3002E5A49 /* ShopCategory-icon.png in Resources */,
@@ -353,9 +367,11 @@
 				7F615AB81A5B138400AE281A /* LaunchScreen.xib in Resources */,
 				7F7435C61A5D3FA300640C93 /* Detail-icon.png in Resources */,
 				7F756E8E1A6689920011D040 /* MapDepartmentStore.sqlite in Resources */,
+				7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */,
 				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
 				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
+				7F4249D81A68314A0008724D /* Point1-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

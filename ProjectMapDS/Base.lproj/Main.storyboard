@@ -633,8 +633,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Position" image="FloorPlan-icon.png" id="Wxr-1v-x1t"/>
+                    <tabBarItem key="tabBarItem" title="Position" image="Position-icon.png" id="Wxr-1v-x1t"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="floorImage" destination="BP0-ip-rcr" id="k0e-Eu-8eb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwp-rQ-9ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -812,6 +815,7 @@
         <image name="Image-icon.png" width="38" height="38"/>
         <image name="Info-icon.png" width="160" height="160"/>
         <image name="Logo.png" width="400" height="400"/>
+        <image name="Position-icon.png" width="32" height="32"/>
         <image name="ShopCategory-icon.png" width="40" height="40"/>
     </resources>
 </document>

@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
-@interface FavoritePositionViewController : UIViewController
+@interface FavoritePositionViewController : UIViewController <UIActionSheetDelegate>
+{
+    sqlite3 *database;
+}
+
+@property (strong, nonatomic) IBOutlet UIImageView *floorImage;
+
+-(void)initDatabase;
+-(void)getFloorPlan:(NSString *) floor;
 
 @end
