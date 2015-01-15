@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *storeID;            //Global variable
+extern NSString *storeID;   //Global variable
 
 @interface OfflineTabBarStoreViewController : UITabBarController
 

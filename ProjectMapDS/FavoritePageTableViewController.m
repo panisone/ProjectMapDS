@@ -25,6 +25,9 @@
     [super viewWillAppear:YES];
     self.navigationItem.title = @"Favorite List";
     self.navigationController.navigationBar.hidden = NO;
+    //reload Table View
+    [self getFavorite];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -32,8 +35,6 @@
     //call initDatabse : use to check connected MapDepartmentStore.sqlite
     [self initDatabase];
     //call getFavorite : connect DB & use data from MapDepartmentStore.sqlite
-    //[self addFavorite];
-    //[self removeFavorite];
     [self getFavorite];
 }
 
@@ -113,9 +114,17 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
+//#pragma mark - Navigation
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FavoriteTabBarViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"FavoriteTabBarViewController"];
+    storeID = [listOfidStore objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:destView animated:YES];
+}
+
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -194,60 +203,6 @@
                 [listOflogoStore addObject:imageLogo];
             }
         }
-        sqlite3_finalize(searchStament);
-    }
-    sqlite3_close(database);
-}
-
--(void)addFavorite
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
-    
-    NSString *strID = @"2";
-    
-    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
-    {
-        const char *sql = [[NSString stringWithFormat:@"INSERT INTO Favorite VALUES ('%@',CURRENT_DATE)",strID] cStringUsingEncoding:NSUTF8StringEncoding];
-        
-        sqlite3_stmt *searchStament;
-        
-        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
-        {
-            if (sqlite3_step(searchStament) == SQLITE_DONE) {
-                NSLog(@"insert success");
-            }
-            else
-                NSLog(@"insert NOT success");
-        }
-        
-        sqlite3_finalize(searchStament);
-    }
-    sqlite3_close(database);
-}
-
--(void)removeFavorite
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
-    
-    NSString *strID = @"2";
-    
-    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
-    {
-        const char *sql = [[NSString stringWithFormat:@"DELETE FROM Favorite WHERE idStore=%@",strID] cStringUsingEncoding:NSUTF8StringEncoding];
-        
-        sqlite3_stmt *searchStament;
-        
-        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
-        {
-            if (sqlite3_step(searchStament) == SQLITE_DONE) {
-                NSLog(@"remove success");
-            }
-        }
-        
         sqlite3_finalize(searchStament);
     }
     sqlite3_close(database);

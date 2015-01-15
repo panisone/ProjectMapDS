@@ -516,7 +516,174 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Z1-KN-Sql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1582" y="958"/>
+            <point key="canvasLocation" x="1582" y="977"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="wrR-GC-3GO">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteDetailViewController" id="qMM-IR-HM7" customClass="FavoriteDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="suP-Gm-Mc6"/>
+                        <viewControllerLayoutGuide type="bottom" id="WNh-qh-apc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ka4-9Q-ukL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="620-9f-8pC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.28408518150000001" blue="0.46311113910000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUQ-mX-8hK">
+                                <rect key="frame" x="16" y="79" width="288" height="121"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnC-wq-Qd0">
+                                <rect key="frame" x="16" y="258" width="288" height="23"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ope-As-Mzl">
+                                <rect key="frame" x="16" y="215" width="288" height="28"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HS5-rE-nJg">
+                                <rect key="frame" x="16" y="296" width="288" height="208"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Detail" image="Detail-icon.png" id="nsJ-wa-HKz"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="branchLabel" destination="VnC-wq-Qd0" id="qWl-jF-5Zc"/>
+                        <outlet property="detailTextView" destination="HS5-rE-nJg" id="ZEK-7G-9Ky"/>
+                        <outlet property="logoImage" destination="OUQ-mX-8hK" id="VGt-zA-sWu"/>
+                        <outlet property="nameLabel" destination="ope-As-Mzl" id="lvw-X4-zNe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D9y-Js-CS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="1587"/>
+        </scene>
+        <!--Image-->
+        <scene sceneID="fav-Ao-vF1">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteImageViewController" id="bZg-6e-BYA" customClass="FavoriteImageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B9Q-7l-T7v"/>
+                        <viewControllerLayoutGuide type="bottom" id="qrP-BS-O1K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qVh-ie-kpW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvR-eR-eWM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.28408518150000001" blue="0.46311113910000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.64313725490196083" green="1" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Image" image="Image-icon.png" id="YNh-Az-4QW"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cba-Fu-DoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="2263"/>
+        </scene>
+        <!--Position-->
+        <scene sceneID="358-yI-bAi">
+            <objects>
+                <viewController storyboardIdentifier="FavoritePositionViewController" id="J8T-bL-y20" customClass="FavoritePositionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ddS-9S-WA3"/>
+                        <viewControllerLayoutGuide type="bottom" id="bZi-Bo-Iym"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bZk-1o-fwH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8a-kq-94p">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.28408518150000001" blue="0.46311113910000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BP0-ip-rcr">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Position" image="FloorPlan-icon.png" id="Wxr-1v-x1t"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwp-rQ-9ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="2933"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="6TS-Tk-3xZ">
+            <objects>
+                <pageViewController storyboardIdentifier="FavoritePageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="5vQ-nJ-k5Q" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dwK-Ee-fcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2871" y="2263"/>
+        </scene>
+        <!--Favorite Content View Controller-->
+        <scene sceneID="QHb-Bh-bKb">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteContentViewController" id="yVf-3i-fIn" customClass="FavoriteContentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d7X-hR-4wa"/>
+                        <viewControllerLayoutGuide type="bottom" id="WP1-sP-xmQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7pc-X6-qOv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80y-ps-noe">
+                                <rect key="frame" x="0.0" y="64" width="320" height="418"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Image: Favorite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSN-KI-J5Q">
+                                <rect key="frame" x="16" y="85" width="288" height="21"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="80y-ps-noe" id="Lct-FJ-XN9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CDL-oy-9Ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3265" y="2263"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cvv-Ym-Lqx">
@@ -616,6 +783,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMK-e8-P1H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3754" y="317"/>
+        </scene>
+        <!--Favorite Tab Bar View Controller-->
+        <scene sceneID="gCg-rf-S55">
+            <objects>
+                <tabBarController storyboardIdentifier="FavoriteTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="Bhm-8U-ZY7" customClass="FavoriteTabBarViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Col-hd-Qvt">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qMM-IR-HM7" kind="relationship" relationship="viewControllers" id="1xn-7s-T4q"/>
+                        <segue destination="bZg-6e-BYA" kind="relationship" relationship="viewControllers" id="fvR-TR-v3c"/>
+                        <segue destination="J8T-bL-y20" kind="relationship" relationship="viewControllers" id="fXS-D3-HYr"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J4J-nw-4ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2034" y="977"/>
         </scene>
     </scenes>
     <resources>

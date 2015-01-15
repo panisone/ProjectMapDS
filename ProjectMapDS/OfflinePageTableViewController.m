@@ -79,6 +79,7 @@
     cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:callDetail];
     
     // Cell Image = "logoDS"
+    cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
     cell.imageView.image = [listOflogoDS objectAtIndex:indexPath.row];
     
     return cell;

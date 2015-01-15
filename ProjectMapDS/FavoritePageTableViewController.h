@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
+#import "FavoriteTabBarViewController.h"    //next to Favorite TabBar Page
 
 @interface FavoritePageTableViewController : UITableViewController
 {

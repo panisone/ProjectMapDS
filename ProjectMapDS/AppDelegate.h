@@ -16,6 +16,8 @@
 @class OfflineCategoryViewController;
 
 @class FavoritePageTableViewController;
+@class FavoriteTabBarViewController;
+@class FavoriteDetailViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -26,6 +28,8 @@
     OfflineCategoryViewController *offlineCategoryViewController;
     
     FavoritePageTableViewController *favoritePageTableViewController;
+    FavoriteTabBarViewController *favoriteTabBarViewController;
+    FavoriteDetailViewController *favoriteDetailViewController;
 }
 
 @property (strong, nonatomic) UIWindow *window;

@@ -1,32 +1,26 @@
 //
-//  OfflineTabBarStoreViewController.m
+//  FavoriteContentViewController.m
 //  ProjectMapDS
 //
-//  Created by Panisara Intoe on 1/12/2558 BE.
+//  Created by Panisara Intoe on 1/15/2558 BE.
 //  Copyright (c) 2558 Panisara Intoe. All rights reserved.
 //
 
-#import "OfflineTabBarStoreViewController.h"
+#import "FavoriteContentViewController.h"
 
-NSString *storeID;  //Global variable
-
-@interface OfflineTabBarStoreViewController ()
+@interface FavoriteContentViewController ()
 
 @end
 
-@implementation OfflineTabBarStoreViewController
+@implementation FavoriteContentViewController
+@synthesize imageView;
+@synthesize imageStore;
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    //self.navigationItem.title = storeID;
-    self.navigationController.navigationBar.topItem.title = @"back";
-    self.navigationController.navigationBar.hidden = NO;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.imageView.image = imageStore;
 }
 
 - (void)didReceiveMemoryWarning {

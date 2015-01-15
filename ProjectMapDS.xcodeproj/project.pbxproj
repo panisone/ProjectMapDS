@@ -37,6 +37,11 @@
 		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
 		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
 		7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */; };
+		7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */; };
+		7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */; };
+		7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */; };
+		7FFDEF501A67A13C00C9D821 /* FavoriteContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF4F1A67A13C00C9D821 /* FavoriteContentViewController.m */; };
+		7FFDEF531A67A15200C9D821 /* FavoritePositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF521A67A15200C9D821 /* FavoritePositionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +104,16 @@
 		7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		7FC4F9C21A5FE7BC002422BC /* OfflineFloorPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineFloorPlanViewController.h; sourceTree = "<group>"; };
 		7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineFloorPlanViewController.m; sourceTree = "<group>"; };
+		7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTabBarViewController.h; sourceTree = "<group>"; };
+		7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTabBarViewController.m; sourceTree = "<group>"; };
+		7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteDetailViewController.h; sourceTree = "<group>"; };
+		7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteDetailViewController.m; sourceTree = "<group>"; };
+		7FFDEF4B1A67A08E00C9D821 /* FavoriteImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteImageViewController.h; sourceTree = "<group>"; };
+		7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteImageViewController.m; sourceTree = "<group>"; };
+		7FFDEF4E1A67A13C00C9D821 /* FavoriteContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteContentViewController.h; sourceTree = "<group>"; };
+		7FFDEF4F1A67A13C00C9D821 /* FavoriteContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteContentViewController.m; sourceTree = "<group>"; };
+		7FFDEF511A67A15200C9D821 /* FavoritePositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritePositionViewController.h; sourceTree = "<group>"; };
+		7FFDEF521A67A15200C9D821 /* FavoritePositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritePositionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +250,16 @@
 			children = (
 				7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */,
 				7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */,
+				7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */,
+				7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */,
+				7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */,
+				7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */,
+				7FFDEF4B1A67A08E00C9D821 /* FavoriteImageViewController.h */,
+				7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */,
+				7FFDEF4E1A67A13C00C9D821 /* FavoriteContentViewController.h */,
+				7FFDEF4F1A67A13C00C9D821 /* FavoriteContentViewController.m */,
+				7FFDEF511A67A15200C9D821 /* FavoritePositionViewController.h */,
+				7FFDEF521A67A15200C9D821 /* FavoritePositionViewController.m */,
 			);
 			name = Favorite;
 			sourceTree = "<group>";
@@ -348,9 +373,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */,
 				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
 				7F6EF5441A638097001C30D4 /* OfflineTabBarStoreViewController.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
+				7FFDEF501A67A13C00C9D821 /* FavoriteContentViewController.m in Sources */,
+				7FFDEF531A67A15200C9D821 /* FavoritePositionViewController.m in Sources */,
 				7F6EF54A1A638160001C30D4 /* OfflineContentStoreViewController.m in Sources */,
 				7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */,
 				7F62AFA01A5E83D80032F1FD /* OfflineCategoryViewController.m in Sources */,
@@ -360,10 +388,12 @@
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
 				7F6EF54D1A6381B6001C30D4 /* OfflineImageStoreViewController.m in Sources */,
 				7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */,
+				7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */,
 				7F7435BF1A5D1F2500640C93 /* OfflineDetailDSViewController.m in Sources */,
 				7F88F3EF1A62C733002E5A49 /* OfflineImageDSViewController.m in Sources */,
 				7F7435C21A5D229400640C93 /* OfflineTabBarDSViewController.m in Sources */,
 				7F6EF5471A6380E2001C30D4 /* OfflineDetailStoreViewController.m in Sources */,
+				7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
