@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
-@interface FavoritePositionViewController : UIViewController <UIActionSheetDelegate>
+@interface FavoritePositionViewController : UIViewController <UIActionSheetDelegate,UIScrollViewDelegate>
 {
     sqlite3 *database;
 }
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scroll;
 @property (strong, nonatomic) IBOutlet UIImageView *floorImage;
 
 -(void)initDatabase;

@@ -10,11 +10,12 @@
 #import <sqlite3.h>
 #import "OfflineTabBarStoreViewController.h"    //next to Offline TabBar Store Page
 
-@interface OfflineFloorPlanViewController : UIViewController <UIActionSheetDelegate>
+@interface OfflineFloorPlanViewController : UIViewController <UIActionSheetDelegate,UIScrollViewDelegate>
 {
     sqlite3 *database;
 }
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scroll;
 @property (strong, nonatomic) IBOutlet UIImageView *floorImage;
 
 -(void)initDatabase;

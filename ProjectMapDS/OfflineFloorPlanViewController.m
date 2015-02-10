@@ -18,7 +18,7 @@
     NSString *titleRightButton;
     UIImage *image;
 }
-@synthesize floorImage;
+@synthesize scroll,floorImage;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -41,11 +41,24 @@
     [self showFloorPlan:dataFloor[0]];
     //set title Right Button
     titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[0]];
+    //set Scroll view
+    [scroll setDelegate:self];
+    [scroll setMinimumZoomScale:1.0];
+    [scroll setMaximumZoomScale:4.0];
+    scroll.userInteractionEnabled = YES;        //Solution Problem zoom image with button
+    scroll.exclusiveTouch = YES;                //Solution Problem zoom image with button
+    [floorImage setUserInteractionEnabled:YES]; //Solution Problem zoom image with button
+    [floorImage setExclusiveTouch:YES];         //Solution Problem zoom image with button
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return floorImage;
 }
 
 /*
@@ -139,7 +152,7 @@
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
         
         //remove Button of page before
-        for (UIView *subview in [self.view subviews])
+        for (UIView *subview in [floorImage subviews])
         {
             if (subview.tag == 1) {
                 [subview removeFromSuperview];
@@ -182,7 +195,7 @@
         
         if (sqlite3_prepare_v2(db, sql, -1, &searchStament, NULL) == SQLITE_OK)
         {
-            UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 49 - 64)];
+            UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, floorImage.frame.size.width, floorImage.frame.size.height)];
             //newView.backgroundColor = [UIColor redColor];
             newView.tag = 1;
             
@@ -232,8 +245,8 @@
                 }
                 
                 if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
-                    CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
-                    //[height intValue]*imageButton.size.width/imageButton.size.height
+                    CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue] - 64, [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
+                    //this code for 'test' -> 'real' not -64
                     UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
                     
                     //set TAG is storeID
@@ -249,7 +262,8 @@
                     [newView addSubview:button];
                 }
             }
-            [self.view addSubview:newView];
+            //[self.view addSubview:newView];
+            [floorImage addSubview:newView];
         }
         sqlite3_finalize(searchStament);
     }

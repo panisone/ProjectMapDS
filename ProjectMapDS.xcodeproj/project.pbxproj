@@ -11,6 +11,7 @@
 		7F4249D81A68314A0008724D /* Point1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D71A68314A0008724D /* Point1-icon.png */; };
 		7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D91A6831A00008724D /* Point2-icon.png */; };
 		7F4249E01A6834FC0008724D /* Point-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249DF1A6834FC0008724D /* Point-icon.png */; };
+		7F4CC74B1A89E686001580BD /* SiamParagon_BF.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4CC74A1A89E686001580BD /* SiamParagon_BF.png */; };
 		7F615AAA1A5B138400AE281A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AA91A5B138400AE281A /* main.m */; };
 		7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AAC1A5B138400AE281A /* AppDelegate.m */; };
 		7F615AB01A5B138400AE281A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F615AAF1A5B138400AE281A /* ViewController.m */; };
@@ -41,6 +42,7 @@
 		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
 		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
 		7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */; };
+		7FF6DB7A1A70F39100C9F172 /* Light-Wood-Background-Wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7FF6DB791A70F39100C9F172 /* Light-Wood-Background-Wallpaper.jpg */; };
 		7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */; };
 		7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */; };
 		7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */; };
@@ -63,6 +65,7 @@
 		7F4249D71A68314A0008724D /* Point1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point1-icon.png"; sourceTree = "<group>"; };
 		7F4249D91A6831A00008724D /* Point2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point2-icon.png"; sourceTree = "<group>"; };
 		7F4249DF1A6834FC0008724D /* Point-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point-icon.png"; sourceTree = "<group>"; };
+		7F4CC74A1A89E686001580BD /* SiamParagon_BF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SiamParagon_BF.png; sourceTree = "<group>"; };
 		7F615AA41A5B138400AE281A /* ProjectMapDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectMapDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F615AA81A5B138400AE281A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F615AA91A5B138400AE281A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		7FC4F9C21A5FE7BC002422BC /* OfflineFloorPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineFloorPlanViewController.h; sourceTree = "<group>"; };
 		7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineFloorPlanViewController.m; sourceTree = "<group>"; };
+		7FF6DB791A70F39100C9F172 /* Light-Wood-Background-Wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Light-Wood-Background-Wallpaper.jpg"; sourceTree = "<group>"; };
 		7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTabBarViewController.h; sourceTree = "<group>"; };
 		7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTabBarViewController.m; sourceTree = "<group>"; };
 		7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteDetailViewController.h; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				7F756E8D1A6689920011D040 /* MapDepartmentStore.sqlite */,
+				7F4CC74A1A89E686001580BD /* SiamParagon_BF.png */,
+				7FF6DB791A70F39100C9F172 /* Light-Wood-Background-Wallpaper.jpg */,
 				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
 				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
 				7F7435C51A5D3FA300640C93 /* Detail-icon.png */,
@@ -325,6 +331,7 @@
 				TargetAttributes = {
 					7F615AA31A5B138400AE281A = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 5XXE9P95P9;
 					};
 					7F615ABC1A5B138400AE281A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -356,7 +363,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4CC74B1A89E686001580BD /* SiamParagon_BF.png in Resources */,
 				7F756E8B1A66751E0011D040 /* RemoveStar-icon.png in Resources */,
+				7FF6DB7A1A70F39100C9F172 /* Light-Wood-Background-Wallpaper.jpg in Resources */,
 				7F4249E01A6834FC0008724D /* Point-icon.png in Resources */,
 				7F4249D21A6829B80008724D /* Position-icon.png in Resources */,
 				7F756E8C1A66751E0011D040 /* AddStar-icon.png in Resources */,
@@ -531,9 +540,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectMapDS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -541,9 +554,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ProjectMapDS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

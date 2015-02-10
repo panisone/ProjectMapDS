@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rcw-9n-AQY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rcw-9n-AQY">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -229,10 +230,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WGW-5V-cQG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oX5-Mu-kMI">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SiamParagon_BF.png" translatesAutoresizingMaskIntoConstraints="NO" id="WGW-5V-cQG">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -240,6 +246,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="floorImage" destination="WGW-5V-cQG" id="pDT-bV-Uuj"/>
+                        <outlet property="scroll" destination="oX5-Mu-kMI" id="Yit-2n-myU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuV-yc-G2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -626,10 +633,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BP0-ip-rcr">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akJ-0m-VDT">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BP0-ip-rcr">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.83578330590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -637,6 +649,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="floorImage" destination="BP0-ip-rcr" id="k0e-Eu-8eb"/>
+                        <outlet property="scroll" destination="akJ-0m-VDT" id="72K-2x-SoA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwp-rQ-9ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -817,5 +830,6 @@
         <image name="Logo.png" width="400" height="400"/>
         <image name="Position-icon.png" width="32" height="32"/>
         <image name="ShopCategory-icon.png" width="40" height="40"/>
+        <image name="SiamParagon_BF.png" width="557" height="784"/>
     </resources>
 </document>

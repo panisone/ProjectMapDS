@@ -20,12 +20,16 @@
     
     //set Page Control
     UIPageControl *pageControl = [UIPageControl appearance];
-    //pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    //pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    //pageControl.backgroundColor = [UIColor whiteColor];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-    pageControl.backgroundColor = [UIColor darkGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+    //pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    //pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    //pageControl.backgroundColor = [UIColor darkGrayColor];
+    
+    //change navigation bar colour
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Light-Wood-Background-Wallpaper.jpg"] forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 

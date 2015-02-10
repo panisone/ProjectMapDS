@@ -18,7 +18,7 @@
     NSString *titleRightButton;
     UIImage *image;
 }
-@synthesize floorImage;
+@synthesize scroll,floorImage;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -41,11 +41,21 @@
     [self showFloorPlan:storeFloor[0]];
     //set title Right Button
     titleRightButton = [NSString stringWithFormat:@"Floor: %@",storeFloor[0]];
+    //set Scroll view
+    [scroll setDelegate:self];
+    [scroll setMinimumZoomScale:1.0];
+    [scroll setMaximumZoomScale:4.0];
+    //scroll.zoomScale = 1;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return floorImage;
 }
 
 /*
@@ -142,7 +152,7 @@
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
         
         //remove Button of page before
-        for (UIView *subview in [self.view subviews])
+        for (UIView *subview in [floorImage subviews])
         {
             if (subview.tag == 1) {
                 [subview removeFromSuperview];
@@ -247,7 +257,7 @@
                         y = [pointY intValue];
                         sizeIcon = [height intValue];
                     }
-                    CGRect imageFrame = CGRectMake(x, y+64, sizeIcon, sizeIcon);
+                    CGRect imageFrame = CGRectMake(x, y, sizeIcon, sizeIcon);
                     
                     UIImage *imagePoint = [UIImage imageNamed:@"Point-icon.png"];
                     UIImageView *imageView = [[UIImageView alloc] initWithImage:imagePoint];
@@ -257,7 +267,7 @@
                     //set TAG is "1"
                     imageView.tag = 1;
                     
-                    [self.view addSubview:imageView];
+                    [floorImage addSubview:imageView];
                 }
             }
         }
