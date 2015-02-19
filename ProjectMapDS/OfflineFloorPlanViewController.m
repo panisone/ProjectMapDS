@@ -45,8 +45,10 @@
     [scroll setDelegate:self];
     [scroll setMinimumZoomScale:1.0];
     [scroll setMaximumZoomScale:4.0];
+    
     scroll.userInteractionEnabled = YES;        //Solution Problem zoom image with button
     scroll.exclusiveTouch = YES;                //Solution Problem zoom image with button
+    
     [floorImage setUserInteractionEnabled:YES]; //Solution Problem zoom image with button
     [floorImage setExclusiveTouch:YES];         //Solution Problem zoom image with button
 }
@@ -195,7 +197,7 @@
         
         if (sqlite3_prepare_v2(db, sql, -1, &searchStament, NULL) == SQLITE_OK)
         {
-            UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, floorImage.frame.size.width, floorImage.frame.size.height)];
+            UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, floorImage.frame.size.width, floorImage.frame.size.height)];
             //newView.backgroundColor = [UIColor redColor];
             newView.tag = 1;
             
@@ -244,9 +246,11 @@
                     }
                 }
                 
+                //NSLog(@"id:%@ x:%@ y:%@ w:%@ h:%@",idStore,pointX,pointY,width,height);
+                
                 if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
-                    CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue] - 64, [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
-                    //this code for 'test' -> 'real' not -64
+                    CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
+                    
                     UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
                     
                     //set TAG is storeID

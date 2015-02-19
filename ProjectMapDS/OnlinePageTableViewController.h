@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OnlineTabBarDSViewController.h"   //next to Online TabBar DS Page
 
 @interface OnlinePageTableViewController : UITableViewController
+
+-(void)getDepartmentStore;
 
 @end
