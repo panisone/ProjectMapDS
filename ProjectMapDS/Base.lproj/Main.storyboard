@@ -944,7 +944,7 @@
         <!--FloorPlan-->
         <scene sceneID="MeV-F9-cxA">
             <objects>
-                <viewController id="P1n-sk-RGk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnlineFloorPlanViewController" id="P1n-sk-RGk" customClass="OnlineFloorPlanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kgv-He-T29"/>
                         <viewControllerLayoutGuide type="bottom" id="TTl-a1-VCj"/>
@@ -974,6 +974,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="FloorPlan" image="FloorPlan-icon.png" id="Cch-2v-Xkz"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="floorImage" destination="sUQ-oH-q5N" id="zz4-Ql-MFN"/>
+                        <outlet property="scroll" destination="x2c-Gf-01p" id="Wav-Wb-6ds"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKI-xs-JO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -982,7 +986,7 @@
         <!--ShopCategory-->
         <scene sceneID="EYJ-S6-BbK">
             <objects>
-                <viewController id="p5j-rJ-OLz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnlineCategoryViewController" id="p5j-rJ-OLz" customClass="OnlineCategoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T2R-Jg-g4O"/>
                         <viewControllerLayoutGuide type="bottom" id="L8e-jm-UvJ"/>
@@ -1017,8 +1021,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="gX2-uG-q8R" id="Sip-1y-KMT"/>
-                                    <outlet property="delegate" destination="gX2-uG-q8R" id="l3W-qw-jcE"/>
+                                    <outlet property="dataSource" destination="p5j-rJ-OLz" id="HRB-ig-vfB"/>
+                                    <outlet property="delegate" destination="p5j-rJ-OLz" id="HkJ-Yl-cDV"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-7P-v31">
@@ -1033,6 +1037,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="ShopCategory" image="ShopCategory-icon.png" id="nU9-a9-gxe"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="onlineCategoryTable" destination="Cwk-im-gLn" id="TWM-sT-abj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omc-Yk-muI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

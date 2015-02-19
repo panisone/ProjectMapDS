@@ -12,6 +12,8 @@
 		7F1E88E31A95932400D94488 /* OnlineTabBarDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88E21A95932400D94488 /* OnlineTabBarDSViewController.m */; };
 		7F1E88E61A959CD500D94488 /* OnlineImageDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88E51A959CD500D94488 /* OnlineImageDSViewController.m */; };
 		7F1E88E91A959D0500D94488 /* OnlineContentDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88E81A959D0500D94488 /* OnlineContentDSViewController.m */; };
+		7F1E88EC1A95D2BC00D94488 /* OnlineFloorPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88EB1A95D2BC00D94488 /* OnlineFloorPlanViewController.m */; };
+		7F1E88EF1A95D30400D94488 /* OnlineCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88EE1A95D30400D94488 /* OnlineCategoryViewController.m */; };
 		7F4249D21A6829B80008724D /* Position-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D11A6829B80008724D /* Position-icon.png */; };
 		7F4249D81A68314A0008724D /* Point1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D71A68314A0008724D /* Point1-icon.png */; };
 		7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D91A6831A00008724D /* Point2-icon.png */; };
@@ -73,6 +75,10 @@
 		7F1E88E51A959CD500D94488 /* OnlineImageDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineImageDSViewController.m; sourceTree = "<group>"; };
 		7F1E88E71A959D0500D94488 /* OnlineContentDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineContentDSViewController.h; sourceTree = "<group>"; };
 		7F1E88E81A959D0500D94488 /* OnlineContentDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineContentDSViewController.m; sourceTree = "<group>"; };
+		7F1E88EA1A95D2BC00D94488 /* OnlineFloorPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineFloorPlanViewController.h; sourceTree = "<group>"; };
+		7F1E88EB1A95D2BC00D94488 /* OnlineFloorPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineFloorPlanViewController.m; sourceTree = "<group>"; };
+		7F1E88ED1A95D30400D94488 /* OnlineCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCategoryViewController.h; sourceTree = "<group>"; };
+		7F1E88EE1A95D30400D94488 /* OnlineCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCategoryViewController.m; sourceTree = "<group>"; };
 		7F4249D11A6829B80008724D /* Position-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Position-icon.png"; sourceTree = "<group>"; };
 		7F4249D71A68314A0008724D /* Point1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point1-icon.png"; sourceTree = "<group>"; };
 		7F4249D91A6831A00008724D /* Point2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point2-icon.png"; sourceTree = "<group>"; };
@@ -276,6 +282,10 @@
 				7F1E88E51A959CD500D94488 /* OnlineImageDSViewController.m */,
 				7F1E88E71A959D0500D94488 /* OnlineContentDSViewController.h */,
 				7F1E88E81A959D0500D94488 /* OnlineContentDSViewController.m */,
+				7F1E88EA1A95D2BC00D94488 /* OnlineFloorPlanViewController.h */,
+				7F1E88EB1A95D2BC00D94488 /* OnlineFloorPlanViewController.m */,
+				7F1E88ED1A95D30400D94488 /* OnlineCategoryViewController.h */,
+				7F1E88EE1A95D30400D94488 /* OnlineCategoryViewController.m */,
 			);
 			name = Online;
 			sourceTree = "<group>";
@@ -417,7 +427,9 @@
 				7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */,
 				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
 				7F6EF5441A638097001C30D4 /* OfflineTabBarStoreViewController.m in Sources */,
+				7F1E88EC1A95D2BC00D94488 /* OnlineFloorPlanViewController.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
+				7F1E88EF1A95D30400D94488 /* OnlineCategoryViewController.m in Sources */,
 				7FFDEF501A67A13C00C9D821 /* FavoriteContentViewController.m in Sources */,
 				7FFDEF531A67A15200C9D821 /* FavoritePositionViewController.m in Sources */,
 				7F6EF54A1A638160001C30D4 /* OfflineContentStoreViewController.m in Sources */,

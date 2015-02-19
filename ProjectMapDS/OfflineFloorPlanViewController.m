@@ -149,6 +149,7 @@
 {
     if (buttonIndex != [dataFloor count])
     {
+        NSLog(@"count:%lu buttonIndex:%lu",(unsigned long)[dataFloor count],(unsigned long)buttonIndex);
         //change title of Right Button
         titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[buttonIndex]];
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
@@ -161,12 +162,15 @@
             }
         }
         
+        [self showFloorPlan:dataFloor[buttonIndex]];
+        /*
         //change image
         [self getFloorPlan:dataFloor[buttonIndex]];
         floorImage.image = image;
         
         //call method create Button connect to Store
         [self createButton:dataFloor[buttonIndex]];
+         */
     }
 }
 

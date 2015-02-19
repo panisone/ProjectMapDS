@@ -206,6 +206,8 @@
                     
                     NSString *nameStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
                     
+                    NSString *floorStore = [self getStringFloor:idStore];
+                    /*
                     NSString *floorStore = @"";
                     if ([floor isEqual:@"%"])
                     {
@@ -215,6 +217,7 @@
                     {
                         floorStore = floor;
                     }
+                     */
                     
                     [arrID addObject:idStore];
                     [arrName addObject:nameStore];
@@ -298,16 +301,18 @@
     {
         titleRightButton = @"All Floor";
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
-        [self getCategory:@"%"];
-        [self getShopCategory:@"%"];
+        //[self getCategory:@"%"];
+        //[self getShopCategory:@"%"];
+        [self showCategory:@"%"];
         [self.offlineCategoryTable reloadData];
     }
     else if (buttonIndex != [dataFloor count]+1)
     {
         titleRightButton = [NSString stringWithFormat:@"%@ Floor",dataFloor[buttonIndex-1]];
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
-        [self getCategory:dataFloor[buttonIndex-1]];
-        [self getShopCategory:dataFloor[buttonIndex-1]];
+        //[self getCategory:dataFloor[buttonIndex-1]];
+        //[self getShopCategory:dataFloor[buttonIndex-1]];
+        [self showCategory:dataFloor[buttonIndex-1]];
         [self.offlineCategoryTable reloadData];
     }
 }
