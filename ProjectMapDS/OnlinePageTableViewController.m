@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //call getDepartmentStore : connect DB & use data from URL
     [self getDepartmentStore];
 }
@@ -149,6 +148,8 @@
     listOfDS = [[NSMutableArray alloc] init];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://localhost/projectDS/getDSList.php"]];
+    //Case connection error!!
+    if (jsonSource == NULL) { [self alertConnectionError]; return; }
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
     
@@ -182,6 +183,28 @@
                       imageLogo, logoDS,
                       nil];
         [listOfDS addObject:dictDS];
+    }
+}
+
+-(void)alertConnectionError
+{
+    UIAlertView *alv = [[UIAlertView alloc]
+                        initWithTitle:@"Connection Error"
+                        message:@"Problem with network connection.\nPlease try again."
+                        delegate:self
+                        cancelButtonTitle:@"OK"
+                        otherButtonTitles: nil];
+    [alv show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            break;
+            
+        default:
+            break;
     }
 }
 

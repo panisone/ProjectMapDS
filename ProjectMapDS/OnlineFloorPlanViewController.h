@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "OnlineTabBarStoreViewController.h"    //next to Online TabBar Store Page
+#import "OnlineTabBarStoreViewController.h"    //next to Online TabBar Store Page
 
 @interface OnlineFloorPlanViewController : UIViewController <UIActionSheetDelegate,UIScrollViewDelegate>
 

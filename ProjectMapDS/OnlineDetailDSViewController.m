@@ -82,6 +82,8 @@
         if ([addressDS_data  isEqual: @""]) {
             addressDS_data = @"-";
         }
+        detail = [NSString stringWithFormat:@"สถานที่ตั้ง: \n%@\n\n",addressDS_data];
+        
         NSString *openTimeDS_data = [dataDict objectForKey:@"openTimeDS"];
         if ([openTimeDS_data  isEqual: @""]) {
             openTimeDS_data = @"-";
@@ -90,7 +92,7 @@
         if ([closeTimeDS_data  isEqual: @""]) {
             closeTimeDS_data = @"-";
         }
-        detail = [NSString stringWithFormat:@"สถานที่ตั้ง: \n%@\n\nเวลาทำการ: \n",addressDS_data];
+        detail = [detail stringByAppendingString:@"เวลาทำการ: \n"];
         if ([openTimeDS_data  isEqual:@"-"] || [closeTimeDS_data isEqual:@"-"])
         {
             detail = [detail stringByAppendingString:@"-"];

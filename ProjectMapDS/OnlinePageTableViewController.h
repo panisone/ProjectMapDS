@@ -12,5 +12,6 @@
 @interface OnlinePageTableViewController : UITableViewController
 
 -(void)getDepartmentStore;
+-(void)alertConnectionError;
 
 @end

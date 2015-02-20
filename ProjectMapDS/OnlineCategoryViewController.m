@@ -101,15 +101,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
     NSString *sectionTitle = [category objectAtIndex:indexPath.section];
     NSArray *sectionIDStores = [idShopCategory objectForKey:sectionTitle];
     NSString *store = [sectionIDStores objectAtIndex:indexPath.row];
-    *//*
-    OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
+    
+    OnlineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarStoreViewController"];
     storeID = store;
     [self.navigationController pushViewController:destView animated:YES];
-     */
 }
 
 //method

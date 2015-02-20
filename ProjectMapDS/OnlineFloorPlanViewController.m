@@ -200,11 +200,9 @@
 
 -(void)storeView:(UIButton *) sender
 {
-    /*
-    OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
+    OnlineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarStoreViewController"];
     storeID = [NSString stringWithFormat:@"%ld",(long)sender.tag];
     [self.navigationController pushViewController:destView animated:YES];
-     */
 }
 
 @end

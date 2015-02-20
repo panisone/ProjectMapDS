@@ -214,7 +214,7 @@
                         web = @"-";
                     }
                 }
-                detail = [detail stringByAppendingString:@"E-Mail: \n"];
+                detail = [detail stringByAppendingString:@"Website: \n"];
                 detail = [detail stringByAppendingString:web];
                 detail = [detail stringByAppendingString:@"\n\n"];
                 
