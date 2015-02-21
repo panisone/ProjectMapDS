@@ -1,19 +1,19 @@
 //
-//  FavoritePositionViewController.m
+//  OfflinePositionViewController.m
 //  ProjectMapDS
 //
-//  Created by Panisara Intoe on 1/15/2558 BE.
+//  Created by Panisara Intoe on 2/22/2558 BE.
 //  Copyright (c) 2558 Panisara Intoe. All rights reserved.
 //
 
-#import "FavoritePositionViewController.h"
-#import "FavoriteTabBarViewController.h"    //use Global variable: storeID, storeFloor
+#import "OfflinePositionViewController.h"
+#import "OfflineTabBarStoreViewController.h"    //use Global variable: storeID, storeFloor
 
-@interface FavoritePositionViewController ()
+@interface OfflinePositionViewController ()
 
 @end
 
-@implementation FavoritePositionViewController
+@implementation OfflinePositionViewController
 {
     NSString *titleRightButton;
     UIImage *image;
@@ -198,19 +198,19 @@
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
                 /*
-                NSString *idStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
-                
-                UIImage *imageButton = [UIImage imageNamed:@"Logo.png"];
-                if ((char*)sqlite3_column_text(searchStament, 1) != NULL)
-                {
-                    NSData *dataImage = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 1) length:sqlite3_column_bytes(searchStament, 1)];
-                    
-                    if ([dataImage length] != 0)
-                    {
-                        imageButton = [UIImage imageWithData:dataImage];
-                    }
-                }
-                */
+                 NSString *idStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                 
+                 UIImage *imageButton = [UIImage imageNamed:@"Logo.png"];
+                 if ((char*)sqlite3_column_text(searchStament, 1) != NULL)
+                 {
+                 NSData *dataImage = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 1) length:sqlite3_column_bytes(searchStament, 1)];
+                 
+                 if ([dataImage length] != 0)
+                 {
+                 imageButton = [UIImage imageWithData:dataImage];
+                 }
+                 }
+                 */
                 NSString *pointX = @"-";
                 if ((char*)sqlite3_column_text(searchStament, 2) != NULL) {
                     pointX = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 2)];

@@ -20,6 +20,7 @@
 		7F1E89021A96435F00D94488 /* OnlineImageStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89011A96435F00D94488 /* OnlineImageStoreViewController.m */; };
 		7F1E89051A96438D00D94488 /* OnlineContentStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89041A96438D00D94488 /* OnlineContentStoreViewController.m */; };
 		7F1E89081A9644CC00D94488 /* OnlineRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */; };
+		7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F41617D1A98F28100425670 /* OfflinePositionViewController.m */; };
 		7F4249D21A6829B80008724D /* Position-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D11A6829B80008724D /* Position-icon.png */; };
 		7F4249D81A68314A0008724D /* Point1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D71A68314A0008724D /* Point1-icon.png */; };
 		7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D91A6831A00008724D /* Point2-icon.png */; };
@@ -96,6 +97,8 @@
 		7F1E89041A96438D00D94488 /* OnlineContentStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineContentStoreViewController.m; sourceTree = "<group>"; };
 		7F1E89061A9644CC00D94488 /* OnlineRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineRateViewController.h; sourceTree = "<group>"; };
 		7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineRateViewController.m; sourceTree = "<group>"; };
+		7F41617C1A98F28100425670 /* OfflinePositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflinePositionViewController.h; sourceTree = "<group>"; };
+		7F41617D1A98F28100425670 /* OfflinePositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflinePositionViewController.m; sourceTree = "<group>"; };
 		7F4249D11A6829B80008724D /* Position-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Position-icon.png"; sourceTree = "<group>"; };
 		7F4249D71A68314A0008724D /* Point1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point1-icon.png"; sourceTree = "<group>"; };
 		7F4249D91A6831A00008724D /* Point2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point2-icon.png"; sourceTree = "<group>"; };
@@ -180,6 +183,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F41617F1A98F72E00425670 /* deleteFile */ = {
+			isa = PBXGroup;
+			children = (
+				7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */,
+				7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */,
+				7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */,
+				7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */,
+				7FFDEF4B1A67A08E00C9D821 /* FavoriteImageViewController.h */,
+				7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */,
+				7FFDEF4E1A67A13C00C9D821 /* FavoriteContentViewController.h */,
+				7FFDEF4F1A67A13C00C9D821 /* FavoriteContentViewController.m */,
+				7FFDEF511A67A15200C9D821 /* FavoritePositionViewController.h */,
+				7FFDEF521A67A15200C9D821 /* FavoritePositionViewController.m */,
+			);
+			name = deleteFile;
+			sourceTree = "<group>";
+		};
 		7F615A9B1A5B138400AE281A = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +303,8 @@
 				7F6EF54C1A6381B6001C30D4 /* OfflineImageStoreViewController.m */,
 				7F6EF5481A638160001C30D4 /* OfflineContentStoreViewController.h */,
 				7F6EF5491A638160001C30D4 /* OfflineContentStoreViewController.m */,
+				7F41617C1A98F28100425670 /* OfflinePositionViewController.h */,
+				7F41617D1A98F28100425670 /* OfflinePositionViewController.m */,
 			);
 			name = Offline;
 			sourceTree = "<group>";
@@ -323,16 +345,7 @@
 			children = (
 				7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */,
 				7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */,
-				7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */,
-				7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */,
-				7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */,
-				7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */,
-				7FFDEF4B1A67A08E00C9D821 /* FavoriteImageViewController.h */,
-				7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */,
-				7FFDEF4E1A67A13C00C9D821 /* FavoriteContentViewController.h */,
-				7FFDEF4F1A67A13C00C9D821 /* FavoriteContentViewController.m */,
-				7FFDEF511A67A15200C9D821 /* FavoritePositionViewController.h */,
-				7FFDEF521A67A15200C9D821 /* FavoritePositionViewController.m */,
+				7F41617F1A98F72E00425670 /* deleteFile */,
 			);
 			name = Favorite;
 			sourceTree = "<group>";
@@ -473,6 +486,7 @@
 				7F1E88FC1A96418B00D94488 /* OnlineTabBarStoreViewController.m in Sources */,
 				7F88F3F21A62C77F002E5A49 /* OfflineContentDSViewController.m in Sources */,
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
+				7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */,
 				7F1E88FF1A96432700D94488 /* OnlineDetailStoreViewController.m in Sources */,
 				7F1E88E61A959CD500D94488 /* OnlineImageDSViewController.m in Sources */,
 				7F6EF54D1A6381B6001C30D4 /* OfflineImageStoreViewController.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
-#import "FavoriteTabBarViewController.h"    //next to Favorite TabBar Page
+#import "OfflineTabBarStoreViewController.h"    //next to Offline TabBar Store Page
 
 @interface FavoritePageTableViewController : UITableViewController
 {

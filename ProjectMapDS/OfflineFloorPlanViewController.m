@@ -149,7 +149,6 @@
 {
     if (buttonIndex != [dataFloor count])
     {
-        NSLog(@"count:%lu buttonIndex:%lu",(unsigned long)[dataFloor count],(unsigned long)buttonIndex);
         //change title of Right Button
         titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[buttonIndex]];
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];

@@ -119,7 +119,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FavoriteTabBarViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"FavoriteTabBarViewController"];
+    //next to Offline TabBar Store Page
+    OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
     storeID = [listOfidStore objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:destView animated:YES];
 }

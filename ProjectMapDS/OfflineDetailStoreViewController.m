@@ -274,7 +274,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = [[NSString stringWithFormat:@"INSERT INTO Favorite VALUES ('%@',CURRENT_DATE)",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *sql = [[NSString stringWithFormat:@"INSERT INTO Favorite VALUES ('%@',CURRENT_TIMESTAMP)",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
         
         sqlite3_stmt *searchStament;
         
