@@ -9,27 +9,37 @@
 #import <UIKit/UIKit.h>
 
 //assign "class" for SQLite
+@class Global;
+
 @class OfflinePageTableViewController;
 @class OfflineTabBarDSViewController;
 @class OfflineDetailDSViewController;
+@class OfflineImageDSViewController;
 @class OfflineFloorPlanViewController;
 @class OfflineCategoryViewController;
+@class OfflineTabBarStoreViewController;
+@class OfflineDetailStoreViewController;
+@class OfflineImageStoreViewController;
+@class OfflinePositionViewController;
 
 @class FavoritePageTableViewController;
-@class FavoriteTabBarViewController;
-@class FavoriteDetailViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
+    Global *global;
+    
     OfflinePageTableViewController *offlinePageTableViewController;
     OfflineTabBarDSViewController *offlineTabBarDSViewController;
     OfflineDetailDSViewController *offlineDetailDSViewController;
+    OfflineImageDSViewController *offlineImageDSViewController;
     OfflineFloorPlanViewController *offlineFloorPlanViewController;
     OfflineCategoryViewController *offlineCategoryViewController;
+    OfflineTabBarStoreViewController *offlineTabBarStoreViewController;
+    OfflineDetailStoreViewController *offlineDetailStoreViewController;
+    OfflineImageStoreViewController *offlineImageStoreViewController;
+    OfflinePositionViewController *offlinePositionViewController;
     
     FavoritePageTableViewController *favoritePageTableViewController;
-    FavoriteTabBarViewController *favoriteTabBarViewController;
-    FavoriteDetailViewController *favoriteDetailViewController;
 }
 
 @property (strong, nonatomic) UIWindow *window;

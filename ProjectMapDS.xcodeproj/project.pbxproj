@@ -21,6 +21,18 @@
 		7F1E89051A96438D00D94488 /* OnlineContentStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89041A96438D00D94488 /* OnlineContentStoreViewController.m */; };
 		7F1E89081A9644CC00D94488 /* OnlineRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */; };
 		7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F41617D1A98F28100425670 /* OfflinePositionViewController.m */; };
+		7F4161971A990F0700425670 /* Starx1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161921A990F0700425670 /* Starx1.png */; };
+		7F4161981A990F0700425670 /* Starx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161931A990F0700425670 /* Starx2.png */; };
+		7F4161991A990F0700425670 /* Starx3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161941A990F0700425670 /* Starx3.png */; };
+		7F41619A1A990F0700425670 /* Starx4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161951A990F0700425670 /* Starx4.png */; };
+		7F41619B1A990F0700425670 /* Starx5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161961A990F0700425670 /* Starx5.png */; };
+		7F4161A21A99289900425670 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4161A11A99289900425670 /* RatingView.m */; };
+		7F4161A51A9929E300425670 /* StarWhite-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A31A9929E300425670 /* StarWhite-icon.png */; };
+		7F4161A61A9929E300425670 /* StarYellow-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A41A9929E300425670 /* StarYellow-icon.png */; };
+		7F4161A81A99376200425670 /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A71A99376200425670 /* Black.png */; };
+		7F4161AA1A99376800425670 /* Gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A91A99376800425670 /* Gray.png */; };
+		7F4161B01A99B2FE00425670 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4161AF1A99B2FE00425670 /* Global.m */; };
+		7F4161B51A99D81600425670 /* Graylight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161B41A99D81600425670 /* Graylight.png */; };
 		7F4249D21A6829B80008724D /* Position-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D11A6829B80008724D /* Position-icon.png */; };
 		7F4249D81A68314A0008724D /* Point1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D71A68314A0008724D /* Point1-icon.png */; };
 		7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D91A6831A00008724D /* Point2-icon.png */; };
@@ -99,6 +111,20 @@
 		7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineRateViewController.m; sourceTree = "<group>"; };
 		7F41617C1A98F28100425670 /* OfflinePositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflinePositionViewController.h; sourceTree = "<group>"; };
 		7F41617D1A98F28100425670 /* OfflinePositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflinePositionViewController.m; sourceTree = "<group>"; };
+		7F4161921A990F0700425670 /* Starx1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Starx1.png; sourceTree = "<group>"; };
+		7F4161931A990F0700425670 /* Starx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Starx2.png; sourceTree = "<group>"; };
+		7F4161941A990F0700425670 /* Starx3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Starx3.png; sourceTree = "<group>"; };
+		7F4161951A990F0700425670 /* Starx4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Starx4.png; sourceTree = "<group>"; };
+		7F4161961A990F0700425670 /* Starx5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Starx5.png; sourceTree = "<group>"; };
+		7F4161A01A99289900425670 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
+		7F4161A11A99289900425670 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
+		7F4161A31A9929E300425670 /* StarWhite-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarWhite-icon.png"; sourceTree = "<group>"; };
+		7F4161A41A9929E300425670 /* StarYellow-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarYellow-icon.png"; sourceTree = "<group>"; };
+		7F4161A71A99376200425670 /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Black.png; sourceTree = "<group>"; };
+		7F4161A91A99376800425670 /* Gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gray.png; sourceTree = "<group>"; };
+		7F4161AE1A99B2FE00425670 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		7F4161AF1A99B2FE00425670 /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		7F4161B41A99D81600425670 /* Graylight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Graylight.png; sourceTree = "<group>"; };
 		7F4249D11A6829B80008724D /* Position-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Position-icon.png"; sourceTree = "<group>"; };
 		7F4249D71A68314A0008724D /* Point1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point1-icon.png"; sourceTree = "<group>"; };
 		7F4249D91A6831A00008724D /* Point2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point2-icon.png"; sourceTree = "<group>"; };
@@ -237,6 +263,20 @@
 				7F4249DF1A6834FC0008724D /* Point-icon.png */,
 				7F4249D71A68314A0008724D /* Point1-icon.png */,
 				7F4249D91A6831A00008724D /* Point2-icon.png */,
+				7F4161921A990F0700425670 /* Starx1.png */,
+				7F4161931A990F0700425670 /* Starx2.png */,
+				7F4161941A990F0700425670 /* Starx3.png */,
+				7F4161951A990F0700425670 /* Starx4.png */,
+				7F4161961A990F0700425670 /* Starx5.png */,
+				7F4161A41A9929E300425670 /* StarYellow-icon.png */,
+				7F4161A31A9929E300425670 /* StarWhite-icon.png */,
+				7F4161A71A99376200425670 /* Black.png */,
+				7F4161A91A99376800425670 /* Gray.png */,
+				7F4161B41A99D81600425670 /* Graylight.png */,
+				7F4161A01A99289900425670 /* RatingView.h */,
+				7F4161A11A99289900425670 /* RatingView.m */,
+				7F4161AE1A99B2FE00425670 /* Global.h */,
+				7F4161AF1A99B2FE00425670 /* Global.m */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
@@ -433,9 +473,14 @@
 			files = (
 				7F756E8B1A66751E0011D040 /* RemoveStar-icon.png in Resources */,
 				7F4249E01A6834FC0008724D /* Point-icon.png in Resources */,
+				7F4161A61A9929E300425670 /* StarYellow-icon.png in Resources */,
 				7F4249D21A6829B80008724D /* Position-icon.png in Resources */,
+				7F4161971A990F0700425670 /* Starx1.png in Resources */,
+				7F41619B1A990F0700425670 /* Starx5.png in Resources */,
+				7F4161991A990F0700425670 /* Starx3.png in Resources */,
 				7F756E8C1A66751E0011D040 /* AddStar-icon.png in Resources */,
 				7F88F3BC1A629B79002E5A49 /* Image-icon.png in Resources */,
+				7F41619A1A990F0700425670 /* Starx4.png in Resources */,
 				7F88F3D81A62A2F3002E5A49 /* ShopCategory-icon.png in Resources */,
 				7F88F3DE1A62A3E9002E5A49 /* FloorPlan-icon.png in Resources */,
 				7F615AB31A5B138400AE281A /* Main.storyboard in Resources */,
@@ -443,12 +488,17 @@
 				7F7435C61A5D3FA300640C93 /* Detail-icon.png in Resources */,
 				7F756E8E1A6689920011D040 /* MapDepartmentStore_old.sqlite in Resources */,
 				7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */,
+				7F4161981A990F0700425670 /* Starx2.png in Resources */,
 				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
 				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
 				7F1E88DD1A948FDE00D94488 /* MapDepartmentStore.sqlite in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
 				7F1E88F91A9640E700D94488 /* Rate-icon.png in Resources */,
+				7F4161A81A99376200425670 /* Black.png in Resources */,
+				7F4161A51A9929E300425670 /* StarWhite-icon.png in Resources */,
+				7F4161AA1A99376800425670 /* Gray.png in Resources */,
 				7F4249D81A68314A0008724D /* Point1-icon.png in Resources */,
+				7F4161B51A99D81600425670 /* Graylight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,9 +535,11 @@
 				7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */,
 				7F1E88FC1A96418B00D94488 /* OnlineTabBarStoreViewController.m in Sources */,
 				7F88F3F21A62C77F002E5A49 /* OfflineContentDSViewController.m in Sources */,
+				7F4161A21A99289900425670 /* RatingView.m in Sources */,
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
 				7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */,
 				7F1E88FF1A96432700D94488 /* OnlineDetailStoreViewController.m in Sources */,
+				7F4161B01A99B2FE00425670 /* Global.m in Sources */,
 				7F1E88E61A959CD500D94488 /* OnlineImageDSViewController.m in Sources */,
 				7F6EF54D1A6381B6001C30D4 /* OfflineImageStoreViewController.m in Sources */,
 				7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */,

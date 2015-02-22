@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+//test Global file
+#import "Global.h"
 
 @interface ViewController ()
 
@@ -21,9 +23,15 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    /*
+    idDS_arr = [[NSMutableArray alloc] init];
+    [Global getDepartmentStoreTable:@"1"];
+    NSLog(@"%@",idDS_arr);
+     */
 }
 
 - (void)didReceiveMemoryWarning {
