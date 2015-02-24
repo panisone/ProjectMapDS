@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F1E88DD1A948FDE00D94488 /* MapDepartmentStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7F1E88DC1A948FDE00D94488 /* MapDepartmentStore.sqlite */; };
 		7F1E88E01A958D9800D94488 /* OnlineDetailDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88DF1A958D9800D94488 /* OnlineDetailDSViewController.m */; };
 		7F1E88E31A95932400D94488 /* OnlineTabBarDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88E21A95932400D94488 /* OnlineTabBarDSViewController.m */; };
 		7F1E88E61A959CD500D94488 /* OnlineImageDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E88E51A959CD500D94488 /* OnlineImageDSViewController.m */; };
@@ -20,6 +19,7 @@
 		7F1E89021A96435F00D94488 /* OnlineImageStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89011A96435F00D94488 /* OnlineImageStoreViewController.m */; };
 		7F1E89051A96438D00D94488 /* OnlineContentStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89041A96438D00D94488 /* OnlineContentStoreViewController.m */; };
 		7F1E89081A9644CC00D94488 /* OnlineRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */; };
+		7F27BE0B1A9CB8FE008D708C /* OnlinePositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F27BE0A1A9CB8FE008D708C /* OnlinePositionViewController.m */; };
 		7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F41617D1A98F28100425670 /* OfflinePositionViewController.m */; };
 		7F4161971A990F0700425670 /* Starx1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161921A990F0700425670 /* Starx1.png */; };
 		7F4161981A990F0700425670 /* Starx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161931A990F0700425670 /* Starx2.png */; };
@@ -31,8 +31,8 @@
 		7F4161A61A9929E300425670 /* StarYellow-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A41A9929E300425670 /* StarYellow-icon.png */; };
 		7F4161A81A99376200425670 /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A71A99376200425670 /* Black.png */; };
 		7F4161AA1A99376800425670 /* Gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161A91A99376800425670 /* Gray.png */; };
-		7F4161B01A99B2FE00425670 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4161AF1A99B2FE00425670 /* Global.m */; };
 		7F4161B51A99D81600425670 /* Graylight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4161B41A99D81600425670 /* Graylight.png */; };
+		7F4161BE1A9A2D5E00425670 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4161BD1A9A2D5E00425670 /* testViewController.m */; };
 		7F4249D21A6829B80008724D /* Position-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D11A6829B80008724D /* Position-icon.png */; };
 		7F4249D81A68314A0008724D /* Point1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D71A68314A0008724D /* Point1-icon.png */; };
 		7F4249DA1A6831A00008724D /* Point2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F4249D91A6831A00008724D /* Point2-icon.png */; };
@@ -66,6 +66,7 @@
 		7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB151A5BCBB300C2EC3D /* OnlinePageTableViewController.m */; };
 		7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */; };
 		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
+		7FB842A21A9A3BA40046B8CB /* MapDepartmentStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */; };
 		7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */; };
 		7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */; };
 		7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */; };
@@ -85,7 +86,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F1E88DC1A948FDE00D94488 /* MapDepartmentStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MapDepartmentStore.sqlite; sourceTree = "<group>"; };
 		7F1E88DE1A958D9800D94488 /* OnlineDetailDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineDetailDSViewController.h; sourceTree = "<group>"; };
 		7F1E88DF1A958D9800D94488 /* OnlineDetailDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineDetailDSViewController.m; sourceTree = "<group>"; };
 		7F1E88E11A95932400D94488 /* OnlineTabBarDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineTabBarDSViewController.h; sourceTree = "<group>"; };
@@ -109,6 +109,8 @@
 		7F1E89041A96438D00D94488 /* OnlineContentStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineContentStoreViewController.m; sourceTree = "<group>"; };
 		7F1E89061A9644CC00D94488 /* OnlineRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineRateViewController.h; sourceTree = "<group>"; };
 		7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineRateViewController.m; sourceTree = "<group>"; };
+		7F27BE091A9CB8FE008D708C /* OnlinePositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlinePositionViewController.h; sourceTree = "<group>"; };
+		7F27BE0A1A9CB8FE008D708C /* OnlinePositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlinePositionViewController.m; sourceTree = "<group>"; };
 		7F41617C1A98F28100425670 /* OfflinePositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflinePositionViewController.h; sourceTree = "<group>"; };
 		7F41617D1A98F28100425670 /* OfflinePositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflinePositionViewController.m; sourceTree = "<group>"; };
 		7F4161921A990F0700425670 /* Starx1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Starx1.png; sourceTree = "<group>"; };
@@ -122,9 +124,9 @@
 		7F4161A41A9929E300425670 /* StarYellow-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarYellow-icon.png"; sourceTree = "<group>"; };
 		7F4161A71A99376200425670 /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Black.png; sourceTree = "<group>"; };
 		7F4161A91A99376800425670 /* Gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gray.png; sourceTree = "<group>"; };
-		7F4161AE1A99B2FE00425670 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
-		7F4161AF1A99B2FE00425670 /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		7F4161B41A99D81600425670 /* Graylight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Graylight.png; sourceTree = "<group>"; };
+		7F4161BC1A9A2D5E00425670 /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		7F4161BD1A9A2D5E00425670 /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		7F4249D11A6829B80008724D /* Position-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Position-icon.png"; sourceTree = "<group>"; };
 		7F4249D71A68314A0008724D /* Point1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point1-icon.png"; sourceTree = "<group>"; };
 		7F4249D91A6831A00008724D /* Point2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point2-icon.png"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		7F9FEB181A5BCD0C00C2EC3D /* FavoritePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritePageTableViewController.h; sourceTree = "<group>"; };
 		7F9FEB191A5BCD0C00C2EC3D /* FavoritePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritePageTableViewController.m; sourceTree = "<group>"; };
 		7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MapDepartmentStore.sqlite; sourceTree = "<group>"; };
 		7FC4F9C21A5FE7BC002422BC /* OfflineFloorPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineFloorPlanViewController.h; sourceTree = "<group>"; };
 		7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineFloorPlanViewController.m; sourceTree = "<group>"; };
 		7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTabBarViewController.h; sourceTree = "<group>"; };
@@ -249,7 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				7F756E8D1A6689920011D040 /* MapDepartmentStore_old.sqlite */,
-				7F1E88DC1A948FDE00D94488 /* MapDepartmentStore.sqlite */,
+				7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */,
 				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
 				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
 				7F7435C51A5D3FA300640C93 /* Detail-icon.png */,
@@ -275,12 +278,12 @@
 				7F4161B41A99D81600425670 /* Graylight.png */,
 				7F4161A01A99289900425670 /* RatingView.h */,
 				7F4161A11A99289900425670 /* RatingView.m */,
-				7F4161AE1A99B2FE00425670 /* Global.h */,
-				7F4161AF1A99B2FE00425670 /* Global.m */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
 				7F615AAF1A5B138400AE281A /* ViewController.m */,
+				7F4161BC1A9A2D5E00425670 /* testViewController.h */,
+				7F4161BD1A9A2D5E00425670 /* testViewController.m */,
 				7F615AB11A5B138400AE281A /* Main.storyboard */,
 				7F615AB41A5B138400AE281A /* Images.xcassets */,
 				7F615AB61A5B138400AE281A /* LaunchScreen.xib */,
@@ -374,6 +377,8 @@
 				7F1E89011A96435F00D94488 /* OnlineImageStoreViewController.m */,
 				7F1E89031A96438D00D94488 /* OnlineContentStoreViewController.h */,
 				7F1E89041A96438D00D94488 /* OnlineContentStoreViewController.m */,
+				7F27BE091A9CB8FE008D708C /* OnlinePositionViewController.h */,
+				7F27BE0A1A9CB8FE008D708C /* OnlinePositionViewController.m */,
 				7F1E89061A9644CC00D94488 /* OnlineRateViewController.h */,
 				7F1E89071A9644CC00D94488 /* OnlineRateViewController.m */,
 			);
@@ -471,6 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB842A21A9A3BA40046B8CB /* MapDepartmentStore.sqlite in Resources */,
 				7F756E8B1A66751E0011D040 /* RemoveStar-icon.png in Resources */,
 				7F4249E01A6834FC0008724D /* Point-icon.png in Resources */,
 				7F4161A61A9929E300425670 /* StarYellow-icon.png in Resources */,
@@ -491,7 +497,6 @@
 				7F4161981A990F0700425670 /* Starx2.png in Resources */,
 				7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */,
 				7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */,
-				7F1E88DD1A948FDE00D94488 /* MapDepartmentStore.sqlite in Resources */,
 				7F615AB51A5B138400AE281A /* Images.xcassets in Resources */,
 				7F1E88F91A9640E700D94488 /* Rate-icon.png in Resources */,
 				7F4161A81A99376200425670 /* Black.png in Resources */,
@@ -522,6 +527,7 @@
 				7F1E88EC1A95D2BC00D94488 /* OnlineFloorPlanViewController.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
 				7F1E89081A9644CC00D94488 /* OnlineRateViewController.m in Sources */,
+				7F4161BE1A9A2D5E00425670 /* testViewController.m in Sources */,
 				7F1E88EF1A95D30400D94488 /* OnlineCategoryViewController.m in Sources */,
 				7FFDEF501A67A13C00C9D821 /* FavoriteContentViewController.m in Sources */,
 				7FFDEF531A67A15200C9D821 /* FavoritePositionViewController.m in Sources */,
@@ -539,7 +545,6 @@
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
 				7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */,
 				7F1E88FF1A96432700D94488 /* OnlineDetailStoreViewController.m in Sources */,
-				7F4161B01A99B2FE00425670 /* Global.m in Sources */,
 				7F1E88E61A959CD500D94488 /* OnlineImageDSViewController.m in Sources */,
 				7F6EF54D1A6381B6001C30D4 /* OfflineImageStoreViewController.m in Sources */,
 				7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */,
@@ -550,6 +555,7 @@
 				7F88F3EF1A62C733002E5A49 /* OfflineImageDSViewController.m in Sources */,
 				7F7435C21A5D229400640C93 /* OfflineTabBarDSViewController.m in Sources */,
 				7F6EF5471A6380E2001C30D4 /* OfflineDetailStoreViewController.m in Sources */,
+				7F27BE0B1A9CB8FE008D708C /* OnlinePositionViewController.m in Sources */,
 				7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

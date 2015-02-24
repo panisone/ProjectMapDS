@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *storeID;   //Global variable
+extern NSString *storeID;           //Global variable
+extern NSMutableArray *storeFloor;  //Global variable
 
 @interface OnlineTabBarStoreViewController : UITabBarController
+
+-(void)getFloorStore;
 
 @end

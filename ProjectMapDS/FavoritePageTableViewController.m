@@ -35,7 +35,7 @@
     //call initDatabse : use to check connected MapDepartmentStore.sqlite
     [self initDatabase];
     //call getFavorite : connect DB & use data from MapDepartmentStore.sqlite
-    [self getFavorite];
+    //[self getFavorite];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -21,7 +21,7 @@ NSMutableArray *dataFloor;  //Global variable
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = dataID;
-    self.navigationController.navigationBar.topItem.title = @"back";
+    //self.navigationController.navigationBar.topItem.title = @"back";
     self.navigationController.navigationBar.hidden = NO;
 }
 

@@ -1,19 +1,19 @@
 //
-//  OnlineFloorPlanViewController.m
+//  OnlinePositionViewController.m
 //  ProjectMapDS
 //
-//  Created by Panisara Intoe on 2/19/2558 BE.
+//  Created by Panisara Intoe on 2/24/2558 BE.
 //  Copyright (c) 2558 Panisara Intoe. All rights reserved.
 //
 
-#import "OnlineFloorPlanViewController.h"
-#import "OnlineTabBarDSViewController.h"        //use Global variable: dataID, dataFloor
+#import "OnlinePositionViewController.h"
+#import "OnlineTabBarStoreViewController.h"    //use Global variable: storeID, storeFloor
 
-@interface OnlineFloorPlanViewController ()
+@interface OnlinePositionViewController ()
 
 @end
 
-@implementation OnlineFloorPlanViewController
+@implementation OnlinePositionViewController
 {
     NSString *titleRightButton;
     UIImage *image;
@@ -23,7 +23,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    //self.navigationItem.title = @"Map DS";
+    //self.navigationItem.title = @"Position Store";
     //self.navigationController.navigationBar.topItem.title = @"back";
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:titleRightButton
@@ -34,22 +34,18 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     //call method for Database
-    [self showFloorPlan:dataFloor[0]];
+    [self showFloorPlan:storeFloor[0]];
     //set title Right Button
-    titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[0]];
+    titleRightButton = [NSString stringWithFormat:@"Floor: %@",storeFloor[0]];
     //set Scroll view
     [scroll setDelegate:self];
     [scroll setMinimumZoomScale:1.0];
     [scroll setMaximumZoomScale:4.0];
-    
-    scroll.userInteractionEnabled = YES;        //Solution Problem zoom image with button
-    scroll.exclusiveTouch = YES;                //Solution Problem zoom image with button
-    
-    [floorImage setUserInteractionEnabled:YES]; //Solution Problem zoom image with button
-    [floorImage setExclusiveTouch:YES];         //Solution Problem zoom image with button
+    //scroll.zoomScale = 1;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,22 +68,21 @@
 }
 */
 
-
 -(void)getFloorPlan:(NSString *) floor
 {
-    //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
     
+    image = [UIImage imageNamed:@"Info-icon.png"];
+    
     for (NSDictionary *dataDict in jsonObjects)
     {
         NSString *mapFloor_data = [dataDict objectForKey:@"mapFloor"];
-        image = [UIImage imageNamed:@"Info-icon.png"];
         if ([mapFloor_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:mapFloor_data options:0];
             image = [UIImage imageWithData:imageData];
@@ -104,19 +99,22 @@
                            cancelButtonTitle:nil
                            destructiveButtonTitle:nil
                            otherButtonTitles:nil];
-    for (NSString *title in dataFloor) {
+    for (NSString *title in storeFloor) {
         [func addButtonWithTitle:title];
     }
     func.cancelButtonIndex = [func addButtonWithTitle:@"Cancel"];
-    [func showInView:self.view];
+    
+    if ([storeFloor count] != 1) {
+        [func showInView:self.view];
+    }
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != [dataFloor count])
+    if (buttonIndex != [storeFloor count])
     {
         //change title of Right Button
-        titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[buttonIndex]];
+        titleRightButton = [NSString stringWithFormat:@"Floor: %@",storeFloor[buttonIndex]];
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
         
         //remove Button of page before
@@ -127,34 +125,29 @@
             }
         }
         
-        [self showFloorPlan:dataFloor[buttonIndex]];
+        //change image & call method create Button connect to Store
+        [self showFloorPlan:storeFloor[buttonIndex]];
     }
 }
 
 //call mathod for SHOW FloorPlan
 -(void)showFloorPlan:(NSString *) floor
 {
-    //for TEST data value:NULL
-    if ([dataFloor[0]  isEqual: @"%"]) {
-        return;
-    }
-    
     //call method for Database
     [self getFloorPlan:floor];
     //set image to Show
     floorImage.image = image;
     //create Button on FloorPlan
-    [self createButton:floor];
+    [self createPoint:floor];
 }
 
 //create SUBVIEW for SHOW
--(void)createButton:(NSString *) floor
+-(void)createPoint:(NSString *) floor
 {
-    //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -164,47 +157,42 @@
     
     for (NSDictionary *dataDict in jsonObjects)
     {
-        NSString *idStore = [dataDict objectForKey:@"idStore"];
-        
-        NSString *logoStore_data = [dataDict objectForKey:@"logoStore"];
-        UIImage *imageButton = [UIImage imageNamed:@"Logo.png"];
-        if ([logoStore_data length] != 0) {
-            NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoStore_data options:0];
-            imageButton = [UIImage imageWithData:imageData];
-        }
-        
         NSString *pointX = [dataDict objectForKey:@"pointX"];
         NSString *pointY = [dataDict objectForKey:@"pointY"];
-        //NSString *width = [dataDict objectForKey:@"width"];
+        NSString *width = [dataDict objectForKey:@"width"];
         NSString *height = [dataDict objectForKey:@"height"];
         
-        //NSLog(@"id:%@ x:%@ y:%@ w:%@ h:%@",idStore,pointX,pointY,width,height);
+        //NSLog(@"id:%@ x:%@ y:%@ w:%@ h:%@",storeID,pointX,pointY,width,height);
         
-        CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
-        
-        UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
-        
-        //set TAG is storeID
-        button.tag = [idStore intValue];
-        
-        //test
-        [button setTitle:idStore forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        
-        [button setBackgroundImage:imageButton forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(storeView:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [newView addSubview:button];
+        if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
+            //set X & Y & SizeIcon
+            int sizeIcon = MAX([width intValue], [height intValue]);
+            int x = [pointX intValue]+([width intValue]/2)-(sizeIcon/2);
+            int y = [pointY intValue]-(sizeIcon/2);
+            if (x>320-sizeIcon && y<0) {
+                y = [pointY intValue];
+                sizeIcon = MIN([width intValue], [height intValue]);
+            }
+            else if (x>320-sizeIcon) {
+                sizeIcon = [width intValue];
+            }
+            else if (y<0) {
+                y = [pointY intValue];
+                sizeIcon = [height intValue];
+            }
+            CGRect imageFrame = CGRectMake(x, y, sizeIcon, sizeIcon);
+            
+            UIImage *imagePoint = [UIImage imageNamed:@"Point-icon.png"];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:imagePoint];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            imageView.frame = imageFrame;
+            
+            //set TAG is "1"
+            imageView.tag = 1;
+            
+            [floorImage addSubview:imageView];
+        }
     }
-    
-    [floorImage addSubview:newView];
-}
-
--(void)storeView:(UIButton *) sender
-{
-    OnlineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarStoreViewController"];
-    storeID = [NSString stringWithFormat:@"%ld",(long)sender.tag];
-    [self.navigationController pushViewController:destView animated:YES];
 }
 
 @end

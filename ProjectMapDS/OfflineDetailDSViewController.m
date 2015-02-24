@@ -20,6 +20,11 @@
     NSString *detail;
     NSString *floor;
     UIImage *image;
+    
+    // DELETE
+    NSString *str_idDS;
+    NSMutableArray *arrIDFloor;
+    NSMutableArray *arrIDStore;
 }
 @synthesize nameLabel,branchLabel,logoImage,detailTextView;
 
@@ -27,8 +32,13 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail DS";
-    //self.navigationController.navigationBar.topItem.title = @"back";
-    self.parentViewController.navigationItem.rightBarButtonItem = nil;
+    //self.navigationController.navigationBar.topItem.title = @"";
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"DELETE"
+                                    style:UIBarButtonItemStyleDone
+                                    target:self action:@selector(rightFuntion)];
+    rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
+    self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
     self.navigationController.navigationBar.hidden = NO;
 }
 
@@ -192,4 +202,341 @@
         floor = [@"Floor: \n" stringByAppendingString:floor];
     }
 }
+
+//
+//
+// DELETE
+//
+//
+-(void)deleteData:(NSString *)idDS
+{
+    [self initDatabase];
+    
+    str_idDS = idDS;
+    
+    //
+    //
+    // DELETE SQLite
+    arrIDFloor = [[NSMutableArray alloc] init];
+    [self selectTableFloor:str_idDS];
+    [self deleteTableDepartmentStore:str_idDS];
+    [self deleteTableImageDS:str_idDS];
+    [self deleteTableFloor:str_idDS];
+    for (NSString *idFloor in arrIDFloor)
+    {
+        arrIDStore = [[NSMutableArray alloc] init];
+        [self selectTableLinkFloorStore:idFloor];
+        [self deleteTableLinkFloorStore:idFloor];
+        for (NSString *idStore in arrIDStore)
+        {
+            [self deleteTableStore:idStore];
+            [self deleteTableImageStore:idStore];
+            [self deleteTableFavorite:idStore];
+        }
+    }
+}
+
+//
+//
+// SQLite
+//
+//
+// GET Floor
+-(void)selectTableFloor:(NSString *)idDS
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    //NSLog(@"start arrIDFloor %lu",(unsigned long)[arrIDFloor count]);
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"SELECT idFloor FROM Floor WHERE idDS=%@",idDS] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            while (sqlite3_step(searchStament) == SQLITE_ROW)
+            {
+                NSString *idFloor = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                
+                //NSLog(@"select-Floor => idFloor:%@",idFloor);
+                
+                [arrIDFloor addObject:idFloor];
+            }
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// GET LinkFloorStore
+-(void)selectTableLinkFloorStore:(NSString *)idFloor
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    //NSLog(@"start arrIDStore %lu",(unsigned long)[arrIDStore count]);
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"SELECT idStore FROM LinkFloorStore WHERE idFloor=%@",idFloor] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            while (sqlite3_step(searchStament) == SQLITE_ROW)
+            {
+                NSString *idStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
+                
+                //NSLog(@"select-LinkFloorStore => idStore:%@",idStore);
+                
+                [arrIDStore addObject:idStore];
+            }
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+//
+//
+// DELETE DepartmentStore
+-(void)deleteTableDepartmentStore:(NSString *)idDS
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM DepartmentStore WHERE idDS=%@",idDS] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-DepartmentStore success");
+             }
+             else {
+             //NSLog(@"delete-DepartmentStore NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// DELETE ImageDS
+-(void)deleteTableImageDS:(NSString *)idDS
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM ImageDS WHERE idDS=%@",idDS] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-ImageDS success");
+             }
+             else {
+             //NSLog(@"delete-ImageDS NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// DELETE Floor
+-(void)deleteTableFloor:(NSString *)idDS
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM Floor WHERE idDS=%@",idDS] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-Floor success");
+             }
+             else {
+             //NSLog(@"delete-Floor NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// DELETE LinkFloorStore
+-(void)deleteTableLinkFloorStore:(NSString *)idFloor
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM LinkFloorStore WHERE idFloor=%@",idFloor] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-LinkFloorStore success");
+             }
+             else {
+             //NSLog(@"delete-LinkFloorStore NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// DELETE Store
+-(void)deleteTableStore:(NSString *)idStore
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM Store WHERE idStore=%@",idStore] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-Store success");
+             }
+             else {
+             //NSLog(@"delete-Store NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// DELETE ImageStore
+-(void)deleteTableImageStore:(NSString *)idStore
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM ImageStore WHERE idStore=%@",idStore] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-ImageStore success");
+             }
+             else {
+             //NSLog(@"delete-ImageStore NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+// DELETE Favorite
+-(void)deleteTableFavorite:(NSString *)idStore
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"MapDepartmentStore.sqlite"];
+    
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
+    {
+        const char *sql = [[NSString stringWithFormat:@"DELETE FROM Favorite WHERE idStore=%@",idStore] cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        sqlite3_stmt *searchStament;
+        
+        if (sqlite3_prepare_v2(database, sql, -1, &searchStament, NULL) == SQLITE_OK)
+        {
+            sqlite3_step(searchStament);
+            /*
+             if (sqlite3_step(searchStament) == SQLITE_DONE) {
+             //NSLog(@"delete-Favorite success");
+             }
+             else {
+             //NSLog(@"delete-Favorite NOT success");
+             }*/
+        }
+        sqlite3_finalize(searchStament);
+    }
+    sqlite3_close(database);
+}
+
+//method for Right Button
+-(void)rightFuntion
+{
+    UIAlertView *alv = [[UIAlertView alloc]
+                        initWithTitle:@"DELETE"
+                        message:@"Alert View"
+                        delegate:self
+                        cancelButtonTitle: nil
+                        otherButtonTitles: @"OK",@"Cencal", nil];
+    [alv show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        UIAlertView *alv = [[UIAlertView alloc]
+                            initWithTitle:@"WAIT"
+                            message:@"Alert View"
+                            delegate:self
+                            cancelButtonTitle: nil
+                            otherButtonTitles: nil];
+        [alv show];
+        [self performSelector:@selector(waitProcess:) withObject:alv afterDelay:1];
+    }
+}
+
+-(void)waitProcess:(UIAlertView *)alv
+{
+    [self performSelector:@selector(wait:) withObject:alv afterDelay:1];
+    [self deleteData:dataID];
+}
+
+-(void)wait:(UIAlertView *)alv
+{
+    [alv dismissWithClickedButtonIndex:-1 animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

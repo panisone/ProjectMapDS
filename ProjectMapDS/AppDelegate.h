@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 //assign "class" for SQLite
-@class Global;
+@class testViewController;
+
+@class OnlineDetailDSViewController;
 
 @class OfflinePageTableViewController;
 @class OfflineTabBarDSViewController;
@@ -26,7 +28,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    Global *global;
+    testViewController *testViewController;
+    
+    OnlineDetailDSViewController *onlineDetailDSViewController;
     
     OfflinePageTableViewController *offlinePageTableViewController;
     OfflineTabBarDSViewController *offlineTabBarDSViewController;

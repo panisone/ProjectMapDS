@@ -115,7 +115,8 @@
 {
     NSString *url_score = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)score, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getRating.php?idStore=%@&score=%@",storeID,url_score];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getRating.php?idStore=%@&score=%@",storeID,url_score];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getRating.php?idStore=%@&score=%@",storeID,url_score];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
@@ -130,7 +131,7 @@
         if ([score isEqual: @"%"])
         {
             if ([count_data intValue] != 0) {
-                avgRate.value = [avgScore_data floatValue];
+                avgRate.value = roundf([avgScore_data floatValue]);
                 countRatingLabel.text = [NSString stringWithFormat:@"Based on %@ Ratings",count_data];
             }
             else {
@@ -198,15 +199,15 @@
                                          unSelectedImage:@"StarWhite-icon.png"
                                                 minValue:0
                                                 maxValue:5
-                                           intervalValue:0.5
+                                           intervalValue:1
                                               stepByStep:NO];
     avgRate.delegate = self;
     avgRate.value = 0;
     [self.view addSubview:avgRate];
     
     //create VIEW on RatingView: not action rate score
-    UIView *view_avgRate = [[UIView alloc] initWithFrame:CGRectMake(60, 135, 200, 40)];
-    [self.view addSubview:view_avgRate];
+    //UIView *view_avgRate = [[UIView alloc] initWithFrame:CGRectMake(60, 135, 200, 40)];
+    //[self.view addSubview:view_avgRate];
     
     
     star5Rate = [[RatingView alloc] initWithFrame:CGRectMake(20, 253+46, 280, 10)
@@ -214,7 +215,7 @@
                                             unSelectedImage:@"Gray.png"
                                                    minValue:0
                                                    maxValue:28
-                                              intervalValue:0.28
+                                              intervalValue:1
                                                  stepByStep:NO];
     star5Rate.delegate = self;
     star5Rate.value = 0;
@@ -229,7 +230,7 @@
                                               unSelectedImage:@"Gray.png"
                                                      minValue:0
                                                      maxValue:28
-                                                intervalValue:0.28
+                                                intervalValue:1
                                                    stepByStep:NO];
     star4Rate.delegate = self;
     star4Rate.value = 0;
@@ -244,7 +245,7 @@
                                             unSelectedImage:@"Gray.png"
                                                    minValue:0
                                                    maxValue:28
-                                              intervalValue:0.28
+                                              intervalValue:1
                                                  stepByStep:NO];
     star3Rate.delegate = self;
     star3Rate.value = 0;
@@ -259,7 +260,7 @@
                                             unSelectedImage:@"Gray.png"
                                                    minValue:0
                                                    maxValue:28
-                                              intervalValue:0.28
+                                              intervalValue:1
                                                  stepByStep:NO];
     star2Rate.delegate = self;
     star2Rate.value = 0;
@@ -274,7 +275,7 @@
                                             unSelectedImage:@"Gray.png"
                                                    minValue:0
                                                    maxValue:28
-                                              intervalValue:0.28
+                                              intervalValue:1
                                                  stepByStep:NO];
     star1Rate.delegate = self;
     star1Rate.value = 0;
@@ -295,7 +296,12 @@
     rate.value = 0;
     [rateView addSubview:rate];
 }
-
+/*
+- (IBAction)increaseRating:(id)sender
+{
+    self.ratingView.value = self.ratingView.value + 1;
+}
+*/
 - (void)rateChanged:(RatingView *)ratingView
 {
     if (ratingView.value != 0) {
@@ -312,7 +318,8 @@
 {
     if (buttonIndex == 0)
     {
-        NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
+        //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
+        NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
         [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
         [self viewDidLoad];

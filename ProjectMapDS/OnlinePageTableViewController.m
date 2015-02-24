@@ -29,12 +29,15 @@
     [super viewWillAppear:YES];
     self.navigationItem.title = @"Online List";
     self.navigationController.navigationBar.hidden = NO;
+    //reload Table View
+    [self getDepartmentStore];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //call getDepartmentStore : connect DB & use data from URL
-    [self getDepartmentStore];
+    //[self getDepartmentStore];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,7 +150,9 @@
     
     listOfDS = [[NSMutableArray alloc] init];
     
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://localhost/projectDS/getDSList.php"]];
+    //NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://localhost/projectDS/getDSList.php"]];
+    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://panisone.in.th/pani/getDSList.php"]];
+    
     //Case connection error!!
     if (jsonSource == NULL) { [self alertConnectionError]; return; }
     

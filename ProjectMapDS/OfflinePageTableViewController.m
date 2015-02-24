@@ -25,6 +25,9 @@
     [super viewWillAppear:YES];
     self.navigationItem.title = @"Offline List";
     self.navigationController.navigationBar.hidden = NO;
+    //reload Table View
+    [self getDepartmentStore];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -32,13 +35,7 @@
     //call initDatabse : use to check connected MapDepartmentStore.sqlite
     [self initDatabase];
     //call getDepartmentStore : connect DB & use data from MapDepartmentStore.sqlite
-    [self getDepartmentStore];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //[self getDepartmentStore];
 }
 
 - (void)didReceiveMemoryWarning {

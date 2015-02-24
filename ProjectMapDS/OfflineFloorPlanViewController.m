@@ -24,7 +24,7 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Map DS";
-    //self.navigationController.navigationBar.topItem.title = @"back";
+    //self.navigationController.navigationBar.topItem.title = @"";
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:titleRightButton
                                     style:UIBarButtonItemStyleDone

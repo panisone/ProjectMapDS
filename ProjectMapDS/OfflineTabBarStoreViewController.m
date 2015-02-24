@@ -21,7 +21,7 @@ NSMutableArray *storeFloor; //Global variable
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = storeID;
-    self.navigationController.navigationBar.topItem.title = @"back";
+    //self.navigationController.navigationBar.topItem.title = @"back";
     self.navigationController.navigationBar.hidden = NO;
 }
 

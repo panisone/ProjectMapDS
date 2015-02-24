@@ -1,29 +1,19 @@
 //
-//  OnlineDetailDSViewController.m
+//  testViewController.m
 //  ProjectMapDS
 //
-//  Created by Panisara Intoe on 2/19/2558 BE.
+//  Created by Panisara Intoe on 2/22/2558 BE.
 //  Copyright (c) 2558 Panisara Intoe. All rights reserved.
 //
 
-#import "OnlineDetailDSViewController.h"
-#import "OnlineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
+#import "testViewController.h"
 
-@interface OnlineDetailDSViewController ()
+@interface testViewController ()
 
 @end
 
-@implementation OnlineDetailDSViewController
+@implementation testViewController
 {
-    NSString *name;
-    NSString *branch;
-    NSString *detail;
-    NSString *floor;
-    UIImage *image;
-    
-    NSString *check;
-    
-    // CHECK-DOWNLOAD-UPDATE
     NSString *str_idDS;
     NSMutableArray *arrIDFloor;
     NSMutableArray *arrIDStore;
@@ -36,135 +26,65 @@
     NSMutableArray *arrImageStore;
     
     NSMutableArray *arrCheck;
-}
-@synthesize nameLabel,branchLabel,logoImage,detailTextView;
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    //self.navigationItem.title = @"Detail DS";
-    //self.navigationController.navigationBar.topItem.title = @"back";
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:check
-                                    style:UIBarButtonItemStyleDone
-                                    target:self action:@selector(rightFuntion)];
-    rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
-    self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
-    if ([check isEqual:@"NONE"])
-    {
-        self.parentViewController.navigationItem.rightBarButtonItem = nil;
-    }
-    self.navigationController.navigationBar.hidden = NO;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    //call method for Database
-    [self getDetailDS];
-    [self getFloorDS];
-    //set text to Show
-    nameLabel.text = name;
-    branchLabel.text = [@"สาขา " stringByAppendingString:branch];
-    logoImage.image = image;
-    detailTextView.text = [detail stringByAppendingString:floor];
     
-    // CHECK-DOWNLOAD-UPDATE
-    check = [self checkData:dataID];
+    // case Download-Update ALL
+    NSMutableArray *arrDownload;
+    NSMutableArray *arrUpdate;
+    
+}
+
+-(void)test:(UIAlertView*)x
+{
+    //[self performSelector:@selector(test:) withObject:alv afterDelay:5];
+    [x dismissWithClickedButtonIndex:-1 animated:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    /*
+    UIAlertView *alv = [[UIAlertView alloc]
+                        initWithTitle:@"AUTO Dismiss 5sec."
+                        message:@"Alert View"
+                        delegate:self
+                        cancelButtonTitle: nil
+                        otherButtonTitles: nil];
+    [alv show];
+    [self performSelector:@selector(test:) withObject:alv afterDelay:5];
+    //[alv removeFromSuperview];
+    */
+    
+    //NSLog(@"%@",[self checkData:@"1"]);
+    
+    //[self downloadData:@"1"];
+    
+    //
+    //
+    // DELETE SQLite
+    str_idDS = @"1";
+    [self initDatabase];
+    arrIDFloor = [[NSMutableArray alloc] init];
+    [self selectTableFloor:str_idDS];
+    [self deleteTableDepartmentStore:str_idDS];
+    [self deleteTableImageDS:str_idDS];
+    [self deleteTableFloor:str_idDS];
+    for (NSString *idFloor in arrIDFloor)
+    {
+        arrIDStore = [[NSMutableArray alloc] init];
+        [self selectTableLinkFloorStore:idFloor];
+        [self deleteTableLinkFloorStore:idFloor];
+        for (NSString *idStore in arrIDStore)
+        {
+            [self deleteTableStore:idStore];
+            [self deleteTableImageStore:idStore];
+            [self deleteTableFavorite:idStore];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
--(void)getDetailDS
-{
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSDetail.php?idDS=%@",dataID];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSDetail.php?idDS=%@",dataID];
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-    
-    id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
-    
-    for (NSDictionary *dataDict in jsonObjects)
-    {
-        NSString *nameDS_data = [dataDict objectForKey:@"nameDS"];
-        name = nameDS_data;
-        
-        NSString *branchDS_data = [dataDict objectForKey:@"branchDS"];
-        if ([branchDS_data length] == 0) {
-            branchDS_data = @"-";
-        }
-        branch = [NSString stringWithFormat:@"%@",branchDS_data];
-        
-        NSString *addressDS_data = [dataDict objectForKey:@"addressDS"];
-        if ([addressDS_data  isEqual: @""]) {
-            addressDS_data = @"-";
-        }
-        detail = [NSString stringWithFormat:@"สถานที่ตั้ง: \n%@\n\n",addressDS_data];
-        
-        NSString *openTimeDS_data = [dataDict objectForKey:@"openTimeDS"];
-        if ([openTimeDS_data  isEqual: @""]) {
-            openTimeDS_data = @"-";
-        }
-        NSString *closeTimeDS_data = [dataDict objectForKey:@"closeTimeDS"];
-        if ([closeTimeDS_data  isEqual: @""]) {
-            closeTimeDS_data = @"-";
-        }
-        detail = [detail stringByAppendingString:@"เวลาทำการ: \n"];
-        if ([openTimeDS_data  isEqual:@"-"] || [closeTimeDS_data isEqual:@"-"])
-        {
-            detail = [detail stringByAppendingString:@"-"];
-        }
-        else
-        {
-            detail = [NSString stringWithFormat:@"%@%@ - %@",detail,openTimeDS_data,closeTimeDS_data];
-        }
-        detail = [detail stringByAppendingString:@"\n\n"];
-        
-        NSString *logoDS_data = [dataDict objectForKey:@"logoDS"];
-        image = [UIImage imageNamed:@"Info-icon.png"];
-        if ([logoDS_data length] != 0) {
-            NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoDS_data options:0];
-            image = [UIImage imageWithData:imageData];
-        }
-    }
-}
-
--(void)getFloorDS
-{
-    floor = @"";
-    
-    for (NSString *nameFloor in dataFloor)
-    {
-        if ([floor isEqual:@""])
-        {
-            floor = [floor stringByAppendingString:nameFloor];
-        }
-        else
-        {
-            floor = [floor stringByAppendingString:@", "];
-            floor = [floor stringByAppendingString:nameFloor];
-        }
-    }
-    
-    if ([floor isEqual:@""])
-    {
-        floor = [@"Floor: \n" stringByAppendingString:@"-"];
-    }
-    else
-    {
-        floor = [@"Floor: \n" stringByAppendingString:floor];
-    }
 }
 
 //
@@ -291,6 +211,12 @@
         }
     }
     
+    NSLog(@"arrDepartmentStore:%lu",(unsigned long)[arrDepartmentStore count]);
+    NSLog(@"arrImageDS:%lu",(unsigned long)[arrImageDS count]);
+    NSLog(@"arrFloor:%lu",(unsigned long)[arrFloor count]);
+    NSLog(@"arrLinkFloorStore:%lu",(unsigned long)[arrLinkFloorStore count]);
+    NSLog(@"arrStore:%lu",(unsigned long)[arrStore count]);
+    NSLog(@"arrImageStore:%lu",(unsigned long)[arrImageStore count]);
     
     //
     //
@@ -435,12 +361,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-DepartmentStore success");
-             }
-             else {
-             //NSLog(@"delete-DepartmentStore NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-DepartmentStore success");
+            }
+            else {
+                //NSLog(@"delete-DepartmentStore NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -463,12 +389,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-ImageDS success");
-             }
-             else {
-             //NSLog(@"delete-ImageDS NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-ImageDS success");
+            }
+            else {
+                //NSLog(@"delete-ImageDS NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -491,12 +417,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-Floor success");
-             }
-             else {
-             //NSLog(@"delete-Floor NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-Floor success");
+            }
+            else {
+                //NSLog(@"delete-Floor NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -519,12 +445,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-LinkFloorStore success");
-             }
-             else {
-             //NSLog(@"delete-LinkFloorStore NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-LinkFloorStore success");
+            }
+            else {
+                //NSLog(@"delete-LinkFloorStore NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -547,12 +473,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-Store success");
-             }
-             else {
-             //NSLog(@"delete-Store NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-Store success");
+            }
+            else {
+                //NSLog(@"delete-Store NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -575,12 +501,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-ImageStore success");
-             }
-             else {
-             //NSLog(@"delete-ImageStore NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-ImageStore success");
+            }
+            else {
+                //NSLog(@"delete-ImageStore NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -603,12 +529,12 @@
         {
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             //NSLog(@"delete-Favorite success");
-             }
-             else {
-             //NSLog(@"delete-Favorite NOT success");
-             }*/
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                //NSLog(@"delete-Favorite success");
+            }
+            else {
+                //NSLog(@"delete-Favorite NOT success");
+            }*/
         }
         sqlite3_finalize(searchStament);
     }
@@ -659,13 +585,13 @@
             
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             NSLog(@"insert success");
-             }
-             else {
-             NSLog(@"insert NOT success");
-             }
-             */
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                NSLog(@"insert success");
+            }
+            else {
+                NSLog(@"insert NOT success");
+            }
+            */
         }
         sqlite3_finalize(searchStament);
     }
@@ -701,13 +627,13 @@
             
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             NSLog(@"insert success");
-             }
-             else {
-             NSLog(@"insert NOT success");
-             }
-             */
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                NSLog(@"insert success");
+            }
+            else {
+                NSLog(@"insert NOT success");
+            }
+            */
         }
         sqlite3_finalize(searchStament);
     }
@@ -745,13 +671,13 @@
             
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             NSLog(@"insert success");
-             }
-             else {
-             NSLog(@"insert NOT success");
-             }
-             */
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                NSLog(@"insert success");
+            }
+            else {
+                NSLog(@"insert NOT success");
+            }
+            */
         }
         sqlite3_finalize(searchStament);
     }
@@ -790,13 +716,13 @@
             
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             NSLog(@"insert success");
-             }
-             else {
-             NSLog(@"insert NOT success");
-             }
-             */
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                NSLog(@"insert success");
+            }
+            else {
+                NSLog(@"insert NOT success");
+            }
+            */
         }
         sqlite3_finalize(searchStament);
     }
@@ -852,13 +778,13 @@
             
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             NSLog(@"insert success");
-             }
-             else {
-             NSLog(@"insert NOT success");
-             }
-             */
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                NSLog(@"insert success");
+            }
+            else {
+                NSLog(@"insert NOT success");
+            }
+            */
         }
         sqlite3_finalize(searchStament);
     }
@@ -894,13 +820,13 @@
             
             sqlite3_step(searchStament);
             /*
-             if (sqlite3_step(searchStament) == SQLITE_DONE) {
-             NSLog(@"insert success");
-             }
-             else {
-             NSLog(@"insert NOT success");
-             }
-             */
+            if (sqlite3_step(searchStament) == SQLITE_DONE) {
+                NSLog(@"insert success");
+            }
+            else {
+                NSLog(@"insert NOT success");
+            }
+            */
         }
         sqlite3_finalize(searchStament);
     }
@@ -915,8 +841,7 @@
 // GET DepartmentStore
 -(void)getTableDepartmentStore:(NSString *)idDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableDepartmentStore.php?idDS=%@",idDS];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableDepartmentStore.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableDepartmentStore.php?idDS=%@",idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -949,8 +874,7 @@
 // GET ImageDS
 -(void)getTableImageDS:(NSString *)idDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageDS.php?idDS=%@",idDS];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageDS.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageDS.php?idDS=%@",idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -975,8 +899,7 @@
 // GET Floor
 -(void)getTableFloor:(NSString *)idDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableFloor.php?idDS=%@",idDS];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableFloor.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableFloor.php?idDS=%@",idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1003,8 +926,7 @@
 // GET LinkFloorStore
 -(void)getTableLinkFloorStore:(NSString *)idFloor
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableLinkFloorStore.php?idFloor=%@",idFloor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableLinkFloorStore.php?idFloor=%@",idFloor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableLinkFloorStore.php?idFloor=%@",idFloor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1031,8 +953,7 @@
 // GET Store
 -(void)getTableStore:(NSString *)idStore
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableStore.php?idStore=%@",idStore];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableStore.php?idStore=%@",idStore];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableStore.php?idStore=%@",idStore];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1067,8 +988,7 @@
 // GET ImageStore
 -(void)getTableImageStore:(NSString *)idStore
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageStore.php?idStore=%@",idStore];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageStore.php?idStore=%@",idStore];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageStore.php?idStore=%@",idStore];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1089,45 +1009,6 @@
         [arrImageStore addObject:arr];
         //NSLog(@"get-arrImageStore => idImageStore:%@",[dataDict objectForKey:@"idImageStore"]);
     }
-}
-
-//method for Right Button
--(void)rightFuntion
-{
-    UIAlertView *alv = [[UIAlertView alloc]
-                        initWithTitle:check
-                        message:@"Alert View"
-                        delegate:self
-                        cancelButtonTitle: nil
-                        otherButtonTitles: @"OK",@"Cencal", nil];
-    [alv show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0)
-    {
-        UIAlertView *alv = [[UIAlertView alloc]
-                            initWithTitle:@"WAIT"
-                            message:@"Alert View"
-                            delegate:self
-                            cancelButtonTitle: nil
-                            otherButtonTitles: nil];
-        [alv show];
-        [self performSelector:@selector(waitProcess:) withObject:alv afterDelay:1];
-    }
-}
-
--(void)waitProcess:(UIAlertView *)alv
-{
-    [self performSelector:@selector(wait:) withObject:alv afterDelay:1];
-    [self downloadData:dataID];
-}
-
--(void)wait:(UIAlertView *)alv
-{
-    [alv dismissWithClickedButtonIndex:-1 animated:YES];
-    self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
 @end
