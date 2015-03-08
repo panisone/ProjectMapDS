@@ -11,6 +11,7 @@
 //assign "class" for SQLite
 @class testViewController;
 
+@class OnlinePageTableViewController;
 @class OnlineDetailDSViewController;
 
 @class OfflinePageTableViewController;
@@ -30,6 +31,7 @@
 {
     testViewController *testViewController;
     
+    OnlinePageTableViewController *onlinePageTableViewController;
     OnlineDetailDSViewController *onlineDetailDSViewController;
     
     OfflinePageTableViewController *offlinePageTableViewController;

@@ -529,12 +529,8 @@
 
 -(void)waitProcess:(UIAlertView *)alv
 {
-    [self performSelector:@selector(wait:) withObject:alv afterDelay:1];
     [self deleteData:dataID];
-}
-
--(void)wait:(UIAlertView *)alv
-{
+    
     [alv dismissWithClickedButtonIndex:-1 animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }

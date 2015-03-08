@@ -78,8 +78,8 @@
     //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -153,8 +153,8 @@
     //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

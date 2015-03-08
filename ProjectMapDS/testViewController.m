@@ -30,7 +30,6 @@
     // case Download-Update ALL
     NSMutableArray *arrDownload;
     NSMutableArray *arrUpdate;
-    
 }
 
 -(void)test:(UIAlertView*)x
