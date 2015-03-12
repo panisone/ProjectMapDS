@@ -10,10 +10,12 @@
 #import <sqlite3.h>
 #import "OfflineTabBarStoreViewController.h"    //next to Offline TabBar Store Page
 
-@interface FavoritePageTableViewController : UITableViewController
+@interface FavoritePageTableViewController : UITableViewController <UISearchBarDelegate>
 {
     sqlite3 *database;
 }
+
+@property (strong, nonatomic) IBOutlet UISearchBar *favoriteSearchBar;
 
 -(void)initDatabase;
 -(void)getFavorite;

@@ -10,10 +10,12 @@
 #import <sqlite3.h>
 #import "OnlineTabBarDSViewController.h"   //next to Online TabBar DS Page
 
-@interface OnlinePageTableViewController : UITableViewController <UIActionSheetDelegate>
+@interface OnlinePageTableViewController : UITableViewController <UISearchBarDelegate,UIActionSheetDelegate>
 {
     sqlite3 *database;
 }
+
+@property (strong, nonatomic) IBOutlet UISearchBar *onlineSearchBar;
 
 -(void)getDepartmentStore;
 -(void)alertConnectionError;

@@ -18,7 +18,15 @@
     NSMutableArray *listOfnameStore;
     NSMutableArray *listOfDepartmentStore;
     NSMutableArray *listOflogoStore;
+    
+    NSMutableArray *searchListOfidStore;
+    NSMutableArray *searchListOfnameStore;
+    NSMutableArray *searchListOfDepartmentStore;
+    NSMutableArray *searchListOflogoStore;
+    
+    NSString *search;
 }
+@synthesize favoriteSearchBar;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -32,6 +40,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Hide the search bar until user scrolls up
+    CGRect newBounds = [self.tableView bounds];
+    newBounds.origin.y = favoriteSearchBar.bounds.size.height;
+    [self.tableView setBounds:newBounds];
+    
     //call initDatabse : use to check connected MapDepartmentStore.sqlite
     [self initDatabase];
     //call getFavorite : connect DB & use data from MapDepartmentStore.sqlite
@@ -54,7 +68,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [listOfidStore count];
+    if ([search isEqual:@"search"])
+    {
+        return [searchListOfidStore count];
+    }
+    else
+    {
+        return [listOfidStore count];
+    }
 }
 
 
@@ -68,14 +89,30 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleIdentifier];
     }
     
-    // Cell Label text = "nameStore"
-    cell.textLabel.text = [listOfnameStore objectAtIndex:indexPath.row];
-    
-    // Cell Detail text = "branchStore"
-    cell.detailTextLabel.text = [listOfDepartmentStore objectAtIndex:indexPath.row];
-    
-    // Cell Image = "logoDS"
-    cell.imageView.image = [listOflogoStore objectAtIndex:indexPath.row];
+    if ([search isEqual:@"search"])
+    {
+        // Cell Label text = "nameStore"
+        cell.textLabel.text = [searchListOfnameStore objectAtIndex:indexPath.row];
+        
+        // Cell Detail text = "branchStore"
+        NSString *callDetail = [searchListOfDepartmentStore objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [@"ห้าง: " stringByAppendingString:callDetail];
+        
+        // Cell Image = "logoDS"
+        cell.imageView.image = [searchListOflogoStore objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        // Cell Label text = "nameStore"
+        cell.textLabel.text = [listOfnameStore objectAtIndex:indexPath.row];
+        
+        // Cell Detail text = "branchStore"
+        NSString *callDetail = [listOfDepartmentStore objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [@"ห้าง: " stringByAppendingString:callDetail];
+        
+        // Cell Image = "logoDS"
+        cell.imageView.image = [listOflogoStore objectAtIndex:indexPath.row];
+    }
     
     return cell;
 }
@@ -119,9 +156,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([search isEqual:@"search"])
+    {
+        storeID = [searchListOfidStore objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        storeID = [listOfidStore objectAtIndex:indexPath.row];
+    }
+    
     //next to Offline TabBar Store Page
     OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
-    storeID = [listOfidStore objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:destView animated:YES];
 }
 
@@ -133,6 +178,63 @@
 }
 */
 
+//search
+-(void)filterContentForSearchText:(NSString *)searchText
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",searchText];
+    
+    searchListOfidStore = [[NSMutableArray alloc] init];
+    searchListOfnameStore = [[NSMutableArray alloc] init];
+    searchListOfDepartmentStore = [[NSMutableArray alloc] init];
+    searchListOflogoStore = [[NSMutableArray alloc] init];
+    
+    for (NSString *idStore in listOfidStore)
+    {
+        NSUInteger index = [listOfidStore indexOfObject:idStore];
+        
+        NSArray *arr = [[NSArray alloc] initWithObjects:[listOfnameStore objectAtIndex:index],[listOfDepartmentStore objectAtIndex:index], nil];
+        
+        NSArray *arrResult = [[NSArray alloc] init];
+        arrResult = [arr filteredArrayUsingPredicate:predicate];
+        
+        if ([arrResult count] != 0)
+        {
+            [searchListOfidStore addObject:idStore];
+            [searchListOfnameStore addObject:[arr objectAtIndex:0]];
+            [searchListOfDepartmentStore addObject:[arr objectAtIndex:1]];
+            [searchListOflogoStore addObject:[listOflogoStore objectAtIndex:index]];
+        }
+    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (![searchText isEqual: @""])
+    {
+        search = @"search";
+        [self filterContentForSearchText:searchText];
+    }
+    else
+    {
+        search = nil;
+    }
+    [self.tableView reloadData];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = nil;
+    search = nil;
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
+}
+
+//method
 -(void)initDatabase
 {
     BOOL success;
@@ -196,7 +298,7 @@
                 if ((char*)sqlite3_column_text(searchStament, 4) != NULL) {
                     branchDS = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 4)];
                 }
-                nameDS = [@"ห้าง: " stringByAppendingFormat:@"%@ %@",nameDS,branchDS];
+                nameDS = [nameDS stringByAppendingFormat:@" %@",branchDS];
                 
                 [listOfidStore addObject:idStore];
                 [listOfnameStore addObject:nameStore];

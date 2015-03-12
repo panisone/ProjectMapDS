@@ -20,7 +20,16 @@
     NSDictionary *shopCategory;
     NSDictionary *idShopCategory;
     NSDictionary *floorShopCategory;
+    
+    NSMutableArray *searchCategory;
+    NSDictionary *searchShopCategory;
+    NSDictionary *searchIDShopCategory;
+    NSDictionary *searchFloorShopCategory;
+    
+    NSString *search;
 }
+@synthesize offlineCategoryTable;
+@synthesize offlineSearchBar;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -38,6 +47,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Hide the search bar until user scrolls up
+    CGRect newBounds = [[self offlineCategoryTable] bounds];
+    newBounds.origin.y = offlineSearchBar.bounds.size.height;
+    [[self offlineCategoryTable] setBounds:newBounds];
+    
     //call method for Database
     [self initDatabase];
     [self showCategory:@"%"];
@@ -62,20 +77,42 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [category count];
+    if ([search isEqual:@"search"])
+    {
+        return [searchCategory count];
+    }
+    else
+    {
+        return [category count];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [category objectAtIndex:section];
+    if ([search isEqual:@"search"])
+    {
+        return [searchCategory objectAtIndex:section];
+    }
+    else
+    {
+        return [category objectAtIndex:section];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSString *sectionTitle = [category objectAtIndex:section];
-    NSArray *sectionShops = [shopCategory objectForKey:sectionTitle];
-    return [sectionShops count];
-    //return 1;
+    if ([search isEqual:@"search"])
+    {
+        NSString *sectionTitle = [searchCategory objectAtIndex:section];
+        NSArray *sectionShops = [searchShopCategory objectForKey:sectionTitle];
+        return [sectionShops count];
+    }
+    else
+    {
+        NSString *sectionTitle = [category objectAtIndex:section];
+        NSArray *sectionShops = [shopCategory objectForKey:sectionTitle];
+        return [sectionShops count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,6 +125,29 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SimpleIdentifier];
     }
     
+    if ([search isEqual: @"search"])
+    {
+        NSString *sectionTitle = [searchCategory objectAtIndex:indexPath.section];
+        NSArray *sectionStores = [searchShopCategory objectForKey:sectionTitle];
+        NSString *store = [sectionStores objectAtIndex:indexPath.row];
+        cell.textLabel.text = store;
+        
+        NSArray *sectionFloorShops = [searchFloorShopCategory objectForKey:sectionTitle];
+        NSString *floorStore = [sectionFloorShops objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = floorStore;
+    }
+    else
+    {
+        NSString *sectionTitle = [category objectAtIndex:indexPath.section];
+        NSArray *sectionStores = [shopCategory objectForKey:sectionTitle];
+        NSString *store = [sectionStores objectAtIndex:indexPath.row];
+        cell.textLabel.text = store;
+        
+        NSArray *sectionFloorShops = [floorShopCategory objectForKey:sectionTitle];
+        NSString *floorStore = [sectionFloorShops objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = floorStore;
+    }
+    /*
     NSString *sectionTitle = [category objectAtIndex:indexPath.section];
     NSArray *sectionStores = [shopCategory objectForKey:sectionTitle];
     NSString *store = [sectionStores objectAtIndex:indexPath.row];
@@ -98,19 +158,97 @@
     NSArray *sectionFloorShops = [floorShopCategory objectForKey:sectionTitle];
     NSString *floorStore = [sectionFloorShops objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = floorStore;
-    
+    */
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *sectionTitle = [category objectAtIndex:indexPath.section];
-    NSArray *sectionIDStores = [idShopCategory objectForKey:sectionTitle];
-    NSString *store = [sectionIDStores objectAtIndex:indexPath.row];
+    NSString *sectionTitle;
+    NSArray *sectionIDStores;
+    NSString *store;
+    
+    if ([search isEqual: @"search"])
+    {
+        sectionTitle = [searchCategory objectAtIndex:indexPath.section];
+        sectionIDStores = [searchIDShopCategory objectForKey:sectionTitle];
+        store = [sectionIDStores objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        sectionTitle = [category objectAtIndex:indexPath.section];
+        sectionIDStores = [idShopCategory objectForKey:sectionTitle];
+        store = [sectionIDStores objectAtIndex:indexPath.row];
+    }
     
     OfflineTabBarStoreViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
     storeID = store;
     [self.navigationController pushViewController:destView animated:YES];
+}
+
+//search
+-(void)filterContentForSearchText:(NSString *)searchText
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",searchText];
+    
+    searchCategory = [[NSMutableArray alloc] init];
+    searchShopCategory = [[NSMutableDictionary alloc] init];
+    searchIDShopCategory = [[NSMutableDictionary alloc] init];
+    searchFloorShopCategory = [[NSMutableDictionary alloc] init];
+    
+    for (NSString *key in category)
+    {
+        NSArray *arrResult = [[NSArray alloc] init];
+        arrResult = [[shopCategory objectForKey:key] filteredArrayUsingPredicate:predicate];
+        
+        if ([arrResult count] != 0)
+        {
+            [searchCategory addObject:key];
+            
+            NSMutableArray *arr1 = [[NSMutableArray alloc] init];
+            NSMutableArray *arr2 = [[NSMutableArray alloc] init];
+            NSMutableArray *arr3 = [[NSMutableArray alloc] init];
+            for (NSString *shop in arrResult)
+            {
+                NSUInteger index = [[shopCategory objectForKey:key] indexOfObject:shop];
+                
+                [arr1 addObject:shop];
+                [arr2 addObject:[[idShopCategory objectForKey:key] objectAtIndex:index]];
+                [arr3 addObject:[[floorShopCategory objectForKey:key] objectAtIndex:index]];
+            }
+            
+            [searchShopCategory setValue:arr1 forKey:key];
+            [searchIDShopCategory setValue:arr2 forKey:key];
+            [searchFloorShopCategory setValue:arr3 forKey:key];
+        }
+    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (![searchText isEqual: @""])
+    {
+        search = @"search";
+        [self filterContentForSearchText:searchText];
+    }
+    else
+    {
+        search = nil;
+    }
+    [self.offlineCategoryTable reloadData];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = nil;
+    search = nil;
+    [self.offlineCategoryTable reloadData];
+    [searchBar resignFirstResponder];
 }
 
 //method
@@ -301,19 +439,29 @@
     {
         titleRightButton = @"All Floor";
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
-        //[self getCategory:@"%"];
-        //[self getShopCategory:@"%"];
         [self showCategory:@"%"];
-        [self.offlineCategoryTable reloadData];
+        //[self.offlineCategoryTable reloadData];
+        
+        [self searchBarCancelButtonClicked:offlineSearchBar];
+        
+        // Hide the search bar until user scrolls up
+        CGRect newBounds = [[self offlineCategoryTable] bounds];
+        newBounds.origin.y = offlineSearchBar.bounds.size.height;
+        [[self offlineCategoryTable] setBounds:newBounds];
     }
     else if (buttonIndex != [dataFloor count]+1)
     {
         titleRightButton = [NSString stringWithFormat:@"%@ Floor",dataFloor[buttonIndex-1]];
         [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
-        //[self getCategory:dataFloor[buttonIndex-1]];
-        //[self getShopCategory:dataFloor[buttonIndex-1]];
         [self showCategory:dataFloor[buttonIndex-1]];
-        [self.offlineCategoryTable reloadData];
+        //[self.offlineCategoryTable reloadData];
+        
+        [self searchBarCancelButtonClicked:offlineSearchBar];
+        
+        // Hide the search bar until user scrolls up
+        CGRect newBounds = [[self offlineCategoryTable] bounds];
+        newBounds.origin.y = offlineSearchBar.bounds.size.height;
+        [[self offlineCategoryTable] setBounds:newBounds];
     }
 }
 

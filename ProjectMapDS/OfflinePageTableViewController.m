@@ -18,7 +18,15 @@
     NSMutableArray *listOfnameDS;
     NSMutableArray *listOfbranchDS;
     NSMutableArray *listOflogoDS;
+    
+    NSMutableArray *searchListOfidDS;
+    NSMutableArray *searchListOfnameDS;
+    NSMutableArray *searchListOfbranchDS;
+    NSMutableArray *searchListOflogoDS;
+    
+    NSString *search;
 }
+@synthesize offlineSearchBar;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -32,6 +40,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Hide the search bar until user scrolls up
+    CGRect newBounds = [self.tableView bounds];
+    newBounds.origin.y = offlineSearchBar.bounds.size.height;
+    [self.tableView setBounds:newBounds];
+    
     //call initDatabse : use to check connected MapDepartmentStore.sqlite
     [self initDatabase];
     //call getDepartmentStore : connect DB & use data from MapDepartmentStore.sqlite
@@ -54,7 +68,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [listOfidDS count];
+    if ([search isEqual:@"search"])
+    {
+        return [searchListOfidDS count];
+    }
+    else
+    {
+        return [listOfidDS count];
+    }
 }
 
 
@@ -68,16 +89,32 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleIdentifier];
     }
     
-    // Cell Label text = "nameDS"
-    cell.textLabel.text = [listOfnameDS objectAtIndex:indexPath.row];
-    
-    // Cell Detail text = "branchDS"
-    NSString *callDetail = [listOfbranchDS objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:callDetail];
-    
-    // Cell Image = "logoDS"
-    cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
-    cell.imageView.image = [listOflogoDS objectAtIndex:indexPath.row];
+    if ([search isEqual:@"search"])
+    {
+        // Cell Label text = "nameDS"
+        cell.textLabel.text = [searchListOfnameDS objectAtIndex:indexPath.row];
+        
+        // Cell Detail text = "branchDS"
+        NSString *callDetail = [searchListOfbranchDS objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:callDetail];
+        
+        // Cell Image = "logoDS"
+        cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
+        cell.imageView.image = [searchListOflogoDS objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        // Cell Label text = "nameDS"
+        cell.textLabel.text = [listOfnameDS objectAtIndex:indexPath.row];
+        
+        // Cell Detail text = "branchDS"
+        NSString *callDetail = [listOfbranchDS objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:callDetail];
+        
+        // Cell Image = "logoDS"
+        cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
+        cell.imageView.image = [listOflogoDS objectAtIndex:indexPath.row];
+    }
     
     return cell;
 }
@@ -120,8 +157,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([search isEqual: @"search"])
+    {
+        dataID = [searchListOfidDS objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        dataID = [listOfidDS objectAtIndex:indexPath.row];
+    }
+    
     OfflineTabBarDSViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarDSViewController"];
-    dataID = [listOfidDS objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:destView animated:YES];
 }
 
@@ -133,6 +178,63 @@
 }
 */
 
+//search
+-(void)filterContentForSearchText:(NSString *)searchText
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",searchText];
+    
+    searchListOfidDS = [[NSMutableArray alloc] init];
+    searchListOfnameDS = [[NSMutableArray alloc] init];
+    searchListOfbranchDS = [[NSMutableArray alloc] init];
+    searchListOflogoDS = [[NSMutableArray alloc] init];
+    
+    for (NSString *idDS in listOfidDS)
+    {
+        NSUInteger index = [listOfidDS indexOfObject:idDS];
+        
+        NSArray *arr = [[NSArray alloc] initWithObjects:[listOfnameDS objectAtIndex:index],[listOfbranchDS objectAtIndex:index], nil];
+        
+        NSArray *arrResult = [[NSArray alloc] init];
+        arrResult = [arr filteredArrayUsingPredicate:predicate];
+        
+        if ([arrResult count] != 0)
+        {
+            [searchListOfidDS addObject:idDS];
+            [searchListOfnameDS addObject:[arr objectAtIndex:0]];
+            [searchListOfbranchDS addObject:[arr objectAtIndex:1]];
+            [searchListOflogoDS addObject:[listOflogoDS objectAtIndex:index]];
+        }
+    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (![searchText isEqual: @""])
+    {
+        search = @"search";
+        [self filterContentForSearchText:searchText];
+    }
+    else
+    {
+        search = nil;
+    }
+    [self.tableView reloadData];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = nil;
+    search = nil;
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
+}
+
+//method
 -(void)initDatabase
 {
     BOOL success;

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "OnlineTabBarStoreViewController.h"    //next to Online TabBar Store Page
 
-@interface OnlineCategoryViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
+@interface OnlineCategoryViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *onlineCategoryTable;
+@property (strong, nonatomic) IBOutlet UISearchBar *onlineSearchBar;
 
 -(void)getCategory:(NSString *) floor;
 -(void)getShopCategory:(NSString *) floor;

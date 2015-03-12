@@ -10,10 +10,12 @@
 #import <sqlite3.h>
 #import "OfflineTabBarDSViewController.h"   //next to Offline TabBar DS Page
 
-@interface OfflinePageTableViewController : UITableViewController
+@interface OfflinePageTableViewController : UITableViewController <UISearchBarDelegate>
 {
     sqlite3 *database;
 }
+
+@property (strong, nonatomic) IBOutlet UISearchBar *offlineSearchBar;
 
 -(void)initDatabase;
 -(void)getDepartmentStore;

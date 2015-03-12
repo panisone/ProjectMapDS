@@ -16,7 +16,9 @@
 {
     NSMutableArray *listOfDS;
     
-    NSDictionary *dictDS;
+    NSMutableArray *searchListOfDS;
+    
+    NSString *search;
     
     //NSString *idDS;
     //NSString *nameDS;
@@ -41,6 +43,7 @@
     NSMutableArray *arrDownload;
     NSMutableArray *arrUpdate;
 }
+@synthesize onlineSearchBar;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -73,6 +76,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Hide the search bar until user scrolls up
+    CGRect newBounds = [self.tableView bounds];
+    newBounds.origin.y = onlineSearchBar.bounds.size.height;
+    [self.tableView setBounds:newBounds];
+    
     //call getDepartmentStore : connect DB & use data from URL
     //[self getDepartmentStore];
 }
@@ -95,7 +104,14 @@
 {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [listOfDS count];
+    if ([search isEqual:@"search"])
+    {
+        return [searchListOfDS count];
+    }
+    else
+    {
+        return [listOfDS count];
+    }
 }
 
 
@@ -108,19 +124,38 @@
          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleIdentifier];
      }
      
-     NSDictionary *tmpDict = [listOfDS objectAtIndex:indexPath.row];
-     
-     // Cell Label text = "nameDS"
-     NSString *text = [tmpDict objectForKey:@"nameDS"];
-     cell.textLabel.text = text;
-     
-     // Cell Detail text = "branchDS"
-     NSString *detail = [tmpDict objectForKey:@"branchDS"];
-     cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:detail];;
-     
-     // Cell Image = "logoDS"
-     cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
-     cell.imageView.image = [tmpDict objectForKey:@"logoDS"];
+     if ([search isEqual:@"search"])
+     {
+         NSDictionary *tmpDict = [searchListOfDS objectAtIndex:indexPath.row];
+         
+         // Cell Label text = "nameDS"
+         NSString *text = [tmpDict objectForKey:@"nameDS"];
+         cell.textLabel.text = text;
+         
+         // Cell Detail text = "branchDS"
+         NSString *detail = [tmpDict objectForKey:@"branchDS"];
+         cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:detail];;
+         
+         // Cell Image = "logoDS"
+         cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
+         cell.imageView.image = [tmpDict objectForKey:@"logoDS"];
+     }
+     else
+     {
+         NSDictionary *tmpDict = [listOfDS objectAtIndex:indexPath.row];
+         
+         // Cell Label text = "nameDS"
+         NSString *text = [tmpDict objectForKey:@"nameDS"];
+         cell.textLabel.text = text;
+         
+         // Cell Detail text = "branchDS"
+         NSString *detail = [tmpDict objectForKey:@"branchDS"];
+         cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:detail];;
+         
+         // Cell Image = "logoDS"
+         cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
+         cell.imageView.image = [tmpDict objectForKey:@"logoDS"];
+     }
      
      return cell;
 }
@@ -164,9 +199,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([search isEqual: @"search"])
+    {
+        NSDictionary *tmpDict = [searchListOfDS objectAtIndex:indexPath.row];
+        dataID = [tmpDict objectForKey:@"idDS"];
+    }
+    else
+    {
+        NSDictionary *tmpDict = [listOfDS objectAtIndex:indexPath.row];
+        dataID = [tmpDict objectForKey:@"idDS"];
+    }
+    
     OnlineTabBarDSViewController *destView = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarDSViewController"];
-    NSDictionary *tmpDict = [listOfDS objectAtIndex:indexPath.row];
-    dataID = [tmpDict objectForKey:@"idDS"];
     [self.navigationController pushViewController:destView animated:YES];
 }
 
@@ -178,6 +222,61 @@
 }
 */
 
+//search
+-(void)filterContentForSearchText:(NSString *)searchText
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",searchText];
+    
+    searchListOfDS = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dict in listOfDS)
+    {
+        NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameDS"],[dict objectForKey:@"branchDS"], nil];
+        
+        NSArray *arrResult = [[NSArray alloc] init];
+        arrResult = [arr filteredArrayUsingPredicate:predicate];
+        
+        if ([arrResult count] != 0)
+        {
+            NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [dict objectForKey:@"idDS"], @"idDS",
+                                    [arr objectAtIndex:0], @"nameDS",
+                                    [arr objectAtIndex:1], @"branchDS",
+                                    [dict objectForKey:@"logoDS"], @"logoDS",
+                                    nil];
+            [searchListOfDS addObject:dictDS];
+        }
+    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (![searchText isEqual: @""])
+    {
+        search = @"search";
+        [self filterContentForSearchText:searchText];
+    }
+    else
+    {
+        search = nil;
+    }
+    [self.tableView reloadData];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = nil;
+    search = nil;
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
+}
+
+//method
 -(void)getDepartmentStore
 {
     //idDS = @"idDS";
@@ -218,7 +317,7 @@
         //NSLog(@"DS branch: %@",branchDS_data);
         //NSLog(@"DS image: %@",logoDS_data);
         
-        dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
+        NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
                       idDS_data, @"idDS",
                       nameDS_data, @"nameDS",
                       branchDS_data, @"branchDS",
@@ -294,6 +393,8 @@
     {
         if (buttonIndex == 0)
         {
+            [self searchBarCancelButtonClicked:onlineSearchBar];
+            
             //NSLog(@"UPdate");
             [alv show];
             [self performSelector:@selector(waitProcess2:) withObject:alv afterDelay:1];
@@ -305,6 +406,8 @@
     {
         if (buttonIndex == 0)
         {
+            [self searchBarCancelButtonClicked:onlineSearchBar];
+            
             //NSLog(@"DownLoad");
             [alv show];
             [self performSelector:@selector(waitProcess1:) withObject:alv afterDelay:1];
@@ -316,6 +419,8 @@
     {
         if (buttonIndex == 0)
         {
+            [self searchBarCancelButtonClicked:onlineSearchBar];
+            
             //NSLog(@"DownLoad");
             [alv show];
             [self performSelector:@selector(waitProcess1:) withObject:alv afterDelay:1];
@@ -324,6 +429,8 @@
         }
         else if (buttonIndex == 1)
         {
+            [self searchBarCancelButtonClicked:onlineSearchBar];
+            
             //NSLog(@"UPdate");
             [alv show];
             [self performSelector:@selector(waitProcess2:) withObject:alv afterDelay:1];
