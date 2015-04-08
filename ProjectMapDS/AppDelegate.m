@@ -22,7 +22,7 @@
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    pageControl.backgroundColor = [UIColor groupTableViewBackgroundColor];
     //pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     //pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     //pageControl.backgroundColor = [UIColor darkGrayColor];

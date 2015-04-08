@@ -72,8 +72,8 @@
 {
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -146,8 +146,8 @@
 {
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -182,7 +182,7 @@
             }
             CGRect imageFrame = CGRectMake(x, y, sizeIcon, sizeIcon);
             
-            UIImage *imagePoint = [UIImage imageNamed:@"Point-icon.png"];
+            UIImage *imagePoint = [UIImage imageNamed:@"Point3-icon.png"];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:imagePoint];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             imageView.frame = imageFrame;

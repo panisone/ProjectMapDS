@@ -12,7 +12,7 @@
 
 @interface OnlineRateViewController ()
 
-@property (strong, nonatomic) RatingView *ratingView;
+//@property (strong, nonatomic) RatingView *ratingView;
 
 @end
 
@@ -115,8 +115,8 @@
 {
     NSString *url_score = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)score, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getRating.php?idStore=%@&score=%@",storeID,url_score];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getRating.php?idStore=%@&score=%@",storeID,url_score];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getRating.php?idStore=%@&score=%@",storeID,url_score];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getRating.php?idStore=%@&score=%@",storeID,url_score];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
@@ -130,8 +130,19 @@
         
         if ([score isEqual: @"%"])
         {
-            if ([count_data intValue] != 0) {
-                avgRate.value = roundf([avgScore_data floatValue]);
+            if ([count_data intValue] != 0)
+            {
+                float value = floorf([avgScore_data floatValue]);
+                if ([avgScore_data floatValue]-value >= 0.25)
+                {
+                    if ([avgScore_data floatValue]-value >= 0.75) {
+                        value = value + 1;
+                    }
+                    else {
+                        value = value + 0.5;
+                    }
+                }
+                avgRate.value = value;
                 countRatingLabel.text = [NSString stringWithFormat:@"Based on %@ Ratings",count_data];
             }
             else {
@@ -206,8 +217,8 @@
     [self.view addSubview:avgRate];
     
     //create VIEW on RatingView: not action rate score
-    //UIView *view_avgRate = [[UIView alloc] initWithFrame:CGRectMake(60, 135, 200, 40)];
-    //[self.view addSubview:view_avgRate];
+    UIView *view_avgRate = [[UIView alloc] initWithFrame:CGRectMake(60, 135, 200, 40)];
+    [self.view addSubview:view_avgRate];
     
     
     star5Rate = [[RatingView alloc] initWithFrame:CGRectMake(20, 253+46, 280, 10)
@@ -318,8 +329,8 @@
 {
     if (buttonIndex == 0)
     {
-        NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
-        //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
+        //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
+        NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
         [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
         [self viewDidLoad];

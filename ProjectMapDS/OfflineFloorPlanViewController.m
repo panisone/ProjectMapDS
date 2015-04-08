@@ -249,10 +249,36 @@
                     }
                 }
                 
+                //NSLog(@"image w:%f h:%f",image.size.width,image.size.height);
+                //NSLog(@"frame w:%f h:%f",floorImage.frame.size.width,floorImage.frame.size.height);
                 //NSLog(@"id:%@ x:%@ y:%@ w:%@ h:%@",idStore,pointX,pointY,width,height);
                 
-                if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
-                    CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
+                float frameX;
+                float frameY;
+                
+                if (floorImage.frame.size.height > image.size.height*floorImage.frame.size.width/image.size.width)
+                {
+                    frameX = floorImage.frame.size.width;
+                    frameY = floorImage.frame.size.width*image.size.height/image.size.width;
+                }
+                else
+                {
+                    frameX = floorImage.frame.size.height*image.size.width/image.size.height;
+                    frameY = floorImage.frame.size.height;
+                }
+                
+                //NSLog(@"cover w:%f h:%f",frameX,frameY);
+                
+                if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"])
+                {
+                    float pX = [pointX floatValue]*frameX;
+                    float pY = [pointY floatValue]*frameY;
+                    float bWidth = [width floatValue]*frameX;
+                    float bHeight = [height floatValue]*frameY;
+                    
+                    //NSLog(@"button x:%f y:%f w:%f h:%f",pX,pY,bWidth,bHeight);
+                    
+                    CGRect buttonFrame = CGRectMake(pX, pY, bWidth, bHeight);
                     
                     UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
                     
@@ -269,7 +295,6 @@
                     [newView addSubview:button];
                 }
             }
-            //[self.view addSubview:newView];
             [floorImage addSubview:newView];
         }
         sqlite3_finalize(searchStament);

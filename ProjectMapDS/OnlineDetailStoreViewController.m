@@ -59,8 +59,8 @@
 
 -(void)getDetailStore
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreDetail.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreDetail.php?idStore=%@",storeID];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreDetail.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreDetail.php?idStore=%@",storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -148,8 +148,8 @@
 {
     NSString *strFloor = @"";
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreAddressNumber.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreAddressNumber.php?idStore=%@",storeID];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreAddressNumber.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreAddressNumber.php?idStore=%@",storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

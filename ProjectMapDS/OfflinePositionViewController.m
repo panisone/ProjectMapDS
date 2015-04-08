@@ -242,7 +242,7 @@
                 }
                 
                 if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
-                    //set X & Y & SizeIcon
+                    /* //set X & Y & SizeIcon
                     int sizeIcon = MAX([width intValue], [height intValue]);
                     int x = [pointX intValue]+([width intValue]/2)-(sizeIcon/2);
                     int y = [pointY intValue]-(sizeIcon/2);
@@ -257,9 +257,31 @@
                         y = [pointY intValue];
                         sizeIcon = [height intValue];
                     }
-                    CGRect imageFrame = CGRectMake(x, y, sizeIcon, sizeIcon);
                     
-                    UIImage *imagePoint = [UIImage imageNamed:@"Point-icon.png"];
+                    CGRect imageFrame = CGRectMake(x, y, sizeIcon, sizeIcon);
+                    */
+                    float frameX;
+                    float frameY;
+                    
+                    if (floorImage.frame.size.height > image.size.height*floorImage.frame.size.width/image.size.width)
+                    {
+                        frameX = floorImage.frame.size.width;
+                        frameY = floorImage.frame.size.width*image.size.height/image.size.width;
+                    }
+                    else
+                    {
+                        frameX = floorImage.frame.size.height*image.size.width/image.size.height;
+                        frameY = floorImage.frame.size.height;
+                    }
+                    
+                    float pX = [pointX floatValue]*frameX;
+                    float pY = [pointY floatValue]*frameY;
+                    float bWidth = [width floatValue]*frameX;
+                    float bHeight = [height floatValue]*frameY;
+                    
+                    CGRect imageFrame = CGRectMake(pX, pY, bWidth, bHeight);
+                    
+                    UIImage *imagePoint = [UIImage imageNamed:@"Point3-icon.png"];
                     UIImageView *imageView = [[UIImageView alloc] initWithImage:imagePoint];
                     imageView.contentMode = UIViewContentModeScaleAspectFit;
                     imageView.frame = imageFrame;

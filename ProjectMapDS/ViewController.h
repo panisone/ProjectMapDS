@@ -10,6 +10,7 @@
 #import "OnlinePageTableViewController.h"   //next to Online Page
 #import "OfflinePageTableViewController.h"  //next to Offline Page
 #import "FavoritePageTableViewController.h" //next to Favorite Page
+#import "SearchPageViewController.h"        //next to Search Page
 
 @interface ViewController : UIViewController
 
@@ -17,6 +18,7 @@
 - (IBAction)OnlinePage:(id)sender;
 - (IBAction)OfflinePage:(id)sender;
 - (IBAction)FavoritePage:(id)sender;
+- (IBAction)SearchPage:(id)sender;
 
 @end
 

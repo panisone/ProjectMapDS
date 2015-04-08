@@ -60,6 +60,12 @@
     [self.navigationController pushViewController:next animated:YES];
 }
 
+- (IBAction)SearchPage:(id)sender
+{
+    SearchPageViewController *next = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchPageViewController"];
+    [self.navigationController pushViewController:next animated:YES];
+}
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {

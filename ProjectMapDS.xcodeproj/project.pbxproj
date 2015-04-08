@@ -60,6 +60,7 @@
 		7F88F3DE1A62A3E9002E5A49 /* FloorPlan-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F88F3DD1A62A3E9002E5A49 /* FloorPlan-icon.png */; };
 		7F88F3EF1A62C733002E5A49 /* OfflineImageDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F88F3EE1A62C733002E5A49 /* OfflineImageDSViewController.m */; };
 		7F88F3F21A62C77F002E5A49 /* OfflineContentDSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F88F3F11A62C77F002E5A49 /* OfflineContentDSViewController.m */; };
+		7F93F6BE1ABF486E000261DB /* Line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F93F6BD1ABF486E000261DB /* Line.png */; };
 		7F9FEB0A1A5BC49300C2EC3D /* Info-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB081A5BC49300C2EC3D /* Info-icon.png */; };
 		7F9FEB0B1A5BC49300C2EC3D /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9FEB091A5BC49300C2EC3D /* Logo.png */; };
 		7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FEB111A5BC95900C2EC3D /* OfflinePageTableViewController.m */; };
@@ -68,6 +69,17 @@
 		7F9FEB1C1A5BCF9B00C2EC3D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */; };
 		7FB842A21A9A3BA40046B8CB /* MapDepartmentStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */; };
 		7FC4F9C41A5FE7BC002422BC /* OfflineFloorPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */; };
+		7FC676341AD25E88004750E6 /* Point3-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FC676331AD25E88004750E6 /* Point3-icon.png */; };
+		7FC6763E1AD266FE004750E6 /* SearchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6763D1AD266FE004750E6 /* SearchPageViewController.m */; };
+		7FC676521AD2733E004750E6 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC676411AD2733E004750E6 /* AbstractActionSheetPicker.m */; };
+		7FC676531AD2733E004750E6 /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC676431AD2733E004750E6 /* ActionSheetCustomPicker.m */; };
+		7FC676541AD2733E004750E6 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC676461AD2733E004750E6 /* ActionSheetDatePicker.m */; };
+		7FC676551AD2733E004750E6 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC676481AD2733E004750E6 /* ActionSheetDistancePicker.m */; };
+		7FC676561AD2733E004750E6 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6764A1AD2733E004750E6 /* ActionSheetLocalePicker.m */; };
+		7FC676571AD2733E004750E6 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6764D1AD2733E004750E6 /* ActionSheetStringPicker.m */; };
+		7FC676581AD2733E004750E6 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6764F1AD2733E004750E6 /* DistancePickerView.m */; };
+		7FC676591AD2733E004750E6 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC676511AD2733E004750E6 /* SWActionSheet.m */; };
+		7FC6765C1AD287E6004750E6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6765B1AD287E6004750E6 /* Reachability.m */; };
 		7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */; };
 		7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */; };
 		7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */; };
@@ -169,6 +181,7 @@
 		7F88F3EE1A62C733002E5A49 /* OfflineImageDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineImageDSViewController.m; sourceTree = "<group>"; };
 		7F88F3F01A62C77F002E5A49 /* OfflineContentDSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineContentDSViewController.h; sourceTree = "<group>"; };
 		7F88F3F11A62C77F002E5A49 /* OfflineContentDSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineContentDSViewController.m; sourceTree = "<group>"; };
+		7F93F6BD1ABF486E000261DB /* Line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Line.png; sourceTree = "<group>"; };
 		7F9FEB081A5BC49300C2EC3D /* Info-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-icon.png"; sourceTree = "<group>"; };
 		7F9FEB091A5BC49300C2EC3D /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		7F9FEB101A5BC95900C2EC3D /* OfflinePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflinePageTableViewController.h; sourceTree = "<group>"; };
@@ -181,6 +194,29 @@
 		7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MapDepartmentStore.sqlite; sourceTree = "<group>"; };
 		7FC4F9C21A5FE7BC002422BC /* OfflineFloorPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineFloorPlanViewController.h; sourceTree = "<group>"; };
 		7FC4F9C31A5FE7BC002422BC /* OfflineFloorPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineFloorPlanViewController.m; sourceTree = "<group>"; };
+		7FC676331AD25E88004750E6 /* Point3-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point3-icon.png"; sourceTree = "<group>"; };
+		7FC6763C1AD266FE004750E6 /* SearchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPageViewController.h; sourceTree = "<group>"; };
+		7FC6763D1AD266FE004750E6 /* SearchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPageViewController.m; sourceTree = "<group>"; };
+		7FC676401AD2733E004750E6 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		7FC676411AD2733E004750E6 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		7FC676421AD2733E004750E6 /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		7FC676431AD2733E004750E6 /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		7FC676441AD2733E004750E6 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		7FC676451AD2733E004750E6 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		7FC676461AD2733E004750E6 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		7FC676471AD2733E004750E6 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		7FC676481AD2733E004750E6 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		7FC676491AD2733E004750E6 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		7FC6764A1AD2733E004750E6 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		7FC6764B1AD2733E004750E6 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
+		7FC6764C1AD2733E004750E6 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		7FC6764D1AD2733E004750E6 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		7FC6764E1AD2733E004750E6 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
+		7FC6764F1AD2733E004750E6 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		7FC676501AD2733E004750E6 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
+		7FC676511AD2733E004750E6 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+		7FC6765A1AD287E6004750E6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		7FC6765B1AD287E6004750E6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTabBarViewController.h; sourceTree = "<group>"; };
 		7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTabBarViewController.m; sourceTree = "<group>"; };
 		7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteDetailViewController.h; sourceTree = "<group>"; };
@@ -233,6 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				7F9FEB1B1A5BCF9B00C2EC3D /* libsqlite3.0.dylib */,
+				7FC6765D1AD287EE004750E6 /* Reachability */,
+				7FC6763F1AD2733E004750E6 /* Pickers */,
 				7F615AA61A5B138400AE281A /* ProjectMapDS */,
 				7F615AC01A5B138400AE281A /* ProjectMapDSTests */,
 				7F615AA51A5B138400AE281A /* Products */,
@@ -253,29 +291,6 @@
 			children = (
 				7F756E8D1A6689920011D040 /* MapDepartmentStore_old.sqlite */,
 				7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */,
-				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
-				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
-				7F7435C51A5D3FA300640C93 /* Detail-icon.png */,
-				7F88F3BB1A629B79002E5A49 /* Image-icon.png */,
-				7F88F3DD1A62A3E9002E5A49 /* FloorPlan-icon.png */,
-				7F88F3D71A62A2F3002E5A49 /* ShopCategory-icon.png */,
-				7F1E88F81A9640E700D94488 /* Rate-icon.png */,
-				7F756E8A1A66751E0011D040 /* AddStar-icon.png */,
-				7F756E891A66751E0011D040 /* RemoveStar-icon.png */,
-				7F4249D11A6829B80008724D /* Position-icon.png */,
-				7F4249DF1A6834FC0008724D /* Point-icon.png */,
-				7F4249D71A68314A0008724D /* Point1-icon.png */,
-				7F4249D91A6831A00008724D /* Point2-icon.png */,
-				7F4161921A990F0700425670 /* Starx1.png */,
-				7F4161931A990F0700425670 /* Starx2.png */,
-				7F4161941A990F0700425670 /* Starx3.png */,
-				7F4161951A990F0700425670 /* Starx4.png */,
-				7F4161961A990F0700425670 /* Starx5.png */,
-				7F4161A41A9929E300425670 /* StarYellow-icon.png */,
-				7F4161A31A9929E300425670 /* StarWhite-icon.png */,
-				7F4161A71A99376200425670 /* Black.png */,
-				7F4161A91A99376800425670 /* Gray.png */,
-				7F4161B41A99D81600425670 /* Graylight.png */,
 				7F4161A01A99289900425670 /* RatingView.h */,
 				7F4161A11A99289900425670 /* RatingView.m */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
@@ -287,9 +302,11 @@
 				7F615AB11A5B138400AE281A /* Main.storyboard */,
 				7F615AB41A5B138400AE281A /* Images.xcassets */,
 				7F615AB61A5B138400AE281A /* LaunchScreen.xib */,
+				7F93F6BC1ABF3E76000261DB /* icon | image */,
 				7F9FEB131A5BCB9900C2EC3D /* Online */,
 				7F9FEB0F1A5BC91800C2EC3D /* Offline */,
 				7F9FEB171A5BCCD000C2EC3D /* Favorite */,
+				7FC6763B1AD266BC004750E6 /* Search */,
 				7F615AA71A5B138400AE281A /* Supporting Files */,
 			);
 			path = ProjectMapDS;
@@ -319,6 +336,38 @@
 				7F615AC21A5B138400AE281A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F93F6BC1ABF3E76000261DB /* icon | image */ = {
+			isa = PBXGroup;
+			children = (
+				7F9FEB091A5BC49300C2EC3D /* Logo.png */,
+				7F9FEB081A5BC49300C2EC3D /* Info-icon.png */,
+				7F7435C51A5D3FA300640C93 /* Detail-icon.png */,
+				7F88F3BB1A629B79002E5A49 /* Image-icon.png */,
+				7F88F3DD1A62A3E9002E5A49 /* FloorPlan-icon.png */,
+				7F88F3D71A62A2F3002E5A49 /* ShopCategory-icon.png */,
+				7F1E88F81A9640E700D94488 /* Rate-icon.png */,
+				7F756E8A1A66751E0011D040 /* AddStar-icon.png */,
+				7F756E891A66751E0011D040 /* RemoveStar-icon.png */,
+				7F4249D11A6829B80008724D /* Position-icon.png */,
+				7F4249DF1A6834FC0008724D /* Point-icon.png */,
+				7F4249D71A68314A0008724D /* Point1-icon.png */,
+				7F4249D91A6831A00008724D /* Point2-icon.png */,
+				7FC676331AD25E88004750E6 /* Point3-icon.png */,
+				7F93F6BD1ABF486E000261DB /* Line.png */,
+				7F4161921A990F0700425670 /* Starx1.png */,
+				7F4161931A990F0700425670 /* Starx2.png */,
+				7F4161941A990F0700425670 /* Starx3.png */,
+				7F4161951A990F0700425670 /* Starx4.png */,
+				7F4161961A990F0700425670 /* Starx5.png */,
+				7F4161A41A9929E300425670 /* StarYellow-icon.png */,
+				7F4161A31A9929E300425670 /* StarWhite-icon.png */,
+				7F4161A71A99376200425670 /* Black.png */,
+				7F4161A91A99376800425670 /* Gray.png */,
+				7F4161B41A99D81600425670 /* Graylight.png */,
+			);
+			name = "icon | image";
 			sourceTree = "<group>";
 		};
 		7F9FEB0F1A5BC91800C2EC3D /* Offline */ = {
@@ -393,6 +442,49 @@
 				7F41617F1A98F72E00425670 /* deleteFile */,
 			);
 			name = Favorite;
+			sourceTree = "<group>";
+		};
+		7FC6763B1AD266BC004750E6 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7FC6763C1AD266FE004750E6 /* SearchPageViewController.h */,
+				7FC6763D1AD266FE004750E6 /* SearchPageViewController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		7FC6763F1AD2733E004750E6 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				7FC676401AD2733E004750E6 /* AbstractActionSheetPicker.h */,
+				7FC676411AD2733E004750E6 /* AbstractActionSheetPicker.m */,
+				7FC676421AD2733E004750E6 /* ActionSheetCustomPicker.h */,
+				7FC676431AD2733E004750E6 /* ActionSheetCustomPicker.m */,
+				7FC676441AD2733E004750E6 /* ActionSheetCustomPickerDelegate.h */,
+				7FC676451AD2733E004750E6 /* ActionSheetDatePicker.h */,
+				7FC676461AD2733E004750E6 /* ActionSheetDatePicker.m */,
+				7FC676471AD2733E004750E6 /* ActionSheetDistancePicker.h */,
+				7FC676481AD2733E004750E6 /* ActionSheetDistancePicker.m */,
+				7FC676491AD2733E004750E6 /* ActionSheetLocalePicker.h */,
+				7FC6764A1AD2733E004750E6 /* ActionSheetLocalePicker.m */,
+				7FC6764B1AD2733E004750E6 /* ActionSheetPicker.h */,
+				7FC6764C1AD2733E004750E6 /* ActionSheetStringPicker.h */,
+				7FC6764D1AD2733E004750E6 /* ActionSheetStringPicker.m */,
+				7FC6764E1AD2733E004750E6 /* DistancePickerView.h */,
+				7FC6764F1AD2733E004750E6 /* DistancePickerView.m */,
+				7FC676501AD2733E004750E6 /* SWActionSheet.h */,
+				7FC676511AD2733E004750E6 /* SWActionSheet.m */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
+		7FC6765D1AD287EE004750E6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				7FC6765A1AD287E6004750E6 /* Reachability.h */,
+				7FC6765B1AD287E6004750E6 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,6 +571,7 @@
 				7FB842A21A9A3BA40046B8CB /* MapDepartmentStore.sqlite in Resources */,
 				7F756E8B1A66751E0011D040 /* RemoveStar-icon.png in Resources */,
 				7F4249E01A6834FC0008724D /* Point-icon.png in Resources */,
+				7FC676341AD25E88004750E6 /* Point3-icon.png in Resources */,
 				7F4161A61A9929E300425670 /* StarYellow-icon.png in Resources */,
 				7F4249D21A6829B80008724D /* Position-icon.png in Resources */,
 				7F4161971A990F0700425670 /* Starx1.png in Resources */,
@@ -487,6 +580,7 @@
 				7F756E8C1A66751E0011D040 /* AddStar-icon.png in Resources */,
 				7F88F3BC1A629B79002E5A49 /* Image-icon.png in Resources */,
 				7F41619A1A990F0700425670 /* Starx4.png in Resources */,
+				7F93F6BE1ABF486E000261DB /* Line.png in Resources */,
 				7F88F3D81A62A2F3002E5A49 /* ShopCategory-icon.png in Resources */,
 				7F88F3DE1A62A3E9002E5A49 /* FloorPlan-icon.png in Resources */,
 				7F615AB31A5B138400AE281A /* Main.storyboard in Resources */,
@@ -523,8 +617,10 @@
 			files = (
 				7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */,
 				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
+				7FC676571AD2733E004750E6 /* ActionSheetStringPicker.m in Sources */,
 				7F6EF5441A638097001C30D4 /* OfflineTabBarStoreViewController.m in Sources */,
 				7F1E88EC1A95D2BC00D94488 /* OnlineFloorPlanViewController.m in Sources */,
+				7FC676591AD2733E004750E6 /* SWActionSheet.m in Sources */,
 				7F615AB01A5B138400AE281A /* ViewController.m in Sources */,
 				7F1E89081A9644CC00D94488 /* OnlineRateViewController.m in Sources */,
 				7F4161BE1A9A2D5E00425670 /* testViewController.m in Sources */,
@@ -538,25 +634,33 @@
 				7F9FEB1A1A5BCD0C00C2EC3D /* FavoritePageTableViewController.m in Sources */,
 				7F1E88E31A95932400D94488 /* OnlineTabBarDSViewController.m in Sources */,
 				7F1E89051A96438D00D94488 /* OnlineContentStoreViewController.m in Sources */,
+				7FC676531AD2733E004750E6 /* ActionSheetCustomPicker.m in Sources */,
 				7F615AAD1A5B138400AE281A /* AppDelegate.m in Sources */,
 				7F1E88FC1A96418B00D94488 /* OnlineTabBarStoreViewController.m in Sources */,
 				7F88F3F21A62C77F002E5A49 /* OfflineContentDSViewController.m in Sources */,
+				7FC676541AD2733E004750E6 /* ActionSheetDatePicker.m in Sources */,
 				7F4161A21A99289900425670 /* RatingView.m in Sources */,
+				7FC6763E1AD266FE004750E6 /* SearchPageViewController.m in Sources */,
 				7F615AAA1A5B138400AE281A /* main.m in Sources */,
 				7F41617E1A98F28100425670 /* OfflinePositionViewController.m in Sources */,
+				7FC676551AD2733E004750E6 /* ActionSheetDistancePicker.m in Sources */,
 				7F1E88FF1A96432700D94488 /* OnlineDetailStoreViewController.m in Sources */,
 				7F1E88E61A959CD500D94488 /* OnlineImageDSViewController.m in Sources */,
 				7F6EF54D1A6381B6001C30D4 /* OfflineImageStoreViewController.m in Sources */,
 				7F9FEB161A5BCBB300C2EC3D /* OnlinePageTableViewController.m in Sources */,
 				7F1E89021A96435F00D94488 /* OnlineImageStoreViewController.m in Sources */,
+				7FC676521AD2733E004750E6 /* AbstractActionSheetPicker.m in Sources */,
+				7FC676561AD2733E004750E6 /* ActionSheetLocalePicker.m in Sources */,
 				7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */,
 				7F7435BF1A5D1F2500640C93 /* OfflineDetailDSViewController.m in Sources */,
 				7F1E88E01A958D9800D94488 /* OnlineDetailDSViewController.m in Sources */,
 				7F88F3EF1A62C733002E5A49 /* OfflineImageDSViewController.m in Sources */,
+				7FC6765C1AD287E6004750E6 /* Reachability.m in Sources */,
 				7F7435C21A5D229400640C93 /* OfflineTabBarDSViewController.m in Sources */,
 				7F6EF5471A6380E2001C30D4 /* OfflineDetailStoreViewController.m in Sources */,
 				7F27BE0B1A9CB8FE008D708C /* OnlinePositionViewController.m in Sources */,
 				7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */,
+				7FC676581AD2733E004750E6 /* DistancePickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

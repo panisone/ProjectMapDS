@@ -255,8 +255,8 @@
     
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getCategory.php?idDS=%@&floor=%@",dataID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getCategory.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getCategory.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getCategory.php?idDS=%@&floor=%@",dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -280,8 +280,8 @@
         
         NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
         
-        NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getCategoryShop.php?idDS=%@&category=%@&floor=%@",dataID,url_keyCategory,url_floor];
-        //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getCategoryShop.php?idDS=%@&category=%@&floor=%@",dataID,url_keyCategory,url_floor];
+        //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getCategoryShop.php?idDS=%@&category=%@&floor=%@",dataID,url_keyCategory,url_floor];
+        NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getCategoryShop.php?idDS=%@&category=%@&floor=%@",dataID,url_keyCategory,url_floor];
         NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
         id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -313,8 +313,8 @@
 {
     NSString *strFloor = @"";
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getShopFloor.php?idDS=%@&idStore=%@",dataID,shop];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getShopFloor.php?idDS=%@&idStore=%@",dataID,shop];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getShopFloor.php?idDS=%@&idStore=%@",dataID,shop];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getShopFloor.php?idDS=%@&idStore=%@",dataID,shop];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

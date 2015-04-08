@@ -50,8 +50,8 @@ NSMutableArray *dataFloor;  //Global variable
 {
     dataFloor = [[NSMutableArray alloc] init];
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSFloor.php?idDS=%@",dataID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSFloor.php?idDS=%@",dataID];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSFloor.php?idDS=%@",dataID];
+    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSFloor.php?idDS=%@",dataID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
