@@ -115,8 +115,8 @@
 {
     NSString *url_score = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)score, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getRating.php?idStore=%@&score=%@",storeID,url_score];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getRating.php?idStore=%@&score=%@",storeID,url_score];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getRating.php?idStore=%@&score=%@",storeID,url_score];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getRating.php?idStore=%@&score=%@",storeID,url_score];
     
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
@@ -329,8 +329,8 @@
 {
     if (buttonIndex == 0)
     {
-        //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
-        NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
+        NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
+        //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/insertRating.php?idStore=%@&score=%d",storeID,(int)rate.value];
         [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
         [self viewDidLoad];

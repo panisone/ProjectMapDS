@@ -181,7 +181,7 @@
                         tel = @"-";
                     }
                 }
-                detail = [detail stringByAppendingString:@"Tel: \n"];
+                detail = [detail stringByAppendingString:@"เบอร์โทรศัพท์: \n"];
                 detail = [detail stringByAppendingString:tel];
                 detail = [detail stringByAppendingString:@"\n\n"];
                 
@@ -192,7 +192,7 @@
                         fax = @"-";
                     }
                 }
-                detail = [detail stringByAppendingString:@"Fax: \n"];
+                detail = [detail stringByAppendingString:@"เบอร์โทรสาร: \n"];
                 detail = [detail stringByAppendingString:fax];
                 detail = [detail stringByAppendingString:@"\n\n"];
                 
@@ -375,6 +375,7 @@
 //method for Right Button
 -(void)rightFuntion
 {
+    /*
     UIActionSheet *func = [[UIActionSheet alloc]
                            initWithTitle:@"Make Favorite?"
                            delegate:self
@@ -382,11 +383,48 @@
                            destructiveButtonTitle:@"Yes"
                            otherButtonTitles:nil];
     [func showInView:self.view];
+    */
+    
+    NSString *message;
+    
+    if ([favorite isEqual:@"RemoveStar-icon.png"])
+    {
+        message = @"you want to REMOVE favorite";
+    }
+    else if ([favorite isEqual:@"AddStar-icon.png"])
+    {
+        message = @"you want to ADD favorite";
+    }
+    
+    UIAlertView *alv = [[UIAlertView alloc]
+                        initWithTitle:@"Favorite"
+                        message:message
+                        delegate:self
+                        cancelButtonTitle: @"Cancel"
+                        otherButtonTitles: @"OK", nil];
+    [alv show];
 }
 
+/*
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
+    {
+        if ([favorite isEqual:@"AddStar-icon.png"])
+        {
+            [self addFavorite];
+        }
+        else if ([favorite isEqual:@"RemoveStar-icon.png"])
+        {
+            [self removeFavorite];
+        }
+    }
+}
+*/
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
     {
         if ([favorite isEqual:@"AddStar-icon.png"])
         {

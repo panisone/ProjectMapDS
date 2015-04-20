@@ -15,7 +15,13 @@
 
 @implementation OfflineCategoryViewController
 {
+    NSString *typeRightButton;
     NSString *titleRightButton;
+    NSString *titleRightButton2;
+    
+    NSMutableArray *allcategory;
+    NSString *selectFloor;
+    
     NSMutableArray *category;
     NSDictionary *shopCategory;
     NSDictionary *idShopCategory;
@@ -39,8 +45,18 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:titleRightButton
                                     style:UIBarButtonItemStyleDone
-                                    target:self action:@selector(rightFuntion)];
-    self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
+                                    target:self action:@selector(rightFuntion1)];
+    UIBarButtonItem *otherButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"|"
+                                    style:UIBarButtonItemStyleDone
+                                    target:self
+                                    action:nil];
+    otherButton.enabled = NO;
+    UIBarButtonItem *rightButton2 = [[UIBarButtonItem alloc]
+                                    initWithTitle:titleRightButton2
+                                    style:UIBarButtonItemStyleDone
+                                    target:self action:@selector(rightFuntion2)];
+    self.parentViewController.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightButton, otherButton, rightButton2, nil];
     self.navigationController.navigationBar.hidden = NO;
 }
 
@@ -53,11 +69,16 @@
     newBounds.origin.y = offlineSearchBar.bounds.size.height;
     [[self offlineCategoryTable] setBounds:newBounds];
     
+    //set title Right Button
+    titleRightButton = @"All Floors";
+    titleRightButton2 = @"All Categories";
+    
     //call method for Database
     [self initDatabase];
     [self showCategory:@"%"];
-    //set title Right Button
-    titleRightButton = @"All Floor";
+    
+    allcategory = category;
+    selectFloor = @"%";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -412,6 +433,8 @@
 }
 
 //method for Right Button
+-(void)rightFuntion1 { typeRightButton = @"Floor"; [self rightFuntion]; }
+-(void)rightFuntion2 { typeRightButton = @"Category"; [self rightFuntion]; }
 -(void)rightFuntion
 {
     UIActionSheet *func = [[UIActionSheet alloc]
@@ -426,42 +449,88 @@
         [func addButtonWithTitle:@"Show all"];
     }
     */
-    for (NSString *title in dataFloor) {
-        [func addButtonWithTitle:title];
+    if ([typeRightButton isEqual:@"Floor"])
+    {
+        for (NSString *title in dataFloor) {
+            [func addButtonWithTitle:title];
+        }
     }
+    else
+    {
+        for (NSString *title in allcategory) {
+            [func addButtonWithTitle:title];
+        }
+    }
+    
     func.cancelButtonIndex = [func addButtonWithTitle:@"Cancel"];
     [func showInView:self.view];
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if ([typeRightButton isEqual:@"Floor"])
     {
-        titleRightButton = @"All Floor";
-        [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
-        [self showCategory:@"%"];
-        //[self.offlineCategoryTable reloadData];
-        
-        [self searchBarCancelButtonClicked:offlineSearchBar];
-        
-        // Hide the search bar until user scrolls up
-        CGRect newBounds = [[self offlineCategoryTable] bounds];
-        newBounds.origin.y = offlineSearchBar.bounds.size.height;
-        [[self offlineCategoryTable] setBounds:newBounds];
+        if (buttonIndex == 0)
+        {
+            titleRightButton = @"All Floors";
+            selectFloor = @"%";
+            [self viewWillAppear:NO];
+            //[self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
+            [self showCategory:@"%"];
+            //[self.offlineCategoryTable reloadData];
+            
+            [self searchBarCancelButtonClicked:offlineSearchBar];
+            
+            // Hide the search bar until user scrolls up
+            CGRect newBounds = [[self offlineCategoryTable] bounds];
+            newBounds.origin.y = offlineSearchBar.bounds.size.height;
+            [[self offlineCategoryTable] setBounds:newBounds];
+        }
+        else if (buttonIndex != [dataFloor count]+1)
+        {
+            titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[buttonIndex-1]];
+            selectFloor = dataFloor[buttonIndex-1];
+            [self viewWillAppear:NO];
+            //[self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
+            [self showCategory:dataFloor[buttonIndex-1]];
+            //[self.offlineCategoryTable reloadData];
+            
+            [self searchBarCancelButtonClicked:offlineSearchBar];
+            
+            // Hide the search bar until user scrolls up
+            CGRect newBounds = [[self offlineCategoryTable] bounds];
+            newBounds.origin.y = offlineSearchBar.bounds.size.height;
+            [[self offlineCategoryTable] setBounds:newBounds];
+        }
     }
-    else if (buttonIndex != [dataFloor count]+1)
+    else
     {
-        titleRightButton = [NSString stringWithFormat:@"%@ Floor",dataFloor[buttonIndex-1]];
-        [self.parentViewController.navigationItem.rightBarButtonItem setTitle:titleRightButton];
-        [self showCategory:dataFloor[buttonIndex-1]];
-        //[self.offlineCategoryTable reloadData];
-        
-        [self searchBarCancelButtonClicked:offlineSearchBar];
-        
-        // Hide the search bar until user scrolls up
-        CGRect newBounds = [[self offlineCategoryTable] bounds];
-        newBounds.origin.y = offlineSearchBar.bounds.size.height;
-        [[self offlineCategoryTable] setBounds:newBounds];
+        if (buttonIndex == 0)
+        {
+            titleRightButton2 = @"All Categories";
+            [self viewWillAppear:NO];
+            [self showCategory:selectFloor];
+            
+            [self searchBarCancelButtonClicked:offlineSearchBar];
+            
+            // Hide the search bar until user scrolls up
+            CGRect newBounds = [[self offlineCategoryTable] bounds];
+            newBounds.origin.y = offlineSearchBar.bounds.size.height;
+            [[self offlineCategoryTable] setBounds:newBounds];
+        }
+        else if (buttonIndex != [allcategory count]+1)
+        {
+            titleRightButton2 = [NSString stringWithFormat:@"%@",allcategory[buttonIndex-1]];
+            [self viewWillAppear:NO];
+            [self showCategory:selectFloor];
+            
+            [self searchBarCancelButtonClicked:offlineSearchBar];
+            
+            // Hide the search bar until user scrolls up
+            CGRect newBounds = [[self offlineCategoryTable] bounds];
+            newBounds.origin.y = offlineSearchBar.bounds.size.height;
+            [[self offlineCategoryTable] setBounds:newBounds];
+        }
     }
 }
 
@@ -469,7 +538,16 @@
 -(void)showCategory:(NSString *) floor
 {
     //call method for Database
-    [self getCategory:floor];
+    if ([titleRightButton2 isEqual:@"All Categories"])
+    {
+        [self getCategory:floor];
+    }
+    else
+    {
+        category = [[NSMutableArray alloc] init];
+        [category addObject:titleRightButton2];
+    }
+    
     [self getShopCategory:floor];
 }
 

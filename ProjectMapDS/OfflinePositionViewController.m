@@ -174,6 +174,7 @@
     //call method for Database
     [self getFloorPlan:floor];
     //set image to Show
+    scroll.zoomScale = 1.0;
     floorImage.image = image;
     //create Button on FloorPlan
     [self createPoint:floor];

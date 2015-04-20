@@ -178,7 +178,7 @@
                 
                 for (NSDictionary *dict in [listOfStore objectForKey:keyCategory])
                 {
-                    NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"],[dict objectForKey:@"branchStore"], nil];
+                    NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"], nil];
                     
                     NSArray *arrResult = [[NSArray alloc] init];
                     arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -210,7 +210,7 @@
             
             for (NSDictionary *dict in [listOfStore objectForKey:keyCategory])
             {
-                NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"],[dict objectForKey:@"branchStore"], nil];
+                NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"], nil];
                 
                 NSArray *arrResult = [[NSArray alloc] init];
                 arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -344,11 +344,11 @@
             NSString *sectionTitle = [searchListOfCategory objectAtIndex:indexPath.section];
             NSMutableArray *sectionStores = [searchListOfStore objectForKey:sectionTitle];
             NSDictionary *store = [sectionStores objectAtIndex:indexPath.row];
-            dataID = [store objectForKey:@"idDS"];
+            //dataID = [store objectForKey:@"idDS"];
             storeID = [store objectForKey:@"idStore"];
             
-            OnlineTabBarDSViewController *destView1 = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarDSViewController"];
-            [self.navigationController pushViewController:destView1 animated:YES];
+            //OnlineTabBarDSViewController *destView1 = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarDSViewController"];
+            //[self.navigationController pushViewController:destView1 animated:YES];
             
             OnlineTabBarStoreViewController *destView2 = [self.storyboard instantiateViewControllerWithIdentifier:@"OnlineTabBarStoreViewController"];
             [self.navigationController pushViewController:destView2 animated:YES];
@@ -369,11 +369,11 @@
             NSString *sectionTitle = [searchListOfCategory objectAtIndex:indexPath.section];
             NSMutableArray *sectionStores = [searchListOfStore objectForKey:sectionTitle];
             NSDictionary *store = [sectionStores objectAtIndex:indexPath.row];
-            dataID = [store objectForKey:@"idDS"];
+            //dataID = [store objectForKey:@"idDS"];
             storeID = [store objectForKey:@"idStore"];
             
-            OfflineTabBarDSViewController *destView1 = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarDSViewController"];
-            [self.navigationController pushViewController:destView1 animated:YES];
+            //OfflineTabBarDSViewController *destView1 = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarDSViewController"];
+            //[self.navigationController pushViewController:destView1 animated:YES];
             
             OfflineTabBarStoreViewController *destView2 = [self.storyboard instantiateViewControllerWithIdentifier:@"OfflineTabBarStoreViewController"];
             [self.navigationController pushViewController:destView2 animated:YES];

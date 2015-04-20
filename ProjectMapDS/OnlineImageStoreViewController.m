@@ -126,8 +126,8 @@
 {
     listOfimageStore = [[NSMutableArray alloc] init];
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreImage.php?idStore=%@",storeID];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreImage.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreImage.php?idStore=%@",storeID];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreImage.php?idStore=%@",storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

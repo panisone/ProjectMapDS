@@ -35,7 +35,7 @@
 {
     UIAlertView *alv = [[UIAlertView alloc]
                         initWithTitle:@"INFO View"
-                        message:@"dev. by Panisara Intoe"
+                        message:@"dev. by Panisara Intoe\nKU Senior Project"
                         delegate:self
                         cancelButtonTitle:@"Done"
                         otherButtonTitles: nil];

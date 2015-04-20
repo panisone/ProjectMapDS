@@ -72,8 +72,8 @@
 {
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -136,6 +136,7 @@
     //call method for Database
     [self getFloorPlan:floor];
     //set image to Show
+    scroll.zoomScale = 1.0;
     floorImage.image = image;
     //create Button on FloorPlan
     [self createPoint:floor];
@@ -146,8 +147,8 @@
 {
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

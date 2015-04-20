@@ -59,8 +59,8 @@
 
 -(void)getDetailStore
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreDetail.php?idStore=%@",storeID];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreDetail.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreDetail.php?idStore=%@",storeID];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreDetail.php?idStore=%@",storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -109,13 +109,13 @@
         if ([telStore_data  isEqual: @""]) {
             telStore_data = @"-";
         }
-        detail = [NSString stringWithFormat:@"%@Tel: \n%@\n\n",detail,telStore_data];
+        detail = [NSString stringWithFormat:@"%@เบอร์โทรศัพท์: \n%@\n\n",detail,telStore_data];
         
         NSString *faxStore_data = [dataDict objectForKey:@"faxStore"];
         if ([faxStore_data  isEqual: @""]) {
             faxStore_data = @"-";
         }
-        detail = [NSString stringWithFormat:@"%@Fax: \n%@\n\n",detail,faxStore_data];
+        detail = [NSString stringWithFormat:@"%@เบอร์โทรสาร: \n%@\n\n",detail,faxStore_data];
         
         NSString *emailStore_data = [dataDict objectForKey:@"emailStore"];
         if ([emailStore_data  isEqual: @""]) {
@@ -148,8 +148,8 @@
 {
     NSString *strFloor = @"";
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreAddressNumber.php?idStore=%@",storeID];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreAddressNumber.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreAddressNumber.php?idStore=%@",storeID];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreAddressNumber.php?idStore=%@",storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

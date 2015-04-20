@@ -23,9 +23,11 @@
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Image DS";
     //self.navigationController.navigationBar.topItem.title = @"back";
+    self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
     self.navigationController.navigationBar.hidden = NO;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Create the data model
@@ -122,8 +124,8 @@
 {
     listOfimageDS = [[NSMutableArray alloc] init];
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSImage.php?idDS=%@",dataID];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSImage.php?idDS=%@",dataID];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSImage.php?idDS=%@",dataID];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSImage.php?idDS=%@",dataID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

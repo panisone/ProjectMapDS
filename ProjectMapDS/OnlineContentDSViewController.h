@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OnlineContentDSViewController : UIViewController
+@interface OnlineContentDSViewController : UIViewController <UIScrollViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scroll;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (nonatomic, retain) UIImage *imageDS;

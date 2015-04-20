@@ -29,6 +29,7 @@
                                     initWithTitle:titleRightButton
                                     style:UIBarButtonItemStyleDone
                                     target:self action:@selector(rightFuntion)];
+    self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
     //[self.parentViewController.navigationItem setRightBarButtonItem:rightButton animated:YES];
     self.navigationController.navigationBar.hidden = NO;
@@ -78,8 +79,8 @@
     //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -142,6 +143,7 @@
     //call method for Database
     [self getFloorPlan:floor];
     //set image to Show
+    scroll.zoomScale = 1.0;
     floorImage.image = image;
     //create Button on FloorPlan
     [self createButton:floor];
@@ -153,8 +155,8 @@
     //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -188,8 +190,8 @@
         button.tag = [idStore intValue];
         
         //test
-        [button setTitle:idStore forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        //[button setTitle:idStore forState:UIControlStateNormal];
+        //[button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         
         [button setBackgroundImage:imageButton forState:UIControlStateNormal];
         [button addTarget:self action:@selector(storeView:) forControlEvents:UIControlEventTouchUpInside];

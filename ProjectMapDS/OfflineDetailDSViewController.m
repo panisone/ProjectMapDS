@@ -33,11 +33,19 @@
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail DS";
     //self.navigationController.navigationBar.topItem.title = @"";
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+    /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:@"DELETE"
                                     style:UIBarButtonItemStyleDone
+                                    target:self action:@selector(rightFuntion)]; */
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+                                    initWithImage:[UIImage imageNamed:@"Remove-icon.png"]
+                                    style:UIBarButtonItemStyleDone
                                     target:self action:@selector(rightFuntion)];
+    /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                    target:self action:@selector(rightFuntion)]; */
     rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
+    self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
     self.navigationController.navigationBar.hidden = NO;
 }
@@ -195,11 +203,11 @@
     
     if ([floor isEqual:@""])
     {
-        floor = [@"Floor: \n" stringByAppendingString:@"-"];
+        floor = [@"ชั้น: \n" stringByAppendingString:@"-"];
     }
     else
     {
-        floor = [@"Floor: \n" stringByAppendingString:floor];
+        floor = [@"ชั้น: \n" stringByAppendingString:floor];
     }
 }
 
@@ -507,14 +515,14 @@
                         initWithTitle:@"DELETE"
                         message:@"Alert View"
                         delegate:self
-                        cancelButtonTitle: nil
-                        otherButtonTitles: @"OK",@"Cencal", nil];
+                        cancelButtonTitle: @"Cencal"
+                        otherButtonTitles: @"OK", nil];
     [alv show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if (buttonIndex == 1)
     {
         UIAlertView *alv = [[UIAlertView alloc]
                             initWithTitle:@"WAIT"

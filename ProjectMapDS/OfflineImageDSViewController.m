@@ -23,6 +23,7 @@
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Image DS";
     //self.navigationController.navigationBar.topItem.title = @"back";
+    self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
     self.navigationController.navigationBar.hidden = NO;
 }

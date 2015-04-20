@@ -13,18 +13,27 @@
 @end
 
 @implementation OfflineContentStoreViewController
-@synthesize imageView;
+@synthesize scroll,imageView;
 @synthesize imageStore;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.imageView.image = imageStore;
+    
+    //set Scroll view
+    [scroll setDelegate:self];
+    [scroll setMinimumZoomScale:1.0];
+    [scroll setMaximumZoomScale:3.0];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return imageView;
 }
 
 /*

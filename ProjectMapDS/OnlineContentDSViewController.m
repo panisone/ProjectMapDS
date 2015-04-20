@@ -13,17 +13,27 @@
 @end
 
 @implementation OnlineContentDSViewController
-@synthesize imageView;
+@synthesize scroll,imageView;
 @synthesize imageDS;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.imageView.image = imageDS;
+    
+    //set Scroll view
+    [scroll setDelegate:self];
+    [scroll setMinimumZoomScale:1.0];
+    [scroll setMaximumZoomScale:3.0];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return imageView;
 }
 
 /*

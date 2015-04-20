@@ -29,6 +29,7 @@
                                     initWithTitle:titleRightButton
                                     style:UIBarButtonItemStyleDone
                                     target:self action:@selector(rightFuntion)];
+    self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
     //[self.parentViewController.navigationItem setRightBarButtonItem:rightButton animated:YES];
     self.navigationController.navigationBar.hidden = NO;
@@ -179,6 +180,7 @@
     //call method for Database
     [self getFloorPlan:floor];
     //set image to Show
+    scroll.zoomScale = 1.0;
     floorImage.image = image;
     //create Button on FloorPlan
     [self createButton:floor];
@@ -277,6 +279,21 @@
                     float bHeight = [height floatValue]*frameY;
                     
                     //NSLog(@"button x:%f y:%f w:%f h:%f",pX,pY,bWidth,bHeight);
+                    //NSLog(@"frame w:%f h:%f",bWidth,bHeight);
+                    //NSLog(@"image w:%f h:%f",imageButton.size.width,imageButton.size.height);
+                    //NSLog(@"W: %f [-] %f",bWidth,imageButton.size.width*bHeight/imageButton.size.height);
+                    //NSLog(@"H: %f [-] %f",bHeight,imageButton.size.height*bWidth/imageButton.size.width);
+                    
+                    if (bHeight > imageButton.size.height*bWidth/imageButton.size.width)
+                    {
+                        bHeight = bWidth*imageButton.size.height/imageButton.size.width;
+                    }
+                    else
+                    {
+                        bWidth = bHeight*imageButton.size.width/imageButton.size.height;
+                    }
+                    
+                    //NSLog(@"cover[%@] w:%f h:%f",idStore,bWidth,bHeight);
                     
                     CGRect buttonFrame = CGRectMake(pX, pY, bWidth, bHeight);
                     
@@ -286,8 +303,8 @@
                     button.tag = [idStore intValue];
                     
                     //test
-                    [button setTitle:idStore forState:UIControlStateNormal];
-                    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                    //[button setTitle:idStore forState:UIControlStateNormal];
+                    //[button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                     
                     [button setBackgroundImage:imageButton forState:UIControlStateNormal];
                     [button addTarget:self action:@selector(storeView:) forControlEvents:UIControlEventTouchUpInside];

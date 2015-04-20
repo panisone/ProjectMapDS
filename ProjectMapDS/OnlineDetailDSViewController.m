@@ -44,11 +44,16 @@
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail DS";
     //self.navigationController.navigationBar.topItem.title = @"back";
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+    /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:check
+                                    style:UIBarButtonItemStyleDone
+                                    target:self action:@selector(rightFuntion)]; */
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
+                                    initWithImage:[UIImage imageNamed:@"Download-icon.png"]
                                     style:UIBarButtonItemStyleDone
                                     target:self action:@selector(rightFuntion)];
     rightButton.tintColor = [UIColor colorWithRed:(255/255.0) green:(72/255.0) blue:(118/255.0) alpha:1.0]; //#FF4876
+    self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = rightButton;
     if ([check isEqual:@"NONE"])
     {
@@ -89,8 +94,8 @@
 
 -(void)getDetailDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSDetail.php?idDS=%@",dataID];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSDetail.php?idDS=%@",dataID];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSDetail.php?idDS=%@",dataID];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSDetail.php?idDS=%@",dataID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -159,11 +164,11 @@
     
     if ([floor isEqual:@""])
     {
-        floor = [@"Floor: \n" stringByAppendingString:@"-"];
+        floor = [@"ชั้น: \n" stringByAppendingString:@"-"];
     }
     else
     {
-        floor = [@"Floor: \n" stringByAppendingString:floor];
+        floor = [@"ชั้น: \n" stringByAppendingString:floor];
     }
 }
 
@@ -917,8 +922,8 @@
 // GET DepartmentStore
 -(void)getTableDepartmentStore:(NSString *)idDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableDepartmentStore.php?idDS=%@",idDS];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableDepartmentStore.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableDepartmentStore.php?idDS=%@",idDS];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableDepartmentStore.php?idDS=%@",idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -951,8 +956,8 @@
 // GET ImageDS
 -(void)getTableImageDS:(NSString *)idDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageDS.php?idDS=%@",idDS];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageDS.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageDS.php?idDS=%@",idDS];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageDS.php?idDS=%@",idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -977,8 +982,8 @@
 // GET Floor
 -(void)getTableFloor:(NSString *)idDS
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableFloor.php?idDS=%@",idDS];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableFloor.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableFloor.php?idDS=%@",idDS];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableFloor.php?idDS=%@",idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1005,8 +1010,8 @@
 // GET LinkFloorStore
 -(void)getTableLinkFloorStore:(NSString *)idFloor
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableLinkFloorStore.php?idFloor=%@",idFloor];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableLinkFloorStore.php?idFloor=%@",idFloor];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableLinkFloorStore.php?idFloor=%@",idFloor];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableLinkFloorStore.php?idFloor=%@",idFloor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1033,8 +1038,8 @@
 // GET Store
 -(void)getTableStore:(NSString *)idStore
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableStore.php?idStore=%@",idStore];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableStore.php?idStore=%@",idStore];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableStore.php?idStore=%@",idStore];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableStore.php?idStore=%@",idStore];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1069,8 +1074,8 @@
 // GET ImageStore
 -(void)getTableImageStore:(NSString *)idStore
 {
-    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageStore.php?idStore=%@",idStore];
-    NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageStore.php?idStore=%@",idStore];
+    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageStore.php?idStore=%@",idStore];
+    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageStore.php?idStore=%@",idStore];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1100,14 +1105,14 @@
                         initWithTitle:check
                         message:@"Alert View"
                         delegate:self
-                        cancelButtonTitle: nil
-                        otherButtonTitles: @"OK",@"Cencal", nil];
+                        cancelButtonTitle: @"Cencal"
+                        otherButtonTitles: @"OK", nil];
     [alv show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if (buttonIndex == 1)
     {
         UIAlertView *alv = [[UIAlertView alloc]
                             initWithTitle:@"WAIT"
