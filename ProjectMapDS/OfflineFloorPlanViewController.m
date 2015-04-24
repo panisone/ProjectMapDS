@@ -257,24 +257,30 @@
                 
                 float frameX;
                 float frameY;
+                float diffX = 0;
+                float diffY = 0;
                 
                 if (floorImage.frame.size.height > image.size.height*floorImage.frame.size.width/image.size.width)
                 {
                     frameX = floorImage.frame.size.width;
                     frameY = floorImage.frame.size.width*image.size.height/image.size.width;
+                    
+                    diffY = (floorImage.frame.size.height-frameY)/2;
                 }
                 else
                 {
                     frameX = floorImage.frame.size.height*image.size.width/image.size.height;
                     frameY = floorImage.frame.size.height;
+                    
+                    diffX = (floorImage.frame.size.width-frameX)/2;
                 }
                 
-                //NSLog(@"cover w:%f h:%f",frameX,frameY);
+                //NSLog(@"cover w:%f h:%f dX:%f dY:%f",frameX,frameY,diffX,diffY);
                 
                 if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"])
                 {
-                    float pX = [pointX floatValue]*frameX;
-                    float pY = [pointY floatValue]*frameY;
+                    float pX = ([pointX floatValue]*frameX)+diffX;
+                    float pY = ([pointY floatValue]*frameY)+diffY;
                     float bWidth = [width floatValue]*frameX;
                     float bHeight = [height floatValue]*frameY;
                     

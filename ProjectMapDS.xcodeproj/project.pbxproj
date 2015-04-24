@@ -93,6 +93,7 @@
 		7FC676571AD2733E004750E6 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6764D1AD2733E004750E6 /* ActionSheetStringPicker.m */; };
 		7FC676581AD2733E004750E6 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6764F1AD2733E004750E6 /* DistancePickerView.m */; };
 		7FC676591AD2733E004750E6 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC676511AD2733E004750E6 /* SWActionSheet.m */; };
+		7FD12C2A1AEA0FD300C93609 /* URL_GlobalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD12C291AEA0FD300C93609 /* URL_GlobalVar.m */; };
 		7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */; };
 		7FFDEF4A1A67A07D00C9D821 /* FavoriteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF491A67A07D00C9D821 /* FavoriteDetailViewController.m */; };
 		7FFDEF4D1A67A08E00C9D821 /* FavoriteImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDEF4C1A67A08E00C9D821 /* FavoriteImageViewController.m */; };
@@ -248,6 +249,8 @@
 		7FC6764F1AD2733E004750E6 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
 		7FC676501AD2733E004750E6 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
 		7FC676511AD2733E004750E6 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+		7FD12C281AEA0FD300C93609 /* URL_GlobalVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URL_GlobalVar.h; sourceTree = "<group>"; };
+		7FD12C291AEA0FD300C93609 /* URL_GlobalVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URL_GlobalVar.m; sourceTree = "<group>"; };
 		7FFDEF451A67A05100C9D821 /* FavoriteTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTabBarViewController.h; sourceTree = "<group>"; };
 		7FFDEF461A67A05100C9D821 /* FavoriteTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTabBarViewController.m; sourceTree = "<group>"; };
 		7FFDEF481A67A07D00C9D821 /* FavoriteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteDetailViewController.h; sourceTree = "<group>"; };
@@ -323,14 +326,12 @@
 			children = (
 				7F756E8D1A6689920011D040 /* MapDepartmentStore_old.sqlite */,
 				7FB842A11A9A3BA40046B8CB /* MapDepartmentStore.sqlite */,
-				7F4161A01A99289900425670 /* RatingView.h */,
-				7F4161A11A99289900425670 /* RatingView.m */,
 				7F615AAB1A5B138400AE281A /* AppDelegate.h */,
 				7F615AAC1A5B138400AE281A /* AppDelegate.m */,
 				7F615AAE1A5B138400AE281A /* ViewController.h */,
 				7F615AAF1A5B138400AE281A /* ViewController.m */,
-				7F4161BC1A9A2D5E00425670 /* testViewController.h */,
-				7F4161BD1A9A2D5E00425670 /* testViewController.m */,
+				7FD12C281AEA0FD300C93609 /* URL_GlobalVar.h */,
+				7FD12C291AEA0FD300C93609 /* URL_GlobalVar.m */,
 				7F615AB11A5B138400AE281A /* Main.storyboard */,
 				7F615AB41A5B138400AE281A /* Images.xcassets */,
 				7F615AB61A5B138400AE281A /* LaunchScreen.xib */,
@@ -339,6 +340,7 @@
 				7F9FEB0F1A5BC91800C2EC3D /* Offline */,
 				7F9FEB171A5BCCD000C2EC3D /* Favorite */,
 				7FC6763B1AD266BC004750E6 /* Search */,
+				7FD12C2B1AEA22FB00C93609 /* deleteFile */,
 				7F615AA71A5B138400AE281A /* Supporting Files */,
 			);
 			path = ProjectMapDS;
@@ -561,6 +563,17 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
+		7FD12C2B1AEA22FB00C93609 /* deleteFile */ = {
+			isa = PBXGroup;
+			children = (
+				7F4161A01A99289900425670 /* RatingView.h */,
+				7F4161A11A99289900425670 /* RatingView.m */,
+				7F4161BC1A9A2D5E00425670 /* testViewController.h */,
+				7F4161BD1A9A2D5E00425670 /* testViewController.m */,
+			);
+			name = deleteFile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -699,6 +712,7 @@
 			files = (
 				7FFDEF471A67A05100C9D821 /* FavoriteTabBarViewController.m in Sources */,
 				7F9FEB121A5BC95900C2EC3D /* OfflinePageTableViewController.m in Sources */,
+				7FD12C2A1AEA0FD300C93609 /* URL_GlobalVar.m in Sources */,
 				7FC676571AD2733E004750E6 /* ActionSheetStringPicker.m in Sources */,
 				7F6EF5441A638097001C30D4 /* OfflineTabBarStoreViewController.m in Sources */,
 				7F1E88EC1A95D2BC00D94488 /* OnlineFloorPlanViewController.m in Sources */,

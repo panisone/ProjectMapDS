@@ -7,7 +7,8 @@
 //
 
 #import "OnlinePositionViewController.h"
-#import "OnlineTabBarStoreViewController.h"    //use Global variable: storeID, storeFloor
+#import "OnlineTabBarStoreViewController.h"     //use Global variable: storeID, storeFloor
+#import "URL_GlobalVar.h"                       //use Global variable: urlLocalhost
 
 @interface OnlinePositionViewController ()
 
@@ -72,8 +73,7 @@
 {
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlan.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"%@/getStoreFloorPlan.php?idStore=%@&floor=%@",urlLocalhost,storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -147,8 +147,7 @@
 {
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",storeID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"%@/getStoreFloorPlanPiont.php?idStore=%@&floor=%@",urlLocalhost,storeID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -165,23 +164,32 @@
         
         //NSLog(@"id:%@ x:%@ y:%@ w:%@ h:%@",storeID,pointX,pointY,width,height);
         
-        if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
-            //set X & Y & SizeIcon
-            int sizeIcon = MAX([width intValue], [height intValue]);
-            int x = [pointX intValue]+([width intValue]/2)-(sizeIcon/2);
-            int y = [pointY intValue]-(sizeIcon/2);
-            if (x>320-sizeIcon && y<0) {
-                y = [pointY intValue];
-                sizeIcon = MIN([width intValue], [height intValue]);
+        if (![width isEqual:@"0"] && ![height isEqual:@"0"])
+        {
+            float frameX;
+            float frameY;
+            float diffX = 0;
+            float diffY = 0;
+            
+            if (floorImage.frame.size.height > image.size.height*floorImage.frame.size.width/image.size.width)
+            {
+                frameX = floorImage.frame.size.width;
+                frameY = floorImage.frame.size.width*image.size.height/image.size.width;
+                diffY = (floorImage.frame.size.height-frameY)/2;
             }
-            else if (x>320-sizeIcon) {
-                sizeIcon = [width intValue];
+            else
+            {
+                frameX = floorImage.frame.size.height*image.size.width/image.size.height;
+                frameY = floorImage.frame.size.height;
+                diffX = (floorImage.frame.size.width-frameX)/2;
             }
-            else if (y<0) {
-                y = [pointY intValue];
-                sizeIcon = [height intValue];
-            }
-            CGRect imageFrame = CGRectMake(x, y, sizeIcon, sizeIcon);
+            
+            float pX = ([pointX floatValue]*frameX)+diffX;
+            float pY = ([pointY floatValue]*frameY)+diffY;
+            float bWidth = [width floatValue]*frameX;
+            float bHeight = [height floatValue]*frameY;
+            
+            CGRect imageFrame = CGRectMake(pX, pY, bWidth, bHeight);
             
             UIImage *imagePoint = [UIImage imageNamed:@"Point3-icon.png"];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:imagePoint];

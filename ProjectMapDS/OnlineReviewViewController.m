@@ -7,7 +7,8 @@
 //
 
 #import "OnlineReviewViewController.h"
-#import "OnlineTabBarStoreViewController.h"    //use Global variable: storeID, storeFloor
+#import "OnlineTabBarStoreViewController.h"     //use Global variable: storeID, storeFloor
+#import "URL_GlobalVar.h"                       //use Global variable: urlLocalhost
 #import "ASProgressPopUpView.h"
 
 @interface OnlineReviewViewController () <ASProgressPopUpViewDataSource>
@@ -154,7 +155,7 @@
 
 - (void)customIOS7dialogButtonTouchUpInside: (CustomIOSAlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if (buttonIndex == 1)
     {
         //NSLog(@"cilck SEND");
         //NSLog(@"username: '%@'",nameTextField.text);
@@ -179,7 +180,7 @@
     [alertView setContainerView:[self createAlertView]];
     
     // Modify the parameters
-    [alertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Send", @"Close", nil]];
+    [alertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Close", @"Send", nil]];
     [alertView setDelegate:self];
     
     [alertView setUseMotionEffects:true];
@@ -192,34 +193,34 @@
 {
     UIView *alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 288, 160)];
     
-    UILabel *fromTitle = [[UILabel alloc] initWithFrame:CGRectMake(27, 15, 66, 30)];
+    UILabel *fromTitle = [[UILabel alloc] initWithFrame:CGRectMake(27, 15, 70, 30)];
     [fromTitle setFont:[UIFont systemFontOfSize:14]];
-    fromTitle.text = @"Form:";
+    fromTitle.text = @"Name:";
     
-    UILabel *correctTitle = [[UILabel alloc] initWithFrame:CGRectMake(27, 50, 66, 30)];
+    UILabel *correctTitle = [[UILabel alloc] initWithFrame:CGRectMake(27, 50, 70, 30)];
     [correctTitle setFont:[UIFont systemFontOfSize:14]];
     correctTitle.text = @"Correct:";
     
-    UILabel *commentTitle = [[UILabel alloc] initWithFrame:CGRectMake(27, 85, 66, 30)];
+    UILabel *commentTitle = [[UILabel alloc] initWithFrame:CGRectMake(27, 85, 70, 30)];
     [commentTitle setFont:[UIFont systemFontOfSize:14]];
-    commentTitle.text = @"Review:";
+    commentTitle.text = @"Comment:";
     
-    nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(93, 15, 175, 30)];
+    nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(100, 15, 166, 30)];
     [nameTextField setBackgroundColor:[UIColor whiteColor]];
     [nameTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [nameTextField setFont:[UIFont systemFontOfSize:14]];
-    nameTextField.placeholder = @"name";
+    //nameTextField.placeholder = @"name";
     nameTextField.delegate = self;
     
-    correctSegment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"correct", @"wrong", nil]];
+    correctSegment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Yes", @"No", nil]];
     [correctSegment setBackgroundColor:[UIColor whiteColor]];
     [correctSegment setTintColor:[UIColor colorWithRed:(248/255.0) green:(137/255.0) blue:(10/255.0) alpha:1.0]]; //#F88A0A
     [correctSegment addTarget:self action:@selector(segmentControlAction:) forControlEvents:UIControlEventValueChanged];
-    correctSegment.frame = CGRectMake(93, 51, 175, 29);
+    correctSegment.frame = CGRectMake(100, 51, 166, 29);
     correctSegment.selectedSegmentIndex = 0;
     reviewNum = @"1";
     
-    commentReview = [[UITextView alloc] initWithFrame:CGRectMake(93, 85, 175, 60)];
+    commentReview = [[UITextView alloc] initWithFrame:CGRectMake(100, 85, 166, 60)];
     [commentReview setBackgroundColor:[UIColor whiteColor]];
     commentReview.delegate = self;
     
@@ -252,8 +253,7 @@
 {
     arrReview = [[NSMutableArray alloc] init];
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getReview.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getReview.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"%@/getReview.php?idStore=%@",urlLocalhost,storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -290,8 +290,7 @@
 
 -(void)getReviewCount
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getReviewCount.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getReviewCount.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"%@/getReviewCount.php?idStore=%@",urlLocalhost,storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -322,8 +321,7 @@
     NSString *url_name = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)reviewName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     NSString *url_comment = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)reviewComment, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/insertReview.php?idStore=%@&correct=%@&textReview=%@&fromName=%@",storeID,url_score,url_comment,url_name];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/insertReview.php?idStore=%@&correct=%@&textReview=%@&fromName=%@",storeID,url_score,url_comment,url_name];
+    NSString *url = [NSString stringWithFormat:@"%@/insertReview.php?idStore=%@&correct=%@&textReview=%@&fromName=%@",urlLocalhost,storeID,url_score,url_comment,url_name];
     
     [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
 }

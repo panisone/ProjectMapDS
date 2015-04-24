@@ -28,7 +28,8 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail Store";
-    //self.navigationController.navigationBar.topItem.title = @"back";
+    self.parentViewController.navigationController.navigationBar.topItem.title = @"";
+    
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithImage:[UIImage imageNamed:favorite]
                                     style:UIBarButtonItemStyleDone
@@ -389,11 +390,11 @@
     
     if ([favorite isEqual:@"RemoveStar-icon.png"])
     {
-        message = @"you want to REMOVE favorite";
+        message = @"\nDo you want to REMOVE to favorite?";
     }
     else if ([favorite isEqual:@"AddStar-icon.png"])
     {
-        message = @"you want to ADD favorite";
+        message = @"\nDo you want to ADD to favorite?";
     }
     
     UIAlertView *alv = [[UIAlertView alloc]

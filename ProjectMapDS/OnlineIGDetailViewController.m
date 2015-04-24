@@ -7,7 +7,8 @@
 //
 
 #import "OnlineIGDetailViewController.h"
-#import "OnlineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
+#import "OnlineTabBarDSViewController.h"    //use Global variable: dataID, dataFloor
+#import "URL_GlobalVar.h"                   //use Global variable: urlLocalhost
 
 @interface OnlineIGDetailViewController ()
 
@@ -60,8 +61,7 @@
 
 -(void)getDetailWithLocation
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getIGLocationDetail.php?idDS=%@&idIG=%@",dataID,idIG];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getIGLocationDetail.php?idDS=%@&idIG=%@",dataID,idIG];
+    NSString *url = [NSString stringWithFormat:@"%@/getIGLocationDetail.php?idDS=%@&idIG=%@",urlLocalhost,dataID,idIG];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -112,7 +112,8 @@
 
 -(void)getDetailWithTag
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getIGTagDetail.php?idDS=%@&idIG=%@",dataID,idIG];
+    //NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getIGTagDetail.php?idDS=%@&idIG=%@",dataID,idIG];
+    NSString *url = [NSString stringWithFormat:@"http://www.zp8972.tld.122.155.177.9.no-domain.name/pani/getIGTagDetail.php?idDS=%@&idIG=%@",dataID,idIG];
     //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getIGTagDetail.php?idDS=%@&idIG=%@",dataID,idIG];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     

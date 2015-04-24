@@ -31,8 +31,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = @"Favorite List";
+    self.navigationItem.title = @"รายการโปรด";
     self.navigationController.navigationBar.hidden = NO;
+    
     //reload Table View
     [self getFavorite];
     [self.tableView reloadData];

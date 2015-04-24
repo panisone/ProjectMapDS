@@ -7,7 +7,8 @@
 //
 
 #import "OnlineFloorPlanViewController.h"
-#import "OnlineTabBarDSViewController.h"        //use Global variable: dataID, dataFloor
+#import "OnlineTabBarDSViewController.h"    //use Global variable: dataID, dataFloor
+#import "URL_GlobalVar.h"                   //use Global variable: urlLocalhost
 
 @interface OnlineFloorPlanViewController ()
 
@@ -79,8 +80,7 @@
     //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlan.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"%@/getFloorPlan.php?idDS=%@&floor=%@",urlLocalhost,dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -155,8 +155,7 @@
     //NSURL *url_floor = [NSURL URLWithString:[floor stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSString *url_floor = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)floor, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getFloorPlanButton.php?idDS=%@&floor=%@",dataID,url_floor];
+    NSString *url = [NSString stringWithFormat:@"%@/getFloorPlanButton.php?idDS=%@&floor=%@",urlLocalhost,dataID,url_floor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -177,26 +176,75 @@
         
         NSString *pointX = [dataDict objectForKey:@"pointX"];
         NSString *pointY = [dataDict objectForKey:@"pointY"];
-        //NSString *width = [dataDict objectForKey:@"width"];
+        NSString *width = [dataDict objectForKey:@"width"];
         NSString *height = [dataDict objectForKey:@"height"];
         
+        //NSLog(@"image w:%f h:%f",image.size.width,image.size.height);
+        //NSLog(@"frame w:%f h:%f",floorImage.frame.size.width,floorImage.frame.size.height);
         //NSLog(@"id:%@ x:%@ y:%@ w:%@ h:%@",idStore,pointX,pointY,width,height);
         
-        CGRect buttonFrame = CGRectMake([pointX intValue], [pointY intValue], [height intValue]*imageButton.size.width/imageButton.size.height, [height intValue]);
+        float frameX;
+        float frameY;
+        float diffX = 0;
+        float diffY = 0;
         
-        UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
+        if (floorImage.frame.size.height > image.size.height*floorImage.frame.size.width/image.size.width)
+        {
+            frameX = floorImage.frame.size.width;
+            frameY = floorImage.frame.size.width*image.size.height/image.size.width;
+            
+            diffY = (floorImage.frame.size.height-frameY)/2;
+        }
+        else
+        {
+            frameX = floorImage.frame.size.height*image.size.width/image.size.height;
+            frameY = floorImage.frame.size.height;
+            
+            diffX = (floorImage.frame.size.width-frameX)/2;
+        }
         
-        //set TAG is storeID
-        button.tag = [idStore intValue];
+        //NSLog(@"cover w:%f h:%f",frameX,frameY);
         
-        //test
-        //[button setTitle:idStore forState:UIControlStateNormal];
-        //[button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        
-        [button setBackgroundImage:imageButton forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(storeView:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [newView addSubview:button];
+        if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"])
+        {
+            float pX = ([pointX floatValue]*frameX)+diffX;
+            float pY = ([pointY floatValue]*frameY)+diffY;
+            float bWidth = [width floatValue]*frameX;
+            float bHeight = [height floatValue]*frameY;
+            
+            //NSLog(@"button x:%f y:%f w:%f h:%f",pX,pY,bWidth,bHeight);
+            //NSLog(@"frame w:%f h:%f",bWidth,bHeight);
+            //NSLog(@"image w:%f h:%f",imageButton.size.width,imageButton.size.height);
+            //NSLog(@"W: %f [-] %f",bWidth,imageButton.size.width*bHeight/imageButton.size.height);
+            //NSLog(@"H: %f [-] %f",bHeight,imageButton.size.height*bWidth/imageButton.size.width);
+            
+            if (bHeight > imageButton.size.height*bWidth/imageButton.size.width)
+            {
+                bHeight = bWidth*imageButton.size.height/imageButton.size.width;
+            }
+            else
+            {
+                bWidth = bHeight*imageButton.size.width/imageButton.size.height;
+            }
+            
+            //NSLog(@"cover[%@] w:%f h:%f",idStore,bWidth,bHeight);
+            
+            CGRect buttonFrame = CGRectMake(pX, pY, bWidth, bHeight);
+            
+            UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
+            
+            //set TAG is storeID
+            button.tag = [idStore intValue];
+            
+            //test
+            //[button setTitle:idStore forState:UIControlStateNormal];
+            //[button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            
+            [button setBackgroundImage:imageButton forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(storeView:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [newView addSubview:button];
+        }
     }
     [floorImage addSubview:newView];
 }

@@ -159,12 +159,15 @@
             }
         }
         
+        [self showFloorPlan:storeFloor[buttonIndex]];
+        /*
         //change image
         [self getFloorPlan:storeFloor[buttonIndex]];
         floorImage.image = image;
         
         //call method create Button connect to Store
         [self createPoint:storeFloor[buttonIndex]];
+         */
     }
 }
 
@@ -242,7 +245,8 @@
                     }
                 }
                 
-                if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"]) {
+                if (![pointX isEqual:@"-"] && ![pointY isEqual:@"-"])
+                {
                     /* //set X & Y & SizeIcon
                     int sizeIcon = MAX([width intValue], [height intValue]);
                     int x = [pointX intValue]+([width intValue]/2)-(sizeIcon/2);
@@ -263,20 +267,24 @@
                     */
                     float frameX;
                     float frameY;
+                    float diffX = 0;
+                    float diffY = 0;
                     
                     if (floorImage.frame.size.height > image.size.height*floorImage.frame.size.width/image.size.width)
                     {
                         frameX = floorImage.frame.size.width;
                         frameY = floorImage.frame.size.width*image.size.height/image.size.width;
+                        diffY = (floorImage.frame.size.height-frameY)/2;
                     }
                     else
                     {
                         frameX = floorImage.frame.size.height*image.size.width/image.size.height;
                         frameY = floorImage.frame.size.height;
+                        diffX = (floorImage.frame.size.width-frameX)/2;
                     }
                     
-                    float pX = [pointX floatValue]*frameX;
-                    float pY = [pointY floatValue]*frameY;
+                    float pX = ([pointX floatValue]*frameX)+diffX;
+                    float pY = ([pointY floatValue]*frameY)+diffY;
                     float bWidth = [width floatValue]*frameX;
                     float bHeight = [height floatValue]*frameY;
                     

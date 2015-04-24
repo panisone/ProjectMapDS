@@ -7,6 +7,7 @@
 //
 
 #import "OnlineTabBarStoreViewController.h"
+#import "URL_GlobalVar.h"                       //use Global variable: urlLocalhost
 
 NSString *storeID;  //Global variable
 NSMutableArray *storeFloor;  //Global variable
@@ -50,8 +51,7 @@ NSMutableArray *storeFloor;  //Global variable
 {
     storeFloor = [[NSMutableArray alloc] init];
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreFloor.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreFloor.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"%@/getStoreFloor.php?idStore=%@",urlLocalhost,storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

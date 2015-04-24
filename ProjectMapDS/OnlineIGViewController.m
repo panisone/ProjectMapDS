@@ -7,7 +7,8 @@
 //
 
 #import "OnlineIGViewController.h"
-#import "OnlineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
+#import "OnlineTabBarDSViewController.h"    //use Global variable: dataID, dataFloor
+#import "URL_GlobalVar.h"                   //use Global variable: urlLocalhost
 
 @interface OnlineIGViewController ()
 {
@@ -31,7 +32,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    //self.navigationItem.title = @"InstaGram";
+    self.navigationItem.title = @"";
     //self.navigationController.navigationBar.topItem.title = @"back";
     self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
@@ -189,8 +190,7 @@
 
 -(void)getIGType_Location
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getIGLocation.php?idDS=%@&start=%@",dataID,countLocation];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getIGLocation.php?idDS=%@&start=%@",dataID,countLocation];
+    NSString *url = [NSString stringWithFormat:@"%@/getIGLocation.php?idDS=%@&start=%@",urlLocalhost,dataID,countLocation];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -215,8 +215,7 @@
 
 -(void)getIGType_Tag
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getIGTag.php?idDS=%@&start=%@",dataID,countTag];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getIGTag.php?idDS=%@&start=%@",dataID,countTag];
+    NSString *url = [NSString stringWithFormat:@"%@/getIGTag.php?idDS=%@&start=%@",urlLocalhost,dataID,countTag];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -241,8 +240,7 @@
 
 -(void)getTotalIG
 {
-    NSString *url_local = [NSString stringWithFormat:@"http://localhost/projectDS/getIGLocationTotal.php?idDS=%@",dataID];
-    //NSString *url_local = [NSString stringWithFormat:@"http://panisone.in.th/pani/getIGLocationTotal.php?idDS=%@",dataID];
+    NSString *url_local = [NSString stringWithFormat:@"%@/getIGLocationTotal.php?idDS=%@",urlLocalhost,dataID];
     NSData *jsonSource_local = [NSData dataWithContentsOfURL:[NSURL URLWithString:url_local]];
     
     id jsonObjects_local = [NSJSONSerialization JSONObjectWithData:jsonSource_local options:NSJSONReadingMutableContainers error:nil];
@@ -254,8 +252,7 @@
     
     //NSLog(@"Total location: %@",totalLocation);
     
-    NSString *url_tag = [NSString stringWithFormat:@"http://localhost/projectDS/getIGTagTotal.php?idDS=%@",dataID];
-    //NSString *url_tag = [NSString stringWithFormat:@"http://panisone.in.th/pani/getIGTagTotal.php?idDS=%@",dataID];
+    NSString *url_tag = [NSString stringWithFormat:@"%@/getIGTagTotal.php?idDS=%@",urlLocalhost,dataID];
     NSData *jsonSource_tag = [NSData dataWithContentsOfURL:[NSURL URLWithString:url_tag]];
     
     id jsonObjects_tag = [NSJSONSerialization JSONObjectWithData:jsonSource_tag options:NSJSONReadingMutableContainers error:nil];

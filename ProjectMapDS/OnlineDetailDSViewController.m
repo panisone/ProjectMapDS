@@ -7,7 +7,8 @@
 //
 
 #import "OnlineDetailDSViewController.h"
-#import "OnlineTabBarDSViewController.h"   //use Global variable: dataID, dataFloor
+#import "OnlineTabBarDSViewController.h"    //use Global variable: dataID, dataFloor
+#import "URL_GlobalVar.h"                   //use Global variable: urlLocalhost
 
 @interface OnlineDetailDSViewController ()
 
@@ -43,7 +44,8 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail DS";
-    //self.navigationController.navigationBar.topItem.title = @"back";
+    self.parentViewController.navigationController.navigationBar.topItem.title = @"";
+    
     /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:check
                                     style:UIBarButtonItemStyleDone
@@ -94,8 +96,7 @@
 
 -(void)getDetailDS
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSDetail.php?idDS=%@",dataID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSDetail.php?idDS=%@",dataID];
+    NSString *url = [NSString stringWithFormat:@"%@/getDSDetail.php?idDS=%@",urlLocalhost,dataID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -922,8 +923,7 @@
 // GET DepartmentStore
 -(void)getTableDepartmentStore:(NSString *)idDS
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableDepartmentStore.php?idDS=%@",idDS];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableDepartmentStore.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"%@/getTableDepartmentStore.php?idDS=%@",urlLocalhost,idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -956,8 +956,7 @@
 // GET ImageDS
 -(void)getTableImageDS:(NSString *)idDS
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageDS.php?idDS=%@",idDS];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageDS.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"%@/getTableImageDS.php?idDS=%@",urlLocalhost,idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -982,8 +981,7 @@
 // GET Floor
 -(void)getTableFloor:(NSString *)idDS
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableFloor.php?idDS=%@",idDS];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableFloor.php?idDS=%@",idDS];
+    NSString *url = [NSString stringWithFormat:@"%@/getTableFloor.php?idDS=%@",urlLocalhost,idDS];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1010,8 +1008,7 @@
 // GET LinkFloorStore
 -(void)getTableLinkFloorStore:(NSString *)idFloor
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableLinkFloorStore.php?idFloor=%@",idFloor];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableLinkFloorStore.php?idFloor=%@",idFloor];
+    NSString *url = [NSString stringWithFormat:@"%@/getTableLinkFloorStore.php?idFloor=%@",urlLocalhost,idFloor];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1038,8 +1035,7 @@
 // GET Store
 -(void)getTableStore:(NSString *)idStore
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableStore.php?idStore=%@",idStore];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableStore.php?idStore=%@",idStore];
+    NSString *url = [NSString stringWithFormat:@"%@/getTableStore.php?idStore=%@",urlLocalhost,idStore];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1074,8 +1070,7 @@
 // GET ImageStore
 -(void)getTableImageStore:(NSString *)idStore
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getTableImageStore.php?idStore=%@",idStore];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getTableImageStore.php?idStore=%@",idStore];
+    NSString *url = [NSString stringWithFormat:@"%@/getTableImageStore.php?idStore=%@",urlLocalhost,idStore];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -1102,11 +1097,23 @@
 -(void)rightFuntion
 {
     UIAlertView *alv = [[UIAlertView alloc]
-                        initWithTitle:check
-                        message:@"Alert View"
+                        initWithTitle:nil
+                        message:nil
                         delegate:self
                         cancelButtonTitle: @"Cencal"
                         otherButtonTitles: @"OK", nil];
+    
+    if ([check isEqual:@"DOWNLOAD"])
+    {
+        [alv setTitle:@"Download Available"];
+        [alv setMessage:@"\nDo you want to download this content?"];
+    }
+    else if ([check isEqual:@"UPDATE"])
+    {
+        [alv setTitle:@"Update Available"];
+        [alv setMessage:@"\nDo you want to update this content?"];
+    }
+    
     [alv show];
 }
 
@@ -1115,8 +1122,8 @@
     if (buttonIndex == 1)
     {
         UIAlertView *alv = [[UIAlertView alloc]
-                            initWithTitle:@"WAIT"
-                            message:@"Alert View"
+                            initWithTitle:@""
+                            message:@"Waiting"
                             delegate:self
                             cancelButtonTitle: nil
                             otherButtonTitles: nil];

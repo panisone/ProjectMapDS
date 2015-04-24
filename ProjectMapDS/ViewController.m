@@ -17,7 +17,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = @"Home";
+    self.navigationItem.title = @"";
     self.navigationController.navigationBar.hidden = YES;
 }
 
@@ -34,8 +34,8 @@
 - (IBAction)InfoView:(id)sender
 {
     UIAlertView *alv = [[UIAlertView alloc]
-                        initWithTitle:@"INFO View"
-                        message:@"dev. by Panisara Intoe\nKU Senior Project"
+                        initWithTitle:@"KU Senior Project"
+                        message:@"dev. by Panisara Intoe"
                         delegate:self
                         cancelButtonTitle:@"Done"
                         otherButtonTitles: nil];

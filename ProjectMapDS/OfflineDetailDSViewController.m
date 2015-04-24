@@ -32,7 +32,8 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail DS";
-    //self.navigationController.navigationBar.topItem.title = @"";
+    self.parentViewController.navigationController.navigationBar.topItem.title = @"";
+    
     /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:@"DELETE"
                                     style:UIBarButtonItemStyleDone
@@ -512,8 +513,8 @@
 -(void)rightFuntion
 {
     UIAlertView *alv = [[UIAlertView alloc]
-                        initWithTitle:@"DELETE"
-                        message:@"Alert View"
+                        initWithTitle:@"Delete Content"
+                        message:@"\nDo you want to delete this content?"
                         delegate:self
                         cancelButtonTitle: @"Cencal"
                         otherButtonTitles: @"OK", nil];
@@ -525,8 +526,8 @@
     if (buttonIndex == 1)
     {
         UIAlertView *alv = [[UIAlertView alloc]
-                            initWithTitle:@"WAIT"
-                            message:@"Alert View"
+                            initWithTitle:@""
+                            message:@"Waiting"
                             delegate:self
                             cancelButtonTitle: nil
                             otherButtonTitles: nil];

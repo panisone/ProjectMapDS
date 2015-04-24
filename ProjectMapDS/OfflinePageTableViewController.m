@@ -31,8 +31,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = @"Offline List";
+    self.navigationItem.title = @"ห้างสรรพสินค้า";
     self.navigationController.navigationBar.hidden = NO;
+    
     //reload Table View
     [self getDepartmentStore];
     [self.tableView reloadData];
@@ -192,7 +193,9 @@
     {
         NSUInteger index = [listOfidDS indexOfObject:idDS];
         
-        NSArray *arr = [[NSArray alloc] initWithObjects:[listOfnameDS objectAtIndex:index],[listOfbranchDS objectAtIndex:index], nil];
+        NSString *searchDS = [NSString stringWithFormat:@"%@ %@",[listOfnameDS objectAtIndex:index],[listOfbranchDS objectAtIndex:index]];
+        
+        NSArray *arr = [[NSArray alloc] initWithObjects:searchDS, nil];
         
         NSArray *arrResult = [[NSArray alloc] init];
         arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -200,8 +203,8 @@
         if ([arrResult count] != 0)
         {
             [searchListOfidDS addObject:idDS];
-            [searchListOfnameDS addObject:[arr objectAtIndex:0]];
-            [searchListOfbranchDS addObject:[arr objectAtIndex:1]];
+            [searchListOfnameDS addObject:[listOfnameDS objectAtIndex:index]];
+            [searchListOfbranchDS addObject:[listOfbranchDS objectAtIndex:index]];
             [searchListOflogoDS addObject:[listOflogoDS objectAtIndex:index]];
         }
     }

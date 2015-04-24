@@ -7,7 +7,8 @@
 //
 
 #import "OnlineImageDSViewController.h"
-#import "OnlineTabBarDSViewController.h"   //use Global variable: dataID
+#import "OnlineTabBarDSViewController.h"    //use Global variable: dataID
+#import "URL_GlobalVar.h"                   //use Global variable: urlLocalhost
 
 @interface OnlineImageDSViewController ()
 
@@ -124,8 +125,7 @@
 {
     listOfimageDS = [[NSMutableArray alloc] init];
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getDSImage.php?idDS=%@",dataID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getDSImage.php?idDS=%@",dataID];
+    NSString *url = [NSString stringWithFormat:@"%@/getDSImage.php?idDS=%@",urlLocalhost,dataID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

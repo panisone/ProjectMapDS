@@ -42,6 +42,10 @@
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Category DS";
     //self.navigationController.navigationBar.topItem.title = @"back";
+    
+    //reload Table View
+    [self.offlineCategoryTable reloadData];
+    
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]
                                     initWithTitle:titleRightButton
                                     style:UIBarButtonItemStyleDone

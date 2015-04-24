@@ -7,7 +7,8 @@
 //
 
 #import "OnlineImageStoreViewController.h"
-#import "OnlineTabBarStoreViewController.h"    //use Global variable: storeID
+#import "OnlineTabBarStoreViewController.h"     //use Global variable: storeID
+#import "URL_GlobalVar.h"                       //use Global variable: urlLocalhost
 
 @interface OnlineImageStoreViewController ()
 
@@ -126,8 +127,7 @@
 {
     listOfimageStore = [[NSMutableArray alloc] init];
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreImage.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreImage.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"%@/getStoreImage.php?idStore=%@",urlLocalhost,storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

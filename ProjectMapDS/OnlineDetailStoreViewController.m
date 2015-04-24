@@ -7,7 +7,8 @@
 //
 
 #import "OnlineDetailStoreViewController.h"
-#import "OnlineTabBarStoreViewController.h"    //use Global variable: storeID
+#import "OnlineTabBarStoreViewController.h"     //use Global variable: storeID
+#import "URL_GlobalVar.h"                       //use Global variable: urlLocalhost
 
 @interface OnlineDetailStoreViewController ()
 
@@ -26,7 +27,7 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"Detail Store";
-    //self.navigationController.navigationBar.topItem.title = @"back";
+    self.parentViewController.navigationController.navigationBar.topItem.title = @"";
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
     self.navigationController.navigationBar.hidden = NO;
 }
@@ -59,8 +60,7 @@
 
 -(void)getDetailStore
 {
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreDetail.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreDetail.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"%@/getStoreDetail.php?idStore=%@",urlLocalhost,storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -148,8 +148,7 @@
 {
     NSString *strFloor = @"";
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreAddressNumber.php?idStore=%@",storeID];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreAddressNumber.php?idStore=%@",storeID];
+    NSString *url = [NSString stringWithFormat:@"%@/getStoreAddressNumber.php?idStore=%@",urlLocalhost,storeID];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];

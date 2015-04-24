@@ -7,6 +7,7 @@
 //
 
 #import "SearchPageViewController.h"
+#import "URL_GlobalVar.h"               //use Global variable: urlLocalhost
 
 @interface SearchPageViewController ()
 {
@@ -31,14 +32,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = @"Search";
+    self.navigationItem.title = @"ค้นหา";
     self.navigationController.navigationBar.hidden = NO;
+    
+    //reload Table View
+    [self.searchTable reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    arrType = [[NSMutableArray alloc] initWithObjects:@"Department Store", @"Store", nil];
+    arrType = [[NSMutableArray alloc] initWithObjects:@"ห้างสรรพสินค้า", @"ร้านค้า", nil];
     
     [self checkNetworkConnection];
     
@@ -64,10 +68,23 @@
     if ([searchType.text isEqual:[arrType objectAtIndex:1]])
     {
         self.searchCategory.hidden = NO;
+        
+        if ([type isEqual:@"Offline"] && [arrCategory count]==0)
+        {
+            //NSLog(@"Category count:%lu type:%@",(unsigned long)[arrCategory count],type);
+            [self selectCategory];
+        }
+        else if ([type isEqual:@"Online"] && [arrCategory count]==0)
+        {
+            //NSLog(@"Category count:%lu type:%@",(unsigned long)[arrCategory count],type);
+            [self getCategory];
+        }
     }
     else
     {
         self.searchCategory.hidden = YES;
+        self.selectedIndexCategory = 0;
+        self.searchCategory.text = [arrCategory objectAtIndex:selectedIndexCategory];
     }
     
     if ([searchTextBar.text isEqual:@""])
@@ -77,6 +94,18 @@
     else
     {
         self.searchTable.hidden = NO;
+        
+        
+        if ([type isEqual:@"Offline"] && [listOfStore count]==0 && selectedIndexType==1)
+        {
+            //NSLog(@"Shop count:%lu type:%@",(unsigned long)[listOfStore count],type);
+            [self selectStore];
+        }
+        else if ([type isEqual:@"Online"] && [listOfStore count]==0 && selectedIndexType==1)
+        {
+            //NSLog(@"Shop count:%lu type:%@",(unsigned long)[listOfStore count],type);
+            [self getStore];
+        }
     }
 }
 
@@ -146,7 +175,9 @@
         
         for (NSDictionary *dict in listOfDS)
         {
-            NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameDS"],[dict objectForKey:@"branchDS"], nil];
+            NSString *searchDS = [NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"nameDS"],[dict objectForKey:@"branchDS"]];
+            
+            NSArray *arr = [[NSArray alloc] initWithObjects:searchDS, nil];
             
             NSArray *arrResult = [[NSArray alloc] init];
             arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -155,8 +186,8 @@
             {
                 NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [dict objectForKey:@"idDS"], @"idDS",
-                                        [arr objectAtIndex:0], @"nameDS",
-                                        [arr objectAtIndex:1], @"branchDS",
+                                        [dict objectForKey:@"nameDS"], @"nameDS",
+                                        [dict objectForKey:@"branchDS"], @"branchDS",
                                         [dict objectForKey:@"logoDS"], @"logoDS",
                                         nil];
                 [searchListOfDS addObject:dictDS];
@@ -393,7 +424,7 @@
 
 - (IBAction)selectType:(id)sender
 {
-    [ActionSheetStringPicker showPickerWithTitle:@"Select a Type" rows:arrType initialSelection:selectedIndexType target:self successAction:@selector(TypeWasSelected:element:) cancelAction:nil origin:sender];
+    [ActionSheetStringPicker showPickerWithTitle:@"เลือกประเภท" rows:arrType initialSelection:selectedIndexType target:self successAction:@selector(TypeWasSelected:element:) cancelAction:nil origin:sender];
 }
 
 - (void)TypeWasSelected:(NSNumber *)selectedIndex element:(id)element
@@ -409,7 +440,7 @@
 
 - (IBAction)selectCategory:(id)sender
 {
-    [ActionSheetStringPicker showPickerWithTitle:@"Select a Category" rows:arrCategory initialSelection:selectedIndexCategory target:self successAction:@selector(CategoryWasSelected:element:) cancelAction:nil origin:sender];
+    [ActionSheetStringPicker showPickerWithTitle:@"เลือกประเภท" rows:arrCategory initialSelection:selectedIndexCategory target:self successAction:@selector(CategoryWasSelected:element:) cancelAction:nil origin:sender];
 }
 
 - (void)CategoryWasSelected:(NSNumber *)selectedIndex element:(id)element
@@ -426,8 +457,8 @@
 //method
 -(void)checkNetworkConnection
 {
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://localhost/projectDS/getDSList.php"]];
-    //NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://panisone.in.th/pani/getDSList.php"]];
+    NSString *url = [NSString stringWithFormat:@"%@/getDSList.php",urlLocalhost];
+    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     //Case connection error!!
     if (jsonSource == NULL)
@@ -437,8 +468,8 @@
         
         [self initDatabase];
         [self selectDepartmentStore];
-        [self selectCategory];
-        [self selectStore];
+        //[self selectCategory];
+        //[self selectStore];
     }
     else
     {
@@ -446,8 +477,8 @@
         //NSLog(@"SQL server");
         
         [self getDepartmentStore];
-        [self getCategory];
-        [self getStore];
+        //[self getCategory];
+        //[self getStore];
     }
 }
 
@@ -633,8 +664,8 @@
 {
     listOfDS = [[NSMutableArray alloc] init];
     
-    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://localhost/projectDS/getDSList.php"]];
-    //NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://panisone.in.th/pani/getDSList.php"]];
+    NSString *url = [NSString stringWithFormat:@"%@/getDSList.php",urlLocalhost];
+    NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
     
@@ -671,8 +702,7 @@
     arrCategory = [[NSMutableArray alloc] init];
     [arrCategory addObject:@"All Category"];
     
-    NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getCategoryList.php"];
-    //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getCategoryList.php"];
+    NSString *url = [NSString stringWithFormat:@"%@/getCategoryList.php",urlLocalhost];
     NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
@@ -694,8 +724,7 @@
               
         NSString *url_keyCategory = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)keyCategory, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
         
-        NSString *url = [NSString stringWithFormat:@"http://localhost/projectDS/getStoreList.php?category=%@",url_keyCategory];
-        //NSString *url = [NSString stringWithFormat:@"http://panisone.in.th/pani/getStoreList.php?category=%@",url_keyCategory];
+        NSString *url = [NSString stringWithFormat:@"%@/getStoreList.php?category=%@",urlLocalhost,url_keyCategory];
         NSData *jsonSource = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
         id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
