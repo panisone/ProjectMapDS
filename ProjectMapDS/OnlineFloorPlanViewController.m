@@ -211,6 +211,8 @@
             float pY = ([pointY floatValue]*frameY)+diffY;
             float bWidth = [width floatValue]*frameX;
             float bHeight = [height floatValue]*frameY;
+            float diffW = 0;
+            float diffH = 0;
             
             //NSLog(@"button x:%f y:%f w:%f h:%f",pX,pY,bWidth,bHeight);
             //NSLog(@"frame w:%f h:%f",bWidth,bHeight);
@@ -220,16 +222,19 @@
             
             if (bHeight > imageButton.size.height*bWidth/imageButton.size.width)
             {
+                diffH = (bHeight-bWidth*imageButton.size.height/imageButton.size.width)/2;
                 bHeight = bWidth*imageButton.size.height/imageButton.size.width;
             }
             else
             {
+                diffW = (bWidth-bHeight*imageButton.size.width/imageButton.size.height)/2;
                 bWidth = bHeight*imageButton.size.width/imageButton.size.height;
             }
             
             //NSLog(@"cover[%@] w:%f h:%f",idStore,bWidth,bHeight);
+            //NSLog(@"diff w:%f h:%f",diffW,diffH);
             
-            CGRect buttonFrame = CGRectMake(pX, pY, bWidth, bHeight);
+            CGRect buttonFrame = CGRectMake(pX+diffW, pY+diffH, bWidth, bHeight);
             
             UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
             

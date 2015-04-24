@@ -16,11 +16,21 @@
 @synthesize scroll,imageView;
 @synthesize imageDS;
 
-- (void)viewDidLoad {
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    //set image to Show
+    scroll.zoomScale = 1.0;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.imageView.image = imageDS;
     
     //set Scroll view
+    //scroll.zoomScale = 1.0;
     [scroll setDelegate:self];
     [scroll setMinimumZoomScale:1.0];
     [scroll setMaximumZoomScale:3.0];

@@ -78,7 +78,7 @@ NSMutableArray *storeFloor; //Global variable
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = [[NSString stringWithFormat:@"SELECT Floor.idFloor,Floor.floor FROM Floor,LinkFloorStore WHERE Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=%@ ORDER BY Floor.idFloor ASC",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *sql = [[NSString stringWithFormat:@"SELECT Floor.idFloor,Floor.floor FROM Floor,LinkFloorStore WHERE Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=%@ GROUP BY Floor.floor ORDER BY Floor.idFloor ASC",storeID] cStringUsingEncoding:NSUTF8StringEncoding];
         
         sqlite3_stmt *searchStament;
         

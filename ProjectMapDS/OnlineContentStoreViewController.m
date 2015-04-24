@@ -16,6 +16,14 @@
 @synthesize scroll,imageView;
 @synthesize imageStore;
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    //set image to Show
+    scroll.zoomScale = 1.0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.imageView.image = imageStore;
