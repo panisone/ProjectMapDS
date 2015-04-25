@@ -36,22 +36,28 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    //call method for Database
-    [self showFloorPlan:dataFloor[0]];
-    //set title Right Button
-    titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[0]];
+    
     //set Scroll view
     [scroll setDelegate:self];
     [scroll setMinimumZoomScale:1.0];
     [scroll setMaximumZoomScale:4.0];
+    
+    scroll.contentSize = floorImage.frame.size;
     
     scroll.userInteractionEnabled = YES;        //Solution Problem zoom image with button
     scroll.exclusiveTouch = YES;                //Solution Problem zoom image with button
     
     [floorImage setUserInteractionEnabled:YES]; //Solution Problem zoom image with button
     [floorImage setExclusiveTouch:YES];         //Solution Problem zoom image with button
+    
+    //call method for Database
+    [self showFloorPlan:dataFloor[0]];
+    
+    //set title Right Button
+    titleRightButton = [NSString stringWithFormat:@"Floor: %@",dataFloor[0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,13 +146,28 @@
         return;
     }
     
+    [scroll setMinimumZoomScale:1.0];
+    scroll.zoomScale = 1.0;
+    
     //call method for Database
     [self getFloorPlan:floor];
+    
     //set image to Show
-    scroll.zoomScale = 1.0;
     floorImage.image = image;
+    
     //create Button on FloorPlan
     [self createButton:floor];
+    
+    //set Scroll zoom Scale
+    float min = 1.0;
+    float scaleW = self.view.frame.size.width/floorImage.frame.size.width;
+    float scaleH = (self.view.frame.size.height-64-49)/floorImage.frame.size.height;
+    if (MIN(scaleW, scaleH) > 1)
+    {
+        min = MIN(scaleW, scaleH);
+    }
+    [scroll setMinimumZoomScale:min];
+    scroll.zoomScale = min;
 }
 
 //create SUBVIEW for SHOW

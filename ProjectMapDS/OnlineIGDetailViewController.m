@@ -22,7 +22,7 @@
 {
     [super viewWillAppear:YES];
     //self.navigationItem.title = @"InstaGram Detail";
-    //self.navigationController.navigationBar.topItem.title = @"back";
+    self.navigationController.navigationBar.topItem.title = @"";
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.rightBarButtonItem = nil;
     self.navigationController.navigationBar.hidden = NO;

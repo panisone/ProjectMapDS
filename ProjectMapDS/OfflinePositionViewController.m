@@ -36,16 +36,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //call method for Database
-    [self initDatabase];
-    [self showFloorPlan:storeFloor[0]];
-    //set title Right Button
-    titleRightButton = [NSString stringWithFormat:@"Floor: %@",storeFloor[0]];
+    
     //set Scroll view
     [scroll setDelegate:self];
     [scroll setMinimumZoomScale:1.0];
     [scroll setMaximumZoomScale:4.0];
-    //scroll.zoomScale = 1;
+    
+    scroll.contentSize = floorImage.frame.size;
+    
+    //call method for Database
+    [self initDatabase];
+    [self showFloorPlan:storeFloor[0]];
+    
+    //set title Right Button
+    titleRightButton = [NSString stringWithFormat:@"Floor: %@",storeFloor[0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,13 +178,28 @@
 //call mathod for SHOW FloorPlan
 -(void)showFloorPlan:(NSString *) floor
 {
+    [scroll setMinimumZoomScale:1.0];
+    scroll.zoomScale = 1.0;
+    
     //call method for Database
     [self getFloorPlan:floor];
+    
     //set image to Show
-    scroll.zoomScale = 1.0;
     floorImage.image = image;
+    
     //create Button on FloorPlan
     [self createPoint:floor];
+    
+    //set Scroll zoom Scale
+    float min = 1.0;
+    float scaleW = self.view.frame.size.width/floorImage.frame.size.width;
+    float scaleH = (self.view.frame.size.height-64-49)/floorImage.frame.size.height;
+    if (MIN(scaleW, scaleH) > 1)
+    {
+        min = MIN(scaleW, scaleH);
+    }
+    [scroll setMinimumZoomScale:min];
+    scroll.zoomScale = min;
 }
 
 //create SUBVIEW for SHOW

@@ -329,11 +329,11 @@
         //NSLog(@"DS image: %@",logoDS_data);
         
         NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
-                      idDS_data, @"idDS",
-                      nameDS_data, @"nameDS",
-                      branchDS_data, @"branchDS",
-                      imageLogo, @"logoDS",
-                      nil];
+                                idDS_data, @"idDS",
+                                nameDS_data, @"nameDS",
+                                branchDS_data, @"branchDS",
+                                imageLogo, @"logoDS",
+                                nil];
         [listOfDS addObject:dictDS];
     }
 }

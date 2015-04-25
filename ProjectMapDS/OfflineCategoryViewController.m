@@ -67,7 +67,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self offlineCategoryTable] bounds];
     newBounds.origin.y = offlineSearchBar.bounds.size.height;

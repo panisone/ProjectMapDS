@@ -19,9 +19,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
     //set image to Show
     scroll.zoomScale = 1.0;
+    
+    /*
+     Scale Image
+     4 -> h:330
+     5 -> h:418
+     */
 }
 
 - (void)viewDidLoad
@@ -33,6 +38,18 @@
     [scroll setDelegate:self];
     [scroll setMinimumZoomScale:1.0];
     [scroll setMaximumZoomScale:3.0];
+    
+    scroll.contentSize = imageView.frame.size;
+    
+    float min = 1.0;
+    float scaleW = self.view.frame.size.width/imageView.frame.size.width;
+    float scaleH = (self.view.frame.size.height-64-49-37)/imageView.frame.size.height;
+    if (MIN(scaleW, scaleH) > 1)
+    {
+        min = MIN(scaleW, scaleH);
+    }
+    [scroll setMinimumZoomScale:min];
+    scroll.zoomScale = min;
 }
 
 - (void)didReceiveMemoryWarning {

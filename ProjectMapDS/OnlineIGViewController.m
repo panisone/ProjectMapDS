@@ -33,7 +33,7 @@
 {
     [super viewWillAppear:YES];
     self.navigationItem.title = @"";
-    //self.navigationController.navigationBar.topItem.title = @"back";
+    //self.navigationController.navigationBar.topItem.title = @"";
     self.parentViewController.navigationItem.rightBarButtonItems = nil;
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
     self.navigationController.navigationBar.hidden = NO;

@@ -69,6 +69,17 @@
     {
         self.searchCategory.hidden = NO;
         
+        if ([type isEqual:@"Offline"] && [listOfStore count]==0 && [arrCategory count]!=0)
+        {
+            //NSLog(@"Shop count:%lu type:%@",(unsigned long)[listOfStore count],type);
+            [self selectStore];
+        }
+        else if ([type isEqual:@"Online"] && [listOfStore count]==0 && [arrCategory count]!=0)
+        {
+            //NSLog(@"Shop count:%lu type:%@",(unsigned long)[listOfStore count],type);
+            [self getStore];
+        }
+        
         if ([type isEqual:@"Offline"] && [arrCategory count]==0)
         {
             //NSLog(@"Category count:%lu type:%@",(unsigned long)[arrCategory count],type);

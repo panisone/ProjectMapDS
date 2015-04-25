@@ -68,7 +68,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self onlineCategoryTable] bounds];
     newBounds.origin.y = onlineSearchBar.bounds.size.height;
