@@ -19,6 +19,8 @@
     NSMutableArray *listOfDepartmentStore;
     NSMutableArray *listOflogoStore;
     
+    NSMutableArray *listOfnameENTH;
+    
     NSMutableArray *searchListOfidStore;
     NSMutableArray *searchListOfnameStore;
     NSMutableArray *searchListOfDepartmentStore;
@@ -193,7 +195,7 @@
     {
         NSUInteger index = [listOfidStore indexOfObject:idStore];
         
-        NSArray *arr = [[NSArray alloc] initWithObjects:[listOfnameStore objectAtIndex:index],[listOfDepartmentStore objectAtIndex:index], nil];
+        NSArray *arr = [[NSArray alloc] initWithObjects:[listOfnameENTH objectAtIndex:index],[listOfDepartmentStore objectAtIndex:index], nil];
         
         NSArray *arrResult = [[NSArray alloc] init];
         arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -201,8 +203,8 @@
         if ([arrResult count] != 0)
         {
             [searchListOfidStore addObject:idStore];
-            [searchListOfnameStore addObject:[arr objectAtIndex:0]];
-            [searchListOfDepartmentStore addObject:[arr objectAtIndex:1]];
+            [searchListOfnameStore addObject:[listOfnameStore objectAtIndex:index]];
+            [searchListOfDepartmentStore addObject:[listOfDepartmentStore objectAtIndex:index]];
             [searchListOflogoStore addObject:[listOflogoStore objectAtIndex:index]];
         }
     }
@@ -267,7 +269,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = "SELECT Favorite.idStore,Store.nameStore,Store.logoStore,DepartmentStore.nameDS,DepartmentStore.branchDS FROM DepartmentStore,Floor,LinkFloorStore,Store,Favorite WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and Store.idStore=Favorite.idStore GROUP BY Store.idStore ORDER BY Favorite.date DESC, Store.nameStore ASC";
+        const char *sql = "SELECT Favorite.idStore,Store.nameStore,Store.logoStore,DepartmentStore.nameDS,DepartmentStore.branchDS,Store.nameStoreEN,Store.nameStoreTH FROM DepartmentStore,Floor,LinkFloorStore,Store,Favorite WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and Store.idStore=Favorite.idStore GROUP BY Store.idStore ORDER BY Favorite.date DESC, Store.nameStore ASC";
         
         sqlite3_stmt *searchStament;
         
@@ -277,6 +279,8 @@
             listOfnameStore = [[NSMutableArray alloc] init];
             listOfDepartmentStore = [[NSMutableArray alloc] init];
             listOflogoStore = [[NSMutableArray alloc] init];
+            
+            listOfnameENTH = [[NSMutableArray alloc] init];
             
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
@@ -301,10 +305,21 @@
                 }
                 nameDS = [nameDS stringByAppendingFormat:@" %@",branchDS];
                 
+                NSString *nameEN = @"";
+                if ((char*)sqlite3_column_text(searchStament, 5) != NULL) {
+                    nameEN = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 5)];
+                }
+                NSString *nameTH = @"";
+                if ((char*)sqlite3_column_text(searchStament, 6) != NULL) {
+                    nameTH = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 6)];
+                }
+                
                 [listOfidStore addObject:idStore];
                 [listOfnameStore addObject:nameStore];
                 [listOfDepartmentStore addObject:nameDS];
                 [listOflogoStore addObject:imageLogo];
+                
+                [listOfnameENTH addObject:[NSString stringWithFormat:@"%@ %@",nameEN,nameTH]];
             }
         }
         sqlite3_finalize(searchStament);

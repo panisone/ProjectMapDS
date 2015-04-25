@@ -19,6 +19,9 @@
     NSMutableArray *listOfbranchDS;
     NSMutableArray *listOflogoDS;
     
+    NSMutableArray *listOfnameEN;
+    NSMutableArray *listOfnameTH;
+    
     NSMutableArray *searchListOfidDS;
     NSMutableArray *searchListOfnameDS;
     NSMutableArray *searchListOfbranchDS;
@@ -193,7 +196,7 @@
     {
         NSUInteger index = [listOfidDS indexOfObject:idDS];
         
-        NSString *searchDS = [NSString stringWithFormat:@"%@ %@",[listOfnameDS objectAtIndex:index],[listOfbranchDS objectAtIndex:index]];
+        NSString *searchDS = [NSString stringWithFormat:@"%@ %@ %@",[listOfnameEN objectAtIndex:index],[listOfnameTH objectAtIndex:index],[listOfbranchDS objectAtIndex:index]];
         
         NSArray *arr = [[NSArray alloc] initWithObjects:searchDS, nil];
         
@@ -269,7 +272,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = "SELECT idDS,nameDS,branchDS,logoDS FROM DepartmentStore";
+        const char *sql = "SELECT idDS,nameDS,branchDS,logoDS,nameDSEN,nameDSTH FROM DepartmentStore ORDER BY nameDS ASC";
         
         sqlite3_stmt *searchStament;
         
@@ -279,6 +282,9 @@
             listOfnameDS = [[NSMutableArray alloc] init];
             listOfbranchDS = [[NSMutableArray alloc] init];
             listOflogoDS = [[NSMutableArray alloc] init];
+            
+            listOfnameEN = [[NSMutableArray alloc] init];
+            listOfnameTH = [[NSMutableArray alloc] init];
             
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
@@ -305,18 +311,32 @@
                     }
                 }
                 
+                NSString *nameEN = @"";
+                if ((char*)sqlite3_column_text(searchStament, 4) != NULL) {
+                    nameEN = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 4)];
+                }
+                
+                NSString *nameTH = @"";
+                if ((char*)sqlite3_column_text(searchStament, 5) != NULL) {
+                    nameTH = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 5)];
+                }
+                
                 /*
                 NSLog(@"id: %@", idDS);
                 NSLog(@"name: %@", name);
                 NSLog(@"branch: %@", branch);
                 NSLog(@"logo: %@", logo);
                 NSLog(@"image: %@", imageLogo);
+                NSLog(@"EN:%@ TH:%@",nameEN,nameTH);
                 */
                 
                 [listOfidDS addObject:idDS];
                 [listOfnameDS addObject:name];
                 [listOfbranchDS addObject:branch];
                 [listOflogoDS addObject:imageLogo];
+                
+                [listOfnameEN addObject:nameEN];
+                [listOfnameTH addObject:nameTH];
                 
                 //NSLog(@"count of idDS: %lu",(unsigned long)[listOfidDS count]);
             }

@@ -27,6 +27,8 @@
     NSDictionary *idShopCategory;
     NSDictionary *floorShopCategory;
     
+    NSDictionary *shopENTH;
+    
     NSMutableArray *searchCategory;
     NSDictionary *searchShopCategory;
     NSDictionary *searchIDShopCategory;
@@ -223,7 +225,7 @@
     for (NSString *key in category)
     {
         NSArray *arrResult = [[NSArray alloc] init];
-        arrResult = [[shopCategory objectForKey:key] filteredArrayUsingPredicate:predicate];
+        arrResult = [[shopENTH objectForKey:key] filteredArrayUsingPredicate:predicate];
         
         if ([arrResult count] != 0)
         {
@@ -234,9 +236,9 @@
             NSMutableArray *arr3 = [[NSMutableArray alloc] init];
             for (NSString *shop in arrResult)
             {
-                NSUInteger index = [[shopCategory objectForKey:key] indexOfObject:shop];
+                NSUInteger index = [[shopENTH objectForKey:key] indexOfObject:shop];
                 
-                [arr1 addObject:shop];
+                [arr1 addObject:[[shopCategory objectForKey:key] objectAtIndex:index]];
                 [arr2 addObject:[[idShopCategory objectForKey:key] objectAtIndex:index]];
                 [arr3 addObject:[[floorShopCategory objectForKey:key] objectAtIndex:index]];
             }
@@ -350,9 +352,11 @@
         idShopCategory = [[NSMutableDictionary alloc] init];
         floorShopCategory = [[NSMutableDictionary alloc] init];
         
+        shopENTH = [[NSMutableDictionary alloc] init];
+        
         for (NSString *keyCategory in category)
         {
-            const char *sql = [[NSString stringWithFormat:@"SELECT Store.idStore,Store.nameStore FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and DepartmentStore.idDS=%@ and Store.category='%@' and Floor.floor LIKE '%@' GROUP BY Store.nameStore ORDER BY Store.nameStore ASC",dataID,keyCategory,floor] cStringUsingEncoding:NSUTF8StringEncoding];
+            const char *sql = [[NSString stringWithFormat:@"SELECT Store.idStore,Store.nameStore,Store.nameStoreEN,Store.nameStoreTH FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and DepartmentStore.idDS=%@ and Store.category='%@' and Floor.floor LIKE '%@' GROUP BY Store.nameStore ORDER BY Store.nameStore ASC",dataID,keyCategory,floor] cStringUsingEncoding:NSUTF8StringEncoding];
             
             sqlite3_stmt *searchStament;
             
@@ -361,6 +365,8 @@
                 NSMutableArray *arrName = [[NSMutableArray alloc] init];
                 NSMutableArray *arrID = [[NSMutableArray alloc] init];
                 NSMutableArray *arrFloor = [[NSMutableArray alloc] init];
+                
+                NSMutableArray *arrENTH = [[NSMutableArray alloc] init];
                 
                 while (sqlite3_step(searchStament) == SQLITE_ROW)
                 {
@@ -381,14 +387,28 @@
                     }
                      */
                     
+                    NSString *nameEN = @"";
+                    if ((char*)sqlite3_column_text(searchStament, 2) != NULL) {
+                        nameEN = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 2)];
+                    }
+                    
+                    NSString *nameTH = @"";
+                    if ((char*)sqlite3_column_text(searchStament, 3) != NULL) {
+                        nameTH = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 3)];
+                    }
+                    
                     [arrID addObject:idStore];
                     [arrName addObject:nameStore];
                     [arrFloor addObject:floorStore];
+                    
+                    [arrENTH addObject:[NSString stringWithFormat:@"%@ %@",nameEN,nameTH]];
                 }
                 //add Key:category and Value:shop in Dict.
                 [shopCategory setValue:arrName forKey:keyCategory];
                 [idShopCategory setValue:arrID forKey:keyCategory];
                 [floorShopCategory setValue:arrFloor forKey:keyCategory];
+                
+                [shopENTH setValue:arrENTH forKey:keyCategory];
             }
             sqlite3_finalize(searchStament);
         }

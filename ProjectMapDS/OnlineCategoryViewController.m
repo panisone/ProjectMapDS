@@ -28,6 +28,8 @@
     NSDictionary *idShopCategory;
     NSDictionary *floorShopCategory;
     
+    NSDictionary *shopENTH;
+    
     NSMutableArray *searchCategory;
     NSDictionary *searchShopCategory;
     NSDictionary *searchIDShopCategory;
@@ -222,7 +224,7 @@
     for (NSString *key in category)
     {
         NSArray *arrResult = [[NSArray alloc] init];
-        arrResult = [[shopCategory objectForKey:key] filteredArrayUsingPredicate:predicate];
+        arrResult = [[shopENTH objectForKey:key] filteredArrayUsingPredicate:predicate];
         
         if ([arrResult count] != 0)
         {
@@ -233,9 +235,9 @@
             NSMutableArray *arr3 = [[NSMutableArray alloc] init];
             for (NSString *shop in arrResult)
             {
-                NSUInteger index = [[shopCategory objectForKey:key] indexOfObject:shop];
+                NSUInteger index = [[shopENTH objectForKey:key] indexOfObject:shop];
                 
-                [arr1 addObject:shop];
+                [arr1 addObject:[[shopCategory objectForKey:key] objectAtIndex:index]];
                 [arr2 addObject:[[idShopCategory objectForKey:key] objectAtIndex:index]];
                 [arr3 addObject:[[floorShopCategory objectForKey:key] objectAtIndex:index]];
             }
@@ -298,6 +300,7 @@
     shopCategory = [[NSMutableDictionary alloc] init];
     idShopCategory = [[NSMutableDictionary alloc] init];
     floorShopCategory = [[NSMutableDictionary alloc] init];
+    shopENTH = [[NSMutableDictionary alloc] init];
     
     for (NSString *keyCategory in category)
     {
@@ -314,6 +317,8 @@
         NSMutableArray *arrID = [[NSMutableArray alloc] init];
         NSMutableArray *arrFloor = [[NSMutableArray alloc] init];
         
+        NSMutableArray *arrENTH = [[NSMutableArray alloc] init];
+        
         for (NSDictionary *dataDict in jsonObjects)
         {
             NSString *idStore_data = [dataDict objectForKey:@"idStore"];
@@ -322,14 +327,27 @@
             
             NSString *floorStore = [self getStringFloor:idStore_data];
             
+            NSString *nameEN = [dataDict objectForKey:@"nameStoreEN"];
+            if ([nameEN length] == 0) {
+                nameEN = @"";
+            }
+            NSString *nameTH = [dataDict objectForKey:@"nameStoreTH"];
+            if ([nameTH length] == 0) {
+                nameTH = @"";
+            }
+            
             [arrName addObject:nameStore_data];
             [arrID addObject:idStore_data];
             [arrFloor addObject:floorStore];
+            
+            [arrENTH addObject:[NSString stringWithFormat:@"%@ %@",nameEN,nameTH]];
         }
         //add Key:category and Value:shop in Dict.
         [shopCategory setValue:arrName forKey:keyCategory];
         [idShopCategory setValue:arrID forKey:keyCategory];
         [floorShopCategory setValue:arrFloor forKey:keyCategory];
+        
+        [shopENTH setValue:arrENTH forKey:keyCategory];
     }
 }
 

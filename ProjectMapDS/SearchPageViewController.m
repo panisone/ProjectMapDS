@@ -186,7 +186,7 @@
         
         for (NSDictionary *dict in listOfDS)
         {
-            NSString *searchDS = [NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"nameDS"],[dict objectForKey:@"branchDS"]];
+            NSString *searchDS = [NSString stringWithFormat:@"%@ %@ %@",[dict objectForKey:@"nameDSEN"],[dict objectForKey:@"nameDSTH"],[dict objectForKey:@"branchDS"]];
             
             NSArray *arr = [[NSArray alloc] initWithObjects:searchDS, nil];
             
@@ -220,7 +220,9 @@
                 
                 for (NSDictionary *dict in [listOfStore objectForKey:keyCategory])
                 {
-                    NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"], nil];
+                    NSString *searchStore = [NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"nameStoreEN"],[dict objectForKey:@"nameStoreTH"]];
+                    
+                    NSArray *arr = [[NSArray alloc] initWithObjects:searchStore, nil];
                     
                     NSArray *arrResult = [[NSArray alloc] init];
                     arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -252,7 +254,10 @@
             
             for (NSDictionary *dict in [listOfStore objectForKey:keyCategory])
             {
-                NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"], nil];
+                //NSArray *arr = [[NSArray alloc] initWithObjects:[dict objectForKey:@"nameStore"], nil];
+                NSString *searchStore = [NSString stringWithFormat:@"%@ %@",[dict objectForKey:@"nameStoreEN"],[dict objectForKey:@"nameStoreTH"]];
+                
+                NSArray *arr = [[NSArray alloc] initWithObjects:searchStore, nil];
                 
                 NSArray *arrResult = [[NSArray alloc] init];
                 arrResult = [arr filteredArrayUsingPredicate:predicate];
@@ -529,7 +534,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = "SELECT idDS,nameDS,branchDS,logoDS FROM DepartmentStore";
+        const char *sql = "SELECT idDS,nameDS,branchDS,logoDS,nameDSEN,nameDSTH FROM DepartmentStore";
         
         sqlite3_stmt *searchStament;
         
@@ -561,11 +566,23 @@
                     }
                 }
                 
+                NSString *nameEN = @"";
+                if ((char*)sqlite3_column_text(searchStament, 4) != NULL) {
+                    nameEN = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 4)];
+                }
+                
+                NSString *nameTH = @"";
+                if ((char*)sqlite3_column_text(searchStament, 5) != NULL) {
+                    nameTH = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 5)];
+                }
+                
                 NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
                                         idDS, @"idDS",
                                         name, @"nameDS",
                                         branch, @"branchDS",
                                         imageLogo, @"logoDS",
+                                        nameEN, @"nameDSEN",
+                                        nameTH, @"nameDSTH",
                                         nil];
                 [listOfDS addObject:dictDS];
             }
@@ -617,7 +634,7 @@
         {
             if ([keyCategory isEqual:[arrCategory objectAtIndex:0]]) { continue; }
             
-            const char *sql = [[NSString stringWithFormat:@"SELECT DepartmentStore.idDS,Store.idStore,Store.nameStore,Store.branchStore,Store.logoStore FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and Store.category LIKE '%@' GROUP BY Store.nameStore ORDER BY Store.nameStore ASC",keyCategory] cStringUsingEncoding:NSUTF8StringEncoding];
+            const char *sql = [[NSString stringWithFormat:@"SELECT DepartmentStore.idDS,Store.idStore,Store.nameStore,Store.branchStore,Store.logoStore,Store.nameStoreEN,Store.nameStoreTH FROM DepartmentStore,Floor,LinkFloorStore,Store WHERE DepartmentStore.idDS=Floor.idDS and Floor.idFloor=LinkFloorStore.idFloor and LinkFloorStore.idStore=Store.idStore and Store.category LIKE '%@' GROUP BY Store.nameStore ORDER BY Store.nameStore ASC",keyCategory] cStringUsingEncoding:NSUTF8StringEncoding];
             
             sqlite3_stmt *searchStament;
             
@@ -651,12 +668,24 @@
                         }
                     }
                     
+                    NSString *nameEN = @"";
+                    if ((char*)sqlite3_column_text(searchStament, 5) != NULL) {
+                        nameEN = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 5)];
+                    }
+                    
+                    NSString *nameTH = @"";
+                    if ((char*)sqlite3_column_text(searchStament, 6) != NULL) {
+                        nameTH = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 6)];
+                    }
+                    
                     NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
                                             idDS, @"idDS",
                                             idStore, @"idStore",
                                             nameStore, @"nameStore",
                                             branchStore, @"branchStore",
                                             imageLogo, @"logoStore",
+                                            nameEN, @"nameStoreEN",
+                                            nameTH, @"nameStoreTH",
                                             nil];
                     [arrStore addObject:dictDS];
                 }
@@ -698,11 +727,22 @@
             imageLogo = [UIImage imageWithData:imageData];
         }
         
+        NSString *nameEN = [dataDict objectForKey:@"nameDSEN"];
+        if ([nameEN length] == 0) {
+            nameEN = @"";
+        }
+        NSString *nameTH = [dataDict objectForKey:@"nameDSTH"];
+        if ([nameTH length] == 0) {
+            nameTH = @"";
+        }
+        
         NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
                                 idDS_data, @"idDS",
                                 nameDS_data, @"nameDS",
                                 branchDS_data, @"branchDS",
                                 imageLogo, @"logoDS",
+                                nameEN, @"nameDSEN",
+                                nameTH, @"nameDSTH",
                                 nil];
         [listOfDS addObject:dictDS];
     }
@@ -762,12 +802,23 @@
                 imageLogo = [UIImage imageWithData:imageData];
             }
             
+            NSString *nameEN = [dataDict objectForKey:@"nameStoreEN"];
+            if ([nameEN length] == 0) {
+                nameEN = @"";
+            }
+            NSString *nameTH = [dataDict objectForKey:@"nameStoreTH"];
+            if ([nameTH length] == 0) {
+                nameTH = @"";
+            }
+            
             NSDictionary *dictDS = [NSDictionary dictionaryWithObjectsAndKeys:
                                     idDS_data, @"idDS",
                                     idStore_data, @"idStore",
                                     nameStore_data, @"nameStore",
                                     branchStore_data, @"branchStore",
                                     imageLogo, @"logoStore",
+                                    nameEN, @"nameStoreEN",
+                                    nameTH, @"nameStoreTH",
                                     nil];
             [arrStore addObject:dictDS];
         }

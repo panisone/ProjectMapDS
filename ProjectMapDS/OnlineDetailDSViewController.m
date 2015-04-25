@@ -633,7 +633,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = "INSERT INTO DepartmentStore VALUES (?,?,?,?,?,?,?,?,?)";
+        const char *sql = "INSERT INTO DepartmentStore VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         
         sqlite3_stmt *searchStament;
         
@@ -648,6 +648,9 @@
             NSString *str7 = [arr objectAtIndex:6];
             NSData *str8 = [arr objectAtIndex:7];
             NSString *str9 = [arr objectAtIndex:8];
+            // EN and TH
+            NSString *strEN = [arr objectAtIndex:9];
+            NSString *strTH = [arr objectAtIndex:10];
             
             //sqlite3_bind_int(searchStament, 1, [str1 intValue]);
             sqlite3_bind_text(searchStament, 1, [str1 cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
@@ -664,6 +667,9 @@
                 sqlite3_bind_blob(searchStament, 8, [str8 bytes], (int)[str8 length], SQLITE_TRANSIENT);
             }
             sqlite3_bind_text(searchStament, 9, [str9 cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+            // EN and TH
+            sqlite3_bind_text(searchStament, 10, [strEN cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(searchStament, 11, [strTH cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
             
             sqlite3_step(searchStament);
             /*
@@ -819,7 +825,7 @@
     
     if (sqlite3_open([path UTF8String], &database) == SQLITE_OK)
     {
-        const char *sql = "INSERT INTO Store VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        const char *sql = "INSERT INTO Store VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         
         sqlite3_stmt *searchStament;
         
@@ -838,6 +844,9 @@
             NSString *str11 = [arr objectAtIndex:10];
             NSString *str12 = [arr objectAtIndex:11];
             NSData *str13 = [arr objectAtIndex:12];
+            // EN and TH
+            NSString *strEN = [arr objectAtIndex:13];
+            NSString *strTH = [arr objectAtIndex:14];
             
             sqlite3_bind_text(searchStament, 1, [str1 cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(searchStament, 2, [str2 cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
@@ -857,6 +866,9 @@
             else {
                 sqlite3_bind_blob(searchStament, 13, [str13 bytes], (int)[str13 length], SQLITE_TRANSIENT);
             }
+            // EN and TH
+            sqlite3_bind_text(searchStament, 14, [strEN cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(searchStament, 15, [strTH cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
             
             sqlite3_step(searchStament);
             /*
@@ -948,6 +960,8 @@
         [arr addObject:logoDS_data];
         
         [arr addObject:[dataDict objectForKey:@"latestUpdate"]];
+        [arr addObject:[dataDict objectForKey:@"nameDSEN"]];
+        [arr addObject:[dataDict objectForKey:@"nameDSTH"]];
         
         [arrDepartmentStore addObject:arr];
         //NSLog(@"get-DepartmentStore => idDS:%@",[dataDict objectForKey:@"idDS"]);
@@ -1062,6 +1076,9 @@
         NSString *logoStore = [dataDict objectForKey:@"logoStore"];
         NSData *logoStore_data = [[NSData alloc] initWithBase64EncodedString:logoStore options:0];
         [arr addObject:logoStore_data];
+        
+        [arr addObject:[dataDict objectForKey:@"nameStoreEN"]];
+        [arr addObject:[dataDict objectForKey:@"nameStoreTH"]];
         
         [arrStore addObject:arr];
         //NSLog(@"get-arrStore => idStore:%@",[dataDict objectForKey:@"idStore"]);
