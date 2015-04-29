@@ -138,7 +138,7 @@
         detail = [detail stringByAppendingString:@"\n\n"];
         
         NSString *logoDS_data = [dataDict objectForKey:@"logoDS"];
-        image = [UIImage imageNamed:@"Info-icon.png"];
+        image = [UIImage imageNamed:@"No-icon.png"];
         if ([logoDS_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoDS_data options:0];
             image = [UIImage imageWithData:imageData];
@@ -327,6 +327,8 @@
     {
         [self insertTableImageStore:arr];
     }
+    
+    check = @"NONE";
 }
 
 //

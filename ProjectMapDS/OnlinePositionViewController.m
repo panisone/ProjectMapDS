@@ -82,7 +82,7 @@
     
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonSource options:NSJSONReadingMutableContainers error:nil];
     
-    image = [UIImage imageNamed:@"Info-icon.png"];
+    image = [UIImage imageNamed:@"No-icon.png"];
     
     for (NSDictionary *dataDict in jsonObjects)
     {

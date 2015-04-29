@@ -49,7 +49,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = @"ห้างสรรพสินค้า";
+    self.navigationItem.title = @"ศูนย์การค้า";
     self.navigationController.navigationBar.hidden = NO;
     
     //reload Table View
@@ -317,7 +317,7 @@
         }
         
         NSString *logoDS_data = [dataDict objectForKey:@"logoDS"];
-        UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+        UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
         if ([logoDS_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoDS_data options:0];
             imageLogo = [UIImage imageWithData:imageData];

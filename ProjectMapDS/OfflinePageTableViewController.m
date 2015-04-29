@@ -34,7 +34,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = @"ห้างสรรพสินค้า";
+    self.navigationItem.title = @"ศูนย์การค้า";
     self.navigationController.navigationBar.hidden = NO;
     
     //reload Table View
@@ -300,7 +300,7 @@
                     }
                 }
                 
-                UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+                UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
                 //NSData *logo = UIImagePNGRepresentation(imageLogo);
                 if ((char*)sqlite3_column_text(searchStament, 3) != NULL)
                 {

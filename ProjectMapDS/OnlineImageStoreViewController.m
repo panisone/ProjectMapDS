@@ -135,7 +135,7 @@
     for (NSDictionary *dataDict in jsonObjects)
     {
         NSString *imageStore_data = [dataDict objectForKey:@"imageStore"];
-        UIImage *image = [UIImage imageNamed:@"Info-icon.png"];
+        UIImage *image = [UIImage imageNamed:@"No-icon.png"];
         if ([imageStore_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:imageStore_data options:0];
             image = [UIImage imageWithData:imageData];
@@ -145,7 +145,7 @@
     }
     
     if ([listOfimageStore count] == 0) {
-        [listOfimageStore addObject:[UIImage imageNamed:@"Info-icon.png"]];
+        [listOfimageStore addObject:[UIImage imageNamed:@"No-icon.png"]];
     }
 }
 

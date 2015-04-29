@@ -111,7 +111,7 @@
         {
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
-                image = [UIImage imageNamed:@"Info-icon.png"];
+                image = [UIImage imageNamed:@"No-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 0) != NULL)
                 {
                     NSData *plan = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 0) length:sqlite3_column_bytes(searchStament, 0)];

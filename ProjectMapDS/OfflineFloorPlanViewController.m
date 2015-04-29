@@ -119,7 +119,7 @@
         {
             while (sqlite3_step(searchStament) == SQLITE_ROW)
             {
-                image = [UIImage imageNamed:@"Info-icon.png"];
+                image = [UIImage imageNamed:@"No-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 0) != NULL)
                 {
                     NSData *plan = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 0) length:sqlite3_column_bytes(searchStament, 0)];
@@ -231,7 +231,7 @@
             {
                 NSString *idStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 0)];
                 
-                UIImage *imageButton = [UIImage imageNamed:@"Logo.png"];
+                UIImage *imageButton = [UIImage imageNamed:@"button-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 1) != NULL)
                 {
                     NSData *dataImage = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 1) length:sqlite3_column_bytes(searchStament, 1)];

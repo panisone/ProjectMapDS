@@ -42,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    arrType = [[NSMutableArray alloc] initWithObjects:@"ห้างสรรพสินค้า", @"ร้านค้า", nil];
+    arrType = [[NSMutableArray alloc] initWithObjects:@"ศูนย์การค้า", @"ร้านค้า", nil];
     
     [self checkNetworkConnection];
     
@@ -352,7 +352,7 @@
         cell.detailTextLabel.text = [@"สาขา " stringByAppendingString:detail];;
         
         // Cell Image = "logoDS"
-        cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
+        //cell.imageView.contentMode=UIViewContentModeScaleAspectFit;
         cell.imageView.image = [tmpDict objectForKey:@"logoDS"];
     }
     else
@@ -368,7 +368,7 @@
         cell.detailTextLabel.text = [store objectForKey:@"branchStore"];
         
         // Cell Image = "logoStore"
-        cell.imageView.image = [store objectForKey:@"logoStore"];
+        cell.imageView.image = nil;//[store objectForKey:@"logoStore"];
     }
     
     return cell;
@@ -556,7 +556,7 @@
                     }
                 }
                 
-                UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+                UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 3) != NULL)
                 {
                     NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 3) length:sqlite3_column_bytes(searchStament, 3)];
@@ -658,7 +658,7 @@
                         }
                     }
                     
-                    UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+                    UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
                     if ((char*)sqlite3_column_text(searchStament, 4) != NULL)
                     {
                         NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 4) length:sqlite3_column_bytes(searchStament, 4)];
@@ -721,7 +721,7 @@
         }
         
         NSString *logoDS_data = [dataDict objectForKey:@"logoDS"];
-        UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+        UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
         if ([logoDS_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoDS_data options:0];
             imageLogo = [UIImage imageWithData:imageData];
@@ -796,7 +796,7 @@
             }
             
             NSString *logoStore_data = [dataDict objectForKey:@"logoStore"];
-            UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+            UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
             if ([logoStore_data length] != 0) {
                 NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoStore_data options:0];
                 imageLogo = [UIImage imageWithData:imageData];

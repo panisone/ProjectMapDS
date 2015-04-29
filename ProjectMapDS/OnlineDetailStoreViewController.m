@@ -136,7 +136,7 @@
         detail = [NSString stringWithFormat:@"%@รายละเอียดร้าน: \n%@",detail,detailStore_data];
         
         NSString *logoStore_data = [dataDict objectForKey:@"logoStore"];
-        image = [UIImage imageNamed:@"Info-icon.png"];
+        image = [UIImage imageNamed:@"No-icon.png"];
         if ([logoStore_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoStore_data options:0];
             image = [UIImage imageWithData:imageData];

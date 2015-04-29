@@ -99,7 +99,7 @@
         
         // Cell Detail text = "branchStore"
         NSString *callDetail = [searchListOfDepartmentStore objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [@"ห้าง: " stringByAppendingString:callDetail];
+        cell.detailTextLabel.text = [@"ศูนย์การค้า: " stringByAppendingString:callDetail];
         
         // Cell Image = "logoDS"
         cell.imageView.image = [searchListOflogoStore objectAtIndex:indexPath.row];
@@ -111,7 +111,7 @@
         
         // Cell Detail text = "branchStore"
         NSString *callDetail = [listOfDepartmentStore objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [@"ห้าง: " stringByAppendingString:callDetail];
+        cell.detailTextLabel.text = [@"ศูนย์การค้า: " stringByAppendingString:callDetail];
         
         // Cell Image = "logoDS"
         cell.imageView.image = [listOflogoStore objectAtIndex:indexPath.row];
@@ -288,7 +288,7 @@
                 
                 NSString *nameStore = [NSString stringWithUTF8String:(char *)sqlite3_column_text(searchStament, 1)];
                 
-                UIImage *imageLogo = [UIImage imageNamed:@"Info-icon.png"];
+                UIImage *imageLogo = [UIImage imageNamed:@"No-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 2) != NULL)
                 {
                     NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 2) length:sqlite3_column_bytes(searchStament, 2)];

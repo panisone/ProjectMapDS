@@ -125,7 +125,7 @@
                     }
                 }
                 
-                image = [UIImage imageNamed:@"Info-icon.png"];
+                image = [UIImage imageNamed:@"No-icon.png"];
                 if ((char*)sqlite3_column_text(searchStament, 12) != NULL)
                 {
                     NSData *logo = [[NSData alloc] initWithBytes:sqlite3_column_blob(searchStament, 12) length:sqlite3_column_bytes(searchStament, 12)];

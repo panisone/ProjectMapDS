@@ -94,7 +94,7 @@
     for (NSDictionary *dataDict in jsonObjects)
     {
         NSString *mapFloor_data = [dataDict objectForKey:@"mapFloor"];
-        image = [UIImage imageNamed:@"Info-icon.png"];
+        image = [UIImage imageNamed:@"No-icon.png"];
         if ([mapFloor_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:mapFloor_data options:0];
             image = [UIImage imageWithData:imageData];
@@ -189,7 +189,7 @@
         NSString *idStore = [dataDict objectForKey:@"idStore"];
         
         NSString *logoStore_data = [dataDict objectForKey:@"logoStore"];
-        UIImage *imageButton = [UIImage imageNamed:@"Logo.png"];
+        UIImage *imageButton = [UIImage imageNamed:@"button-icon.png"];
         if ([logoStore_data length] != 0) {
             NSData *imageData = [[NSData alloc] initWithBase64EncodedString:logoStore_data options:0];
             imageButton = [UIImage imageWithData:imageData];
